@@ -6,11 +6,11 @@ set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
       \,sm:block-blinkwait175-blinkoff150-blinkon175
 
 
-"au BufReadPost if line("'\"")|execute("normal `\"")|endif
-" autocmd BufReadPost *
-"   \ if line("'\"") > 0 && line("'\"") <= line("$") |
-"   \ exe "normal g`\"" |
-"   \ endif
+au BufReadPost if line("'\"")|execute("normal `\"")|endif
+ autocmd BufReadPost *
+   \ if line("'\"") > 0 && line("'\"") <= line("$") |
+   \ exe "normal g`\"" |
+   \ endif
 
 "autocmd BufNewFile * set textwidth=78
 

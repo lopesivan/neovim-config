@@ -2,13 +2,9 @@ if not pcall(require, "colorbuddy") then
   return
 end
 
-vim.opt.termguicolors = true
-vim.opt.laststatus = 3
-
 -- require("colorbuddy").colorscheme "gruvbuddy"
 -- require("colorbuddy").colorscheme "kanagawa"
---require("colorbuddy").colorscheme "adwaita"
---require("colorizer").setup()
+require("colorbuddy").colorscheme "adwaita"
 
 local c = require("colorbuddy.color").colors
 local Group = require("colorbuddy.group").Group

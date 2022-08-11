@@ -61,6 +61,31 @@ return require("packer").startup {
 		use "lewis6991/impatient.nvim"
 
 		--
+		-- TREE SITTER =======================================================
+		--
+		use "nvim-treesitter/nvim-treesitter"
+		use "nvim-treesitter/playground"
+		use "nvim-treesitter/nvim-treesitter-refactor"
+		use "theHamsta/nvim-treesitter-pairs"
+
+		--
+		-- Nav ===============================================================
+		--
+		use {
+		  "antoinemadec/FixCursorHold.nvim",
+		  event = "BufReadPre",
+		  config = function()
+			vim.g.cursorhold_updatetime = 100
+		  end,
+		}
+
+		use "tamago324/lir.nvim"
+		use "tamago324/lir-git-status.nvim"
+		if executable "mmv" then
+			use "tamago324/lir-mmv.nvim"
+		end
+
+		--
 		-- IVAN ==============================================================
 		--
 
@@ -98,7 +123,7 @@ return require("packer").startup {
 		use "radenling/vim-dispatch-neovim"
 		use "tpope/vim-endwise"
 		use "tpope/vim-eunuch"
-		use "tpope/vim-fugitive"
+		--use "tpope/vim-fugitive"
 		use "tpope/vim-git"
 		use "tpope/vim-haml"
 		use "tpope/vim-liquid"
@@ -130,7 +155,6 @@ return require("packer").startup {
 		  },
 		}
 
-
 		--
 		-- NVIM-LUA ==========================================================
 		--
@@ -146,16 +170,18 @@ return require("packer").startup {
 		  end,
 		}
 
+		--
 		-- Colorscheme
 		--
 		use {
 			"Mofiqul/adwaita.nvim",
 		  config = function()
 			vim.cmd "colorscheme adwaita"
-		  end,
+		  end
 		}
 
 		use "rebelot/kanagawa.nvim"
+
 		use {
 		  "folke/tokyonight.nvim",
 		  config = function()
@@ -163,6 +189,7 @@ return require("packer").startup {
 		  end,
 		  disable = true,
 		}
+
 		use {
 		  "norcalli/nvim-colorizer.lua",
 		  cmd = "ColorizerToggle",
@@ -170,11 +197,14 @@ return require("packer").startup {
 			require("colorizer").setup()
 		  end,
 		}
+
 		use {
 		  "rktjmp/lush.nvim",
 		  cmd = { "LushRunQuickstart", "LushRunTutorial", "Lushify", "LushImport" },
 		  disable = false,
 		}
+
+		use "tjdevries/colorbuddy.nvim"
 
 		--
 		-- Auto pairs
@@ -210,22 +240,97 @@ return require("packer").startup {
 		}
 
 		--
-		-- TREE SITTER =======================================================
+		-- Git ===============================================================
 		--
-		use "nvim-treesitter/nvim-treesitter"
-		use "nvim-treesitter/playground"
-		use "nvim-treesitter/nvim-treesitter-refactor"
-		use "theHamsta/nvim-treesitter-pairs"
+		use {
+		  "TimUntersberger/neogit",
+		  cmd = "Neogit",
+		  config = function()
+			require("config.neogit").setup()
+		  end,
+		}
+		use {
+		  "lewis6991/gitsigns.nvim",
+		  event = "BufReadPre",
+		  wants = "plenary.nvim",
+		  requires = { "nvim-lua/plenary.nvim" },
+		  config = function()
+			require("config.gitsigns").setup()
+		  end,
+		}
+		use {
+		  "tpope/vim-fugitive",
+		  opt = true,
+		  cmd = { "Git", "GBrowse", "Gdiffsplit", "Gvdiffsplit" },
+		  requires = {
+			"tpope/vim-rhubarb",
+			"idanarye/vim-merginal",
+		  },
+		  -- wants = { "vim-rhubarb" },
+		}
+		use { "rbong/vim-flog", cmd = { "Flog", "Flogsplit", "Floggit" }, wants = { "vim-fugitive" } }
+		use {
+		  "ruifm/gitlinker.nvim",
+		  requires = "nvim-lua/plenary.nvim",
+		  module = "gitlinker",
+		  config = function()
+			require("gitlinker").setup { mappings = nil }
+		  end,
+		}
+		use {
+		  "pwntester/octo.nvim",
+		  cmd = "Octo",
+		  wants = { "telescope.nvim", "plenary.nvim", "nvim-web-devicons" },
+		  requires = {
+			"nvim-lua/plenary.nvim",
+			"nvim-telescope/telescope.nvim",
+			"kyazdani42/nvim-web-devicons",
+		  },
+		  config = function()
+			require("octo").setup()
+		  end,
+		  disable = false,
+		}
+		use {
+		  "akinsho/git-conflict.nvim",
+		  cmd = {
+			"GitConflictChooseTheirs",
+			"GitConflictChooseOurs",
+			"GitConflictChooseBoth",
+			"GitConflictChooseNone",
+			"GitConflictNextConflict",
+			"GitConflictPrevConflict",
+			"GitConflictListQf",
+		  },
+		  config = function()
+			require("git-conflict").setup()
+		  end,
+		}
+		use {
+		  "ldelossa/gh.nvim",
+		  opt = true,
+		  wants = { "litee.nvim" },
+		  requires = { { "ldelossa/litee.nvim" } },
+		  event = "BufReadPre",
+		  cmd = { "GHOpenPR" },
+		  config = function()
+			require("litee.lib").setup()
+			require("litee.gh").setup()
+		  end,
+		  disable = true,
+		}
+		use { "f-person/git-blame.nvim", cmd = { "GitBlameToggle" } }
+		use {
+		  "tanvirtin/vgit.nvim",
+		  config = function()
+			require("vgit").setup()
+		  end,
+		  cmd = { "VGit" },
+		}
+		use { "knsh14/vim-github-link", cmd = { "GetCommitLink", "GetCurrentBranchLink", "GetCurrentCommitLink" } }
+		use { "segeljakt/vim-silicon", cmd = { "Silicon" } }
+		use { "mattn/vim-gist", opt = true, requires = { "mattn/webapi-vim" }, cmd = { "Gist" } }
 
-		-- =======================================================================
-		-- =======================================================================
-		-- =======================================================================
-	end,
-	-- =======================================================================
-	config = {
-		display = {
-			-- open_fn = require('packer.util').float,
-		},
-	},
+	end --
 }
 
