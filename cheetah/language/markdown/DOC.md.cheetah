@@ -1,0 +1,16 @@
+alt+1 ou alt+2 substituem valores
+#
+# VERSION          0.`<Number>`
+
+Rodando um comando
+# Um exemplo:  <%= os.popen("docker --version").read().strip() %>
+
+Loop chave valor
+#for key, value in $d.data.iteritems():
+${key}, ${value}
+#end for
+
+Usando a chave
+chave1 = ${d.data.chave1}
+chave2 = ${d.data.chave2}
+chave3 = ${d.data.chave3}

@@ -1,0 +1,13 @@
+AdtHeader:
+- matrix.h
+- Arguments:
+    - size_t rows
+    - size_t columns
+
+AdtSource:
+- matrix.c
+- struct:
+    - size_t      rows
+    - size_t      columns
+    - Scalar      **data
+

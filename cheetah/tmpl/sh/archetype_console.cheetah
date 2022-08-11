@@ -1,0 +1,13 @@
+#encoding UTF-8
+#compiler commentStartToken = '//'
+// :Template archetype_console [data]
+#compiler reset
+package=br.com.fortytwo
+project=NameOfProject
+
+mvn archetype:generate \
+    -DarchetypeGroupId=project._42algoritmos \
+    -DarchetypeArtifactId=console-app-archetype \
+    -DarchetypeVersion=1.0.2 \
+    -DgroupId=\${package} \
+    -DartifactId=\${project}

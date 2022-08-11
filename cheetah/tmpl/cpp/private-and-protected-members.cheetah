@@ -1,0 +1,49 @@
+#encoding UTF-8
+#compiler commentStartToken = '//'
+// :Template private-and-protected-members [data]
+#compiler reset
+class Base {
+private:
+    int MyPrivateInt;
+protected:
+    int MyProtectedInt;
+public:
+    int MyPublicInt;
+};
+
+class Derived:Base {
+public:
+    int foo1() {
+        return MyPrivateInt;     // Won't compile!
+        // Membros privados de uma classe A não são acessíveis
+        // fora do código de A ou do código de qualquer classe
+        // derivada de A.
+    }
+    int foo2() {
+        return MyProtectedInt;   // OK
+        // Os membros protegidos de uma classe A não são acessíveis
+        // fora do código de A, mas podem ser acessados a partir do
+        // código de qualquer classe derivada de A.
+    }
+    int foo3() {
+        return MyPublicInt;      // OK
+    }
+};
+
+class Unrelated {
+private:
+    Base B;
+public:
+    int foo1()
+    {
+        return B.MyPrivateInt;   // Won't compile!
+    }
+    int foo2()
+    {
+        return B.MyProtectedInt; // Won't compile
+    }
+    int foo3()
+    {
+        return B.MyPublicInt;    // OK
+    }
+};

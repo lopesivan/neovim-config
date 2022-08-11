@@ -1,0 +1,123 @@
+# vim.snippets - Snippets for vim file type
+
+snippet _skeleton "Generic Vim Script file" b
+" configuration
+$0
+endsnippet
+
+snippet _after_plugin "Vim Script file in after/plugin" b
+" `!v expand("%")` - `!v util#snippet#Title(expand("%:t:r"))`
+" Maintainer: `!v util#snippet#ProjectAuthor()`
+
+$0
+
+" `!v vim#Modeline()`
+endsnippet
+
+
+snippet _ftdetect "Vim Script file type detect" b
+" `!v expand("%")` - Detect filetype `!v util#snippet#Title(expand("%:t:r"))`
+" Maintainer: `!v util#snippet#ProjectAuthor()`
+
+au BufRead,BufNewFile *.`!v expand("%:t:r")` set filetype=`!v expand("%:t:r")`
+
+" `!v vim#Modeline()`
+endsnippet
+
+
+# snippet _template_autoload "autoload for template.vim" b
+# function! Template#`!v expand("%:t:r")`#LoadTemplate()
+#   let path     = expand("%:h")
+#   let filename = expand("%:t:r")
+#   let model    = "skel"
+#   let extension= "`!v expand("%:t:r")`"
+#   let filetype = "`!v expand("%:t:r")`"
+
+#   let obj = templates#New(path, filename, model, extension, filetype)
+#   call obj.Load()
+
+# endfunction
+
+# " vim: ts=4
+# endsnippet
+
+snippet _plugin "Plugin file" b
+" `!v expand("%")` - `!v util#snippet#Title(expand("%:t:r"))`
+" Maintainer: `!v util#snippet#ProjectAuthor()`
+
+if exists("g:loaded_`!v expand("%:t:r")`") || v:version < 700 || &cp
+    finish
+endif
+let g:loaded_`!v expand("%:t:r")` = 1
+
+$0
+
+" `!v vim#Modeline()`
+endsnippet
+
+snippet gvar "Global / configuration variable" b
+if !exists("g:${1:var}")
+    let g:$1 = $2
+endif
+endsnippet
+
+snippet has "if has() block" b
+if has("${1:feature}")
+    ${0:${VISUAL}}
+endif
+endsnippet
+
+snippet exists "if exists() block" b
+if exists("${1:thing}")
+    ${0:${VISUAL}}
+endif
+endsnippet
+
+snippet fun "function" b
+function! ${1:`!v vim#GuessFunctionPrefix(expand("%"))`}${2:fun_name}(${3})
+    ${0:${VISUAL}}
+endfunction
+endsnippet
+
+# digite:
+# gsub ou sub
+#
+snippet "(g?)sub" "substitute()" r
+substitute(${1:target}, "${2:pattern}", "${3:`!p snip.rv = match.group(1)`}")
+endsnippet
+
+snippet cmd "command" b
+command${1:!} ${2:-nargs=${3:01*?+} }${4:-complete=${5:augroup|buffer|...} }${6:-range${7:=%N} }${8:-count=${9:N} }${10:-bang }${11:-bar }${12:-register }${13:-buffer }${14:CommandName} ${15:...}
+endsnippet
+
+snippet au "autocmd group" b
+augroup ${1:`!v expand('%:t:r')`}
+    autocmd!
+    ${0:${VISUAL}}
+augroup END
+endsnippet
+
+snippet it "vspec it block" b
+it '${1:does something}'
+    ${0:${VISUAL:TODO}}
+end
+endsnippet
+
+snippet describe "vspec describe block" b
+describe '${1:thing}'
+    ${0:${VISUAL}}
+end
+endsnippet
+
+snippet context "vspec context block" b
+context '${1:context}'
+    ${0:${VISUAL}}
+end
+endsnippet
+
+snippet skip "vspec SKIP block" b
+if !exists('${1:dependency}')
+    SKIP '${2:$1 not available}'
+endif
+$0
+endsnippet

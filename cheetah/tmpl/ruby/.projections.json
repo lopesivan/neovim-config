@@ -1,0 +1,17 @@
+{
+  "./.projections.json": { "type": "dit" },
+
+  "README.md": {
+    "type": "doc"
+  },
+
+  "mk-code.sh": {
+    "type": "sh"
+  },
+
+  "*.cheetah": {
+    "type": "cheetah",
+    "template": ["#encoding UTF-8", "#compiler commentStartToken = '//'", "// :Template {} [data]", "#compiler reset"]
+  }
+
+}

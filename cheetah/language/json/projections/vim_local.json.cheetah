@@ -1,0 +1,10 @@
+{
+  "./.projections.json": { "type": "dit" },
+
+  "*.local": {
+#for key, value in $d.data.iteritems():
+    "${key}": "${value}",
+#end for
+  }
+
+}

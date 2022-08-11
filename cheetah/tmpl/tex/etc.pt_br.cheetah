@@ -1,0 +1,7 @@
+#encoding UTF-8
+#compiler commentStartToken = '//'
+// :Template etc.pt_br [data]
+#compiler reset
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[brazil]{babel}

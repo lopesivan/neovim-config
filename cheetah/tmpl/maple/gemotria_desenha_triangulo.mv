@@ -1,0 +1,36 @@
+reset:
+restart:
+with(geometry):
+# {{{ descrição:
+# Define um triângulo T0 inicial e ligam-se os pontos médios dos lados de
+# forma a gerar um novo triângulo.
+# desenha triângulos }}}
+# ----------------------------------------------------------------------------
+
+triangle(T0,
+    [point(A, 0, 0),
+     point(B, 15, 0),
+     point(C, 15/2, 15*sqrt(3)/2)]
+):
+
+midpoint(M1T1, A, B):
+midpoint(M2T1, B, C):
+midpoint(M3T1, C, A):
+
+triangle(T1,
+    [M1T1,
+     M2T1,
+     M3T1]
+):
+
+i:=1: n:=50:
+while i<= n do
+    j:=i+1:
+    midpoint(M1T||j, M1T||i, M2T||i):
+    midpoint(M2T||j, M2T||i, M3T||i):
+    midpoint(M3T||j, M3T||i, M1T||i):
+    triangle(T||j, [M1T||j, M2T||j, M3T||j]):
+    i:=i+1:
+end do:
+
+draw({seq(T||i,i=0..n)});

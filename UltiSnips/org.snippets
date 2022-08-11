@@ -1,0 +1,54 @@
+# sed.snippets - Snippets for sed file type
+
+global !p
+from vimsnippets import complete
+from Cheetah.Template import Template
+import px.snippets
+endglobal
+
+snippet metadata "Metadata" b
+#+title:  Example Org File
+#+author: `git config --get user.name`
+#+date:   `!v strftime('%Y-%m-%d')`
+
+*  $0
+endsnippet
+
+# se a linha for a 1 a -> metadata
+post_jump "px.snippets.expand(snip)"
+snippet s "desc" "snip.line == 0" Ae
+metadata$1
+endsnippet
+
+
+snippet _skeleton "Skeleton" b
+#+title:  `!p snip.rv = ' '.join(snip.basename.title().split('_'))`
+#+author: `git config --get user.name`
+#+date:   `!v strftime('%Y-%m-%d')`
+
+*  $0
+endsnippet
+
+snippet code "Working with Source Code" b
+#+NAME: <name>
+#+BEGIN_SRC <language> <switches> <header arguments>
+  <body>
+#+END_SRC
+endsnippet
+
+snippet code1 "Working with Source Code" b
+#+NAME: factorial
+#+BEGIN_SRC haskell :results silent :exports code :var n=0
+  fac 0 = 1
+  fac n = n * fac (n-1)
+#+END_SRC
+endsnippet
+
+# where:
+
+# ‘<name>’ is a string used to uniquely name the code block,
+# ‘<language>’ specifies the language of the code block, e.g., ‘emacs-lisp’, ‘shell’, ‘R’, ‘python’, etc.,
+# ‘<switches>’ can be used to control export of the code block,
+# ‘<header arguments>’ can be used to control many aspects of code block behavior as demonstrated below,
+# ‘<body>’ contains the actual source code.
+# Use C-c ' to edit the current code block. It opens a new major mode edit buffer containing the body of the source code block, ready for any edits. Use C-c ' again to close the buffer and return to the Org buffer.

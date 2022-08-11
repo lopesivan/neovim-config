@@ -1,0 +1,8 @@
+mkdir -p view/C/state
+touch    view/C/__init__.py
+touch    view/C/state/__init__.py
+
+make
+./genfile.sh c state stateHeader.h
+./genfile.sh c state stateSource.c
+./genfile.sh c state stateTest.c

@@ -1,0 +1,14 @@
+# java.snippets - Snippets for java file type
+
+snippet _skeleton "Skeleton" b
+public class ${1:`!p snip.rv = snip.basename.title()`}
+{
+	public static void main(String args[])
+	{
+		System.out.println("Hello, World!!!");
+		nome da classe: $1
+	}
+}
+
+// vim: set ts=4 sw=4 tw=78 ft=java:
+endsnippet

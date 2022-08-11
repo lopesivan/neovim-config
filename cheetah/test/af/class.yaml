@@ -1,0 +1,33 @@
+# Accessors    | Base Class | Derived Class | World
+# —————————————+————————————+———————————————+———————
+# public       |      y     |       y       |   y
+# —————————————+————————————+———————————————+———————
+# protected    |      y     |       y       |   n
+# —————————————+————————————+———————————————+———————
+# private      |            |               |
+#   or         |      y     |       n       |   n
+# no accessor  |            |               |
+#
+# y: accessible
+# n: not accessible
+#
+class: @abstract
+  name
+attributes:
+  public:
+    - int x
+    - int x
+    - int x
+
+  protected:
+    - int y
+    - int y
+    - int y
+
+  private:
+    - int z
+
+methods:
+  - void zero(Array array, Size size)
+  - void one(Array array, Size size)
+  - void getVetor(Array array, Size size)

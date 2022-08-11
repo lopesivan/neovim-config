@@ -1,0 +1,270 @@
+# c.snippets - Snippets for c file type
+
+#snippet c "Variável representando uma constante" i
+#const `!p snip.rv = snip.v.text.split()[0]` `!p snip.rv = snip.v.text.split()[1].upper()` = ${2:lvalue};$0
+#endsnippet
+
+global !p
+from vimsnippets import complete
+from Cheetah.Template import Template
+endglobal
+
+# snippet _skeleton "Skeleton" b
+# `!v cpp#Open()`$0
+# endsnippet
+
+# snippet _skeleton "Skeleton" b
+# `!v cpp#OpenCansiSource()`
+# $0
+# endsnippet
+
+# snippet _cansisource "Skeleton" b
+# `!v cpp#OpenCansiSource()`
+# $0
+# endsnippet
+
+# snippet _cansiheader "Skeleton" b
+# `!v cpp#OpenCansiHeader()`
+# $0
+# endsnippet
+
+# snippet _cansimainsource "Skeleton" b
+# `!v cpp#OpenCansiMainSource()`$0
+# endsnippet
+
+# snippet _cppheader "Skeleton" b
+# `!v cpp#OpenHeader()`$0
+# endsnippet
+
+# snippet _skeleton "Skeleton" b
+# Um texto de boas vindas
+# endsnippet
+
+snippet _bbb "Skeleton" b
+Big brother brasil
+endsnippet
+
+snippet c "Constante" b
+const ${1:int} /* ${2:${VISUAL:const_name}} */ `!p snip.rv = t[2].upper()` = ${3:lvalue};
+endsnippet
+
+snippet n "var = NULL" w
+${1:${VISUAL:var}} = NULL;$0
+endsnippet
+
+snippet nelm "Number of elements" w
+sizeof(${1:${VISUAL:array}})/sizeof($1[0])
+endsnippet
+
+snippet mal "Use malloc to allocate memory"
+${1:var} = (${2:int}*) malloc ((size_t) (${3:number of $1}) * sizeof ($2));
+
+if (!$1) {
+    fprintf(stderr, "${4:Memory Allocation Failed!}");
+}
+
+free($1);
+endsnippet
+
+snippet relloc "Reallocate memory block"
+${1:var} = (${2:int}*) malloc (${3:Old memory block},(size_t) (${4:New size for the memory block of $3}) * sizeof ($2));
+
+if (!$1) {
+    fprintf(stderr, "${5:Memory Allocation Failed!}");
+}
+$0
+endsnippet
+
+snippet "read file( (\S+))?" "Read File" rb
+`!p
+if match.group(1) is not None:
+    file_path = match.group(2)
+else:
+    file_path = "/tmp/myfile.txt"
+`
+FILE* ${1:fp};
+char ${2:bufffer}[BUFSIZ];
+/* opcoes:
+ * {r"|r+|a"|a+|w"|w+}
+ * */
+char* ${3:mode} = "$4`!p snip.rv = complete(t[4],
+    [ "r\";\n/*  \`r'  open for reading ",
+      "r+\";\n/* \`r+' open for reading and writing, start at beginning ",
+      "a\";\n/*  \`a'  open for appending (file need not exist) ",
+      "a+\";\n/* \`a+' open for reading and writing (append if file exists) ",
+      "w\";\n/*  \`w'  open for writing (file need not exist) ",
+      "w+\";\n/* \`w+' open for reading and writing (overwrite file) "])`*/
+char ${5:inputFilename}[] = "${6:`!p snip.rv = file_path`}";
+
+$1 = fopen($5, $3);
+if ($1 == NULL) {
+    fprintf(stderr, "Can't open input file $6!\n");
+    exit(1);
+}
+
+while(fgets($2, BUFSIZ, $1) != NULL)
+{
+    printf("%s", $2);
+}
+
+fclose($1);
+endsnippet
+
+snippet "write file( (\S+))?" "Write File" rb
+`!p
+if match.group(1) is not None:
+    file_path = match.group(2)
+else:
+    file_path = "/tmp/out.txt"
+`
+FILE* ${1:fp};
+char* ${2:mode} = "$3`!p snip.rv = complete(t[3], [ "w\"; /* open for writing (file need not exist) */", "w+\"; /* open for reading and writing (overwrite file) */", "a\"; /* open for appending (file need not exist) */", "a+\"; /* open for reading and writing (append if file exists) */", "r\"; /* open for reading */", "r+\"; /* open for reading and writing, start at beginning */"])`
+char ${4:outputFilename}[] = "${5:`!p snip.rv = file_path`}";
+
+$1 = fopen($4, $2);
+if ($1 == NULL) {
+    fprintf(stderr, "Can't open input file $5!\n");
+    exit(1);
+}
+
+fprintf($1, "${6:This is testing for fprintf...\n}");
+fputs("${7:This is testing for fputs...\n}", $1);
+
+fclose($1);
+endsnippet
+
+snippet rs "return EXIT_SUCCESS"
+return EXIT_SUCCESS;
+endsnippet
+
+snippet rf "return EXIT_FAILURE"
+return EXIT_FAILURE;
+endsnippet
+
+snippet mystrcat "my string cat"
+char* ${1:mystrcat}( char* ${2:dest}, char* ${3:src})
+{
+    while (*$2) $2;
+    while (*$2++ = *$3++);
+    return --$2;
+}
+$0
+endsnippet
+
+snippet bigstring "big string model"
+char* bigString;
+int i = 0;
+i = strlen("John, ")
+     + strlen("Paul, ")
+     + strlen("George, ")
+     + strlen("Joel ");
+bigString = (char*) malloc (i + 1);
+/* remember space for null terminator! */
+endsnippet
+
+snippet hpgcc "hpgcc main" b
+/* INPUT: ${1:${VISUAL}}*/
+/* INPUT:`seq -s"+" 5| bc` */
+`!p
+import os
+
+view = os.path.expandvars("$HOME/.config/nvim/cheetah/new/hpgcc.cheetah")
+data=[]
+data.append(str(t[1]))
+docker_version=os.popen("docker --version")
+dataout = Template(open(view).read(), searchList=[{'data': data,
+'docker_version': docker_version.read().strip()}])
+`
+`!p snip.rv = dataout`
+endsnippet
+
+# Nota:
+# Os arquivos python ficam aqui:
+# ~/.config/nvim/site/pack/packer/start/ultisnips/pythonx
+snippet teste "testeando python cheetah" b
+`!p
+
+# Make fake data (and call it 'data')
+data  = []
+count = 1
+for x in range(0,50):
+    point = random.randint(5,200)
+    data.append((count,point))
+    count += 1
+`
+
+`!p
+view = os.path.expandvars("$HOME/.config/nvim/cheetah/exemplo/data_csv.cheetah")
+dataout = Template(open(view).read(), searchList=[{'data': data}])
+open('data.csv','w').write(str(dataout))
+`
+`!p snip.rv = dataout`
+endsnippet
+
+# (x < z < y) => (x<z) && (z<y)
+snippet "\(\s*(\S+)\s*<\s*(\S+)\s*<\s*(\S+)\s*\)" "(x < z < y)" r
+${1:`!p snip.rv = '(({0}<{1}) && ({1}<{2}))'.format(match.group(1),match.group(2), match.group(3))`}$0
+endsnippet
+
+snippet char "Character types"
+/* char */ ${1}`!p snip.rv = complete(t[1], ["char16_t", "char32_t", "wchar_t"])`
+endsnippet
+
+snippet signed "Integer types (signed)"
+signed ${1}`!p snip.rv = complete(t[1], [
+"char",
+"short int",
+"int",
+"long int",
+"long long int"
+])`
+endsnippet
+
+snippet unsigned "Integer types (unsigned)"
+unsigned ${1}`!p snip.rv = complete(t[1], [
+"char",
+"short int",
+"int",
+"long int",
+"long long int"
+])`
+endsnippet
+
+snippet float "Floating-point types"
+${1:float}`!p snip.rv = complete(t[1], [
+"float",
+"double",
+"long double"
+])` $0
+endsnippet
+
+snippet debug "DEBUG" b
+#ifdef DEBUG /* ███████████████████████████████████████ */
+    $0
+#endif /*       ███████████████████████████████████████ */
+endsnippet
+
+snippet funcd "function description" b
+/*
+ * ${1:${VISUAL:function description \`fun\`}}.
+ */
+endsnippet
+
+snippet boxc "Ascii box Ansic"
+`!p snip.rv = '/*' + '*' * (len(t[1]) + 3) + '*'`
+`!p snip.rv = ' *' + ' ' * (len(t[1]) + 3) + '*'`
+ * $1  *
+`!p snip.rv = ' *' + ' ' * (len(t[1]) + 3) + '*'`
+`!p snip.rv = ' *' + '*' * (len(t[1]) + 3) + '*/'`
+$0
+endsnippet
+
+### PT #######################################################################
+##############################################################################
+snippet pt "jp template"
+`!v projectionist#query('kibe')[0][1]`
+endsnippet
+
+##############################################################################
+##############################################################################
+##############################################################################

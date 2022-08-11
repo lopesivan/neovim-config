@@ -1,0 +1,34 @@
+#encoding UTF-8
+#compiler commentStartToken = '//'
+// :Template loop [data]
+//
+#compiler reset
+
+#for i in range(1, len($data)):
+i=$i data=${data[i]}
+#end for
+
+#repeat 3
+My bonnie lies over the ocean
+#end repeat
+O, bring back my bonnie to me!
+
+#*
+#for d in $data
+${d}
+#end for
+
+#for i in range(1, len($data)):
+#for d in $data[i]
+= ${d} =
+#end for
+#end for
+
+#for $i in $range(10)
+$i
+#end for
+#for key, value in $d.data.iteritems():
+    "${key}": "${value}",
+#end for
+
+*#

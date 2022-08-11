@@ -1,0 +1,33 @@
+#encoding UTF-8
+#compiler commentStartToken = '//'
+// {{{ Uma Descrição:
+//
+// asdasdas
+// as
+// dasdasdasd
+// as
+// dasdasdasdasdas
+// dasdasdasdasdasdasdasd
+// asdasdasdas
+// dasdasdasdas
+// dasdasdasdas
+// dasdasdasd
+// Pode ser }}}
+#compiler reset
+
+Relatório E1 - Física Teórica e Exp 1 - Maria de Fátima
+
+body:
+
+Disciplina: FIS01-05095 Física Teórica e Experimental I
+Turma: 2
+Professora: Maria de Fátima
+AVA: SALA118FISFEN
+
+Nome aluno: ${d.data.nome}
+Matricula: ${d.data.matricula}
+email institucional: ${d.data.email}
+
+Por meio deste email, o aluno ${d.data.nome},
+confirma como corretor a professora Maria de Fátima e anexa ao conteúdo
+do email o relatório E1.pdf, referente ao Experimento E1.

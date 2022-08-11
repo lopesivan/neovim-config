@@ -1,0 +1,3 @@
+Removed dict.iteritems(), dict.iterkeys(), and dict.itervalues().
+
+Instead: use dict.items(), dict.keys(), and dict.values() respectively.

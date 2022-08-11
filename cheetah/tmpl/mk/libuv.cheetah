@@ -1,0 +1,11 @@
+#encoding UTF-8
+#compiler commentStartToken = '//'
+// :Template libuv [data]
+#compiler reset
+LDFLAGS = `pkg-config --libs libuv`
+
+main: src/main.c
+	\$(CC) -o main src/main.c \$(LDFLAGS)
+clean:
+	rm -f main
+

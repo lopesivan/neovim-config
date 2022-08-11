@@ -1,0 +1,9 @@
+#encoding UTF-8
+#compiler commentStartToken = '//'
+// :Template modeline ts
+// exemplo:
+// Template modeline 4
+#set $a = $data
+#set $ts = $a[1]
+/* vim: set ts=${ts} sw=4 tw=78 ft=java: */
+#compiler reset

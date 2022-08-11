@@ -1,0 +1,5 @@
+# local
+#git clone file://${HOME}/git/como_criar_um_dicionario.git
+#git remote add origin file://${HOME}/git/como_criar_um_dicionario.git
+# record pass
+#eval `ssh-agent`

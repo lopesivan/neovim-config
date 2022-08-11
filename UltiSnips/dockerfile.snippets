@@ -1,0 +1,32 @@
+# vim.snippets - Snippets for vim file type
+
+snippet _skeleton "Generic Docker file" b
+`!p
+import os
+from Cheetah.Template import Template
+view = os.path.expandvars("$HOME/.config/nvim/cheetah/old/Dockerfile.cheetah")
+data=[]
+data.append("oi")
+docker_version=os.popen("docker --version")
+dataout = Template(open(view).read(), searchList=[{
+	'data': data,
+	'docker_version': docker_version.read().strip()
+}])
+`
+`!p snip.rv = dataout`
+# `!v vim#Modeline()`
+endsnippet
+
+snippet _plugin "Plugin file" b
+" `!v expand("%")` - `!v util#snippet#Title(expand("%:t:r"))`
+" Maintainer: `!v util#snippet#ProjectAuthor()`
+
+if exists("g:loaded_`!v expand("%:t:r")`") || v:version < 700 || &cp
+	finish
+endif
+let g:loaded_`!v expand("%:t:r")` = 1
+
+$0
+
+" `!v vim#Modeline()`
+endsnippet

@@ -1,0 +1,27 @@
+SRCS    = $(shell ls *.ps)
+EXT     = pdf
+OUT     = $(foreach s,$(SRCS), $(addprefix $(s:.ps=.), $(EXT)))
+
+PS2PDF  = ps2pdf
+READER  = evince
+#READER    = acroread
+
+PDF     = $(SRCS:.ps=.pdf)
+
+TARGETS = $(PDF)
+
+all: $(TARGETS)
+
+# tex -> pdf
+%.pdf:  %.ps
+	$(PS2PDF) $^ $@
+
+show:
+	for pdf in *.pdf; do \
+		evince $$pdf; \
+	done
+
+clean:
+	/bin/rm -rf $(TARGETS) *~ $(OUT)
+
+# END OF FILE

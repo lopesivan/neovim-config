@@ -1,0 +1,10 @@
+#encoding UTF-8
+#compiler commentStartToken = '//'
+// :Template maple [data]
+#compiler reset
+[file-run]
+command=maple -q "\$(VIM_FILENAME)"
+cwd=\$(VIM_FILEDIR)
+\# output mode: run in a terminal
+output=quickfix
+

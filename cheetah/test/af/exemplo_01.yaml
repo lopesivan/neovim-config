@@ -1,0 +1,16 @@
+AbstractFactory:
+  - Widget                 # nome da fabrica abstrata
+  - getTipo                # nome do método que seleciona o tipo
+
+ConcreteFactory:
+  - Qt                     # tipo de produto
+    - janela               # produto concreto <janelaQt>
+                           # method <createJanela>
+
+AbstractProduct:
+  - janela                 # produto abstrato
+  ConcreteProduct:
+    - janelaQt             # produto concreto
+
+Client:
+  - name                   # nome do cliente

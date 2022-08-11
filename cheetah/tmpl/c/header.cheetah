@@ -1,0 +1,20 @@
+/*
+ *                     __ __       ___
+ *                    /\ \\ \    /'___`\
+ *                    \ \ \\ \  /\_\ /\ \
+ *                     \ \ \\ \_\/_/// /__
+ *                      \ \__ ,__\ // /_\ \
+ *                       \/_/\_\_//\______/
+ *                          \/_/  \/_____/
+ *                                        Algoritmos
+ *
+ *
+ *      Author: <%= os.popen( 'git config user.name'  ).read().strip() %>
+ *        Mail: <%= os.popen( 'git config user.email' ).read().strip() %>
+ *        Site: <%= os.popen( 'git config user.site'  ).read().strip() %>
+ *     License: gpl
+ *    Language: C ansi
+ *        File: ${name.split("/")[-1]}
+ *        Date: <%= os.popen( 'date' ).read().strip() %>
+ * Description:
+ */

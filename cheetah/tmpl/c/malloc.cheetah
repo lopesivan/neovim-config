@@ -1,0 +1,16 @@
+#encoding UTF-8
+#compiler commentStartToken = '//'
+// :Template malloc 3 myvar double
+//           0      1 2     3
+#set $a = $data
+#set $var_name = $a[2]
+#set $type     = $a[3]
+#set $len      = $a[1]
+${var_name} = (${type}*) malloc ((size_t) (${len}) * sizeof (${type}));
+
+if (!${var_name}) {
+    fprintf(stderr, "Memory Allocation Failed!");
+}
+
+free(${var_name});
+#compiler reset

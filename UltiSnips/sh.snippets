@@ -1,0 +1,107 @@
+global !p
+import px.snippets
+endglobal
+
+##############################################################################
+# DEBUG=88
+# printf 'XXXXXX exemplo.sh:3: DEBUG: %q\n' DEBUG >&2
+#                ^^^^^^^^^^    ^^^^^        ^^^^^
+#                |             |
+#                |             + Variável digitada
+#                |
+#                +Nome do arquivo
+#
+snippet pr "print debug" bw
+`!p
+prefix = t[1] + ": %q\\n' "
+prefix = "{}:{}: {}".format(
+    os.path.basename(px.buffer.get().name),
+    str(px.cursor.get()[0]),
+    prefix
+)
+`printf 'XXXXXX `!p snip.rv=prefix`$1 >&2
+endsnippet
+
+post_jump "px.snippets.expand(snip)"
+snippet pd "Description" b
+pr$1 >${2:/tmp/debug}
+endsnippet
+##############################################################################
+
+
+
+snippet _skeleton "Skeleton" b
+`!v sh#Open()`
+$0
+endsnippet
+
+snippet _tasks "Skeleton" b
+# tasks/`!p snip.rv = snip.basename`.sh
+function btask.`!p snip.rv = snip.basename`.run() {
+    if [ "\$1" == '--help' ]; then
+        b.get "xp.config.help_message_`!p snip.rv = snip.basename`"
+
+        return $( b.get "xp.config.help_message" )
+    fi
+
+    return $?
+}
+
+# vim: set ts=4 sw=4 tw=78 ft=sh:
+$0
+endsnippet
+
+snippet shebang "Shebang" b
+#!${1:/usr/bin/env bash}
+$0
+endsnippet
+
+# se a linha for 1 a -> Shebang
+post_jump "px.snippets.expand(snip)"
+snippet s "desc" "snip.line == 0" Ae
+shebang$1
+endsnippet
+
+snippet var "'${var}'" !w
+"${${1:var}}" $2
+endsnippet
+
+snippet trap "Trap command" b
+abort()
+{
+    echo >&2 '
+***************
+*** ABORTED ***
+***************
+'
+    echo "An error occurred. Exiting..." >&2
+    exit 1
+}
+
+trap 'abort' 0
+
+set -e
+
+# Add your script below....
+# If an error occurs, the abort() function will be called.
+#----------------------------------------------------------
+# ===> Your script goes here
+${0}
+# Done!
+trap : 0
+
+echo >&2 '
+************
+*** DONE ***
+************
+'
+endsnippet
+
+# <<< $(< arquivo)
+#grep padrao <<< "$var"
+#sed -n 's/^.*padrao.*$/substituição/p' <<< "$var"
+
+# set a b c
+# for I; do
+#     echo "I: $I"
+# done

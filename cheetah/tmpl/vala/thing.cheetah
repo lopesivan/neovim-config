@@ -1,0 +1,9 @@
+#encoding UTF-8
+#compiler commentStartToken = '//'
+// :Template thing [data]
+#compiler reset
+using Posix;
+
+void main() {
+    exit(EXIT_SUCCESS);
+}

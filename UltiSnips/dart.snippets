@@ -1,0 +1,23 @@
+snippet stful "Novo StatefulWidget" b
+class $1 extends StatefulWidget {
+	@override
+	_$1State createState() => _$1State();
+}
+
+class _$1State extends State<$1> {
+	@override
+	Widget build(BuildContext context) {
+		return ${2:Container()};
+	}
+}
+endsnippet
+
+snippet stles "Novo StatelessWidget" b
+class $1 extends StatelessWidget {
+	@override
+	Widget build(BuildContext context) {
+		return ${2:Container()};
+	}
+}
+endsnippet
+

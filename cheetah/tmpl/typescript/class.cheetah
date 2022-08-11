@@ -1,0 +1,22 @@
+#encoding UTF-8
+#compiler commentStartToken = '//'
+// :Template class [className]
+//                  ^^^^^^^^^ --- mensagem que será exibida.
+#compiler reset
+#set $size_data = len($data)
+#if $size_data == 1
+#set $className = "empresa"
+#else
+#set $a = $data
+#set $className = $a[1]
+#end if
+export class ${className.title()} {
+  public readonly nome: string;
+
+  constructor(nome: string) {
+    this.nome = nome;
+  }
+}
+
+const ${className}1 = new ${className.title()}("Unite");
+console.log(${className}1.nome);

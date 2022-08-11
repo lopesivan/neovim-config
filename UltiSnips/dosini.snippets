@@ -1,0 +1,53 @@
+
+snippet _skeleton "Skeleton" b
+[file-build]
+# macros in the "$(...)" form will be substituted,
+# shell command, use quotation for filenames containing spaces
+command=gcc -O2 "$(VIM_FILEPATH)" -o "$(VIM_FILEDIR)/$(VIM_FILENOEXT)"
+# working directory
+cwd=$(VIM_FILEDIR)
+
+[file-run]
+command="$(VIM_FILEDIR)/$(VIM_FILENOEXT)"
+cwd=$(VIM_FILEDIR)
+# output mode: run in a terminal
+#output=terminal
+output=quickfix
+endsnippet
+
+
+snippet _file_run "file Run" b
+[file-run]
+command="$(VIM_FILEPATH)"
+command:c,cpp="$(VIM_PATHNOEXT)"
+command:go="$(VIM_PATHNOEXT)"
+command:python=python "$(VIM_FILENAME)"
+command:javascript=node "$(VIM_FILENAME)"
+command:sh=sh "$(VIM_FILENAME)"
+command:lua=lua "$(VIM_FILENAME)"
+command:perl=perl "$(VIM_FILENAME)"
+command:ruby=ruby "$(VIM_FILENAME)"
+output=terminal
+cwd=$(VIM_FILEDIR)
+save=2
+endsnippet
+
+
+snippet maple_run "Maple file Run" b
+[file-run]
+command=maple -q "$(VIM_FILENAME)"
+cwd=$(VIM_FILEDIR)
+# output mode: run in a terminal
+output=quickfix
+endsnippet
+
+snippet octave_run "Octave file Run" b
+[file-run]
+command=octave "$(VIM_FILENAME)"
+#cwd=$(VIM_FILEDIR)
+# output mode: run in a terminal
+#output=tab
+#output=quickfix
+mode=term
+pos=tmux
+endsnippet

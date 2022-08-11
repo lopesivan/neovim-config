@@ -1,0 +1,15 @@
+\coordinate (beginLine) at (\beginLine,0);
+\coordinate (endLine)   at (\endLine,  0);
+
+\coordinate (_beginLine) at (\beginLine,      -\diffLine);
+\coordinate (_endLine)   at (\beginLine + 0.5,-\diffLine);
+
+\coordinate (__beginLine) at (\endLine - 0.5,-\diffLine);
+\coordinate (__endLine)   at (\endLine,      -\diffLine);
+
+\draw (beginLine) -- (endLine);
+\draw (_beginLine) -- (_endLine);
+\draw (__beginLine) -- (__endLine);
+
+\tkzDefPoint[label= below:$0$](0, 0){O}
+\tkzDefPoint[label= below:\texttt{L.T}](\endLine-1,0){LinhaDeTerra}

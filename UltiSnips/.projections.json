@@ -1,0 +1,12 @@
+{
+  "./.projections.json": { "type": "dit" },
+
+  "README.md": {
+    "type": "doc"
+  },
+
+  "*.snippets": {
+    "type": "sn",
+    "skeleton": ["cppheader"]
+  }
+}

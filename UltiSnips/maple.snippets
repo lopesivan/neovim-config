@@ -1,0 +1,285 @@
+# maple.snippets - Snippets for maple file type
+snippet _skeleton "Skeleton" b
+reset: restart:
+$0
+endsnippet
+
+# Use:
+# Vector;
+# ^cursor em "v"
+# viW <c-a>
+# escrevo "v2"
+# <c-a>
+#out:
+#std::unique_ptr<Vim> cursor
+snippet v2 "Vector 2d" i
+${1:`!p snip.rv = snip.v.text.strip("*") or "vector"`} := <$2,$3>;
+$0
+endsnippet
+
+snippet v3 "Vector 3d" i
+${1:`!p snip.rv = snip.v.text.strip("*") or "vector"`} := <$2,$3,$4>;
+$0
+endsnippet
+
+snippet p2 "Point 2d" i
+${1:`!p snip.rv = snip.v.text.strip("*") or "point"`} := [$2,$3];
+$0
+endsnippet
+
+snippet p3 "Point 3d" i
+${1:`!p snip.rv = snip.v.text.strip("*") or "point"`} := [$2,$3,$4];
+$0
+endsnippet
+
+snippet m3 "Matrix n=3" i
+${1:`!p snip.rv = snip.v.text.strip("*") or "matrix"`} :=
+<
+$2,$3,$4;
+$5,$6,$7;
+$8,$9,$10
+>;
+$0
+endsnippet
+
+snippet vrow "vector Row" b
+Vector[row]([${1:1,2,3,4}]); ${0}
+endsnippet
+
+snippet vcol "vector Column" b
+Vector[column]([${1:1,2,3,4}]); ${0}
+endsnippet
+
+snippet MI "Matriz Identidade" b
+LinearAlgebra:-IdentityMatrix(${1:3});
+${0}
+endsnippet
+
+snippet Mij "Matriz i,j" b
+Matrix(${1:3}, ${2:3}, ${3:(i,j)->3*i+j-3})
+${0}
+endsnippet
+
+snippet fun "function" b
+f:=${1:x} -> ${2:x^2};
+f(x);
+$0
+endsnippet
+
+snippet reta2d "equação da reta 2D" b
+#
+#               .X           AB = B - A = u
+#              /             BX = X - B = v
+#   A         /              (uxv) = 0           % u rotacional v
+#   .--------. B
+#
+#
+
+A:=[0, 36]:
+B:=[5, -4]:
+X:=[x, y]:
+
+AB:=B-A;
+BX:=X-B;
+
+u:=[op(AB), 1];
+v:=[op(BX), 1];
+
+with(LinearAlgebra):
+s:=CrossProduct(u, v);
+isolate(s[3]=0, y);
+$0
+endsnippet
+
+snippet reta3d "equação da reta 3D" b
+#
+#               .X           AB = B - A = u
+#              /             BX = X - B = v
+#   A         /              (uxv) = 0           % u rotacional v
+#   .--------. B
+#
+#
+
+A:=[0, 36, 3]:
+B:=[5, -4, 5]:
+X:=[x,y]:
+
+AB:=B-A;
+BX:=X-B;
+
+u:=AB;
+v:=BX;
+
+with(LinearAlgebra):
+s:=CrossProduct(u, v);
+isolate(s[3]=0,y);
+$0
+endsnippet
+
+
+snippet wh "while" b
+i=1: n=80:
+while i <= n do
+    $0
+    i := i + 1
+end do:
+endsnippet
+
+snippet for "for" b
+for i from 6 by 2 to 10 do
+    print(i)
+end do;
+endsnippet
+
+snippet forw "for while" b
+tot := 0:
+for i from 11 by 2 while i < 100 do
+   tot := tot + i
+end do:
+tot;
+endsnippet
+
+snippet forin "for in" b
+tot := 1:
+for z in 1, x, y, q^2, 3 do
+  tot := tot * z
+end do:
+tot;
+endsnippet
+
+
+snippet autolist "list \w loop" b
+N := 30:
+[(i := 8), (while (i := i+1) < N do i end do)];
+${0}
+endsnippet
+
+snippet linear "LinearAlgebra" b
+with(LinearAlgebra):
+endsnippet
+
+snippet cross "Produto vetorial"
+VectorCalculus[CrossProduct](${1:u},${2:v})
+$0
+endsnippet
+
+snippet mc "Produto vetorial usando cofator"
+with(LinearAlgebra):
+  Determinant(SubMatrix(M,[2,3], [2,3])) * M(1,1)
+- Determinant(SubMatrix(M,[2,3], [1,3])) * M(1,2)
++ Determinant(SubMatrix(M,[2,3], [1,2])) * M(1,3);
+$0
+endsnippet
+
+snippet dot "Produto Interno"
+VectorCalculus[DotProduct](${1:u},${2:v})
+endsnippet
+
+snippet centro_massa "centro de massa" b
+area := int(1, [y = 180 .. 205, z = 0 .. 85]) +
+        int(1, [y = 0 .. 205, z = 85 .. 110]) +
+        int(1, [y = 180 .. 205, z = 110 .. 195]);
+C__z := (
+  int(z, [y = 180 .. 205, z = 0 .. 85]) +
+  int(z, [y = 0 .. 205, z = 85 .. 110]) +
+  int(z, [y = 180 .. 205, z = 110 .. 195]))/area;
+
+C__y := (
+  int(y, [y = 180 .. 205, z = 0 .. 85]) +
+  int(y, [y = 0 .. 205, z = 85 .. 110]) +
+  int(y, [y = 180 .. 205, z = 110 .. 195]))/area;
+
+CM := <C__z | C__y>;
+$0
+endsnippet
+
+snippet bhaskara "forrmula de bhaskara" b
+E1 := a*x^2 + b*x + c = 0;
+E2 := Student[Precalculus][CompleteSquare](lhs(E1)) = rhs(E1);
+E3 := lhs(E2) - c + 1/4*b^2/a = c - 1/4*b^2/a;
+E4 := lhs(E3)/a = rhs(E3)/a;
+E5 := sqrt(lhs(E4)) = sqrt(rhs(E4));
+E6 := simplify(lhs(E5), sqrt, symbolic) = normal(rhs(E5));
+E7 := isolate(E6, x);
+E8 := simplify(%, radical, symbolic);
+x = normal(rhs(E8));
+$0
+endsnippet
+
+snippet isolate "Description" b
+rhs(isolate(${1:eq}, ${2:a}));
+$0
+endsnippet
+
+snippet collect "Description" b
+#{distributed|recursive|factor}
+collect(${1:eq}, ${2:x}, factor);
+endsnippet
+
+snippet solver "solve equation" b
+s := solve(eqns, {V__A, V__B});
+endsnippet
+
+
+snippet evalf "eval float" b
+evalf($1);
+$0
+endsnippet
+
+snippet simp "simplify" b
+simplify($1, ${2:radical}, ${3:symbolic});
+$0
+endsnippet
+
+snippet kvl "Description" b
+reset;
+restart;
+eq1 := -24 + 4*i__1 + 2*(i__1 - i__2) = 0;
+eq2 := 2*(i__2 - i__1) + 2*(i__2 - i__4) - 3*v__0 + 8*(i__2 - i__3) = 0;
+eq3 := 8*(i__3 - i__2) + 4*i__3 = 0;
+eq4 := 3*v__0 + 2*(i__4 - i__2) + i__4 = 0;
+res := v__0 = 4*i__3;
+eqns := [eq1, eq2, eq3, eq4];
+I__s := [i__1, i__2, i__3, i__4];
+eqns := [seq(sort(collect(i, I__s, recursive), I__s), i = eqns)];
+map(print, eqns);
+eqns := map2(subs, res, eqns);
+# equações:
+eqns := [seq(sort(collect(i, I__s, recursive), I__s), i = eqns)];
+map(print, eqns);
+with(LinearAlgebra);
+A, B := GenerateMatrix(eqns, I__s);
+s := (MatrixInverse(A)) . B;
+endsnippet
+
+snippet kcl "Description" b
+reset;
+restart;
+eq1 := (e__A - e__B)*G__1 + (e__A - e__D)*G__2 + (e__A - e__C)*G__4 - i__1 - i__3 = 0;
+eq2 := (e__B - e__A)*G__1 + (e__B - e__D)*G__3 + (e__B - e__C)*G__6 + i__2 + i__3 = 0;
+eq3 := (e__C - e__B)*G__6 + (e__C - e__D)*G__5 + (e__C - e__A)*G__4 - i__2 + i__1 = 0;
+eq4 := (e__D - e__A)*G__2 + (e__D - e__B)*G__3 + (e__D - e__C)*G__5 = 0;
+eqns := [eq1, eq2, eq3, eq4];
+E__s := [e__A, e__B, e__C, e__D];
+eqns := [seq(sort(collect(i, E__s, recursive), E__s), i = eqns)];
+map(print, eqns);
+# equações:
+map(print, eqns);
+with(LinearAlgebra);
+A, B := GenerateMatrix(eqns, E__s);
+(MatrixInverse(A)) . B;
+
+# Aparentimente nosso experimento deu errado, mas vejamos: faremos
+# as seguintes modificações, vamos colocar a referência no ponto
+# A, ou seja, e__A = 0.;
+
+e__A := 0;
+eqns := [eq2, eq3, eq4];
+E__s := [e__B, e__C, e__D];
+eqns := [seq(sort(collect(i, E__s, recursive), E__s), i = eqns)];
+map(print, eqns);
+A, B := GenerateMatrix(eqns, E__s);
+(MatrixInverse(A)) . B;
+endsnippet
+
+

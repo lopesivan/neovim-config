@@ -1,0 +1,157 @@
+AbstractFactory:
+  - name
+  - get
+
+ConcreteFactory:
+  - name
+    - concreteProduct
+
+AbstractProduct:
+  - name
+  ConcreteProduct:
+    - name
+
+Client:
+  - name
+
+##############################################################################
+# exemplo 1
+##############################################################################
+AbstractFactory:
+  - Widget                 # nome da fabrica abstrata
+  - getTipo                # nome do método que seleciona o tipo
+
+ConcreteFactory:
+  - Qt                     # tipo de produto
+    - janela               # produto concreto <janelaQt>
+                           # method <createJanela>
+
+AbstractProduct:
+  - janela                 # produto abstrato
+  ConcreteProduct:
+    - janelaQt             # produto concreto
+
+Client:
+  - name                   # nome do cliente
+
+##############################################################################
+# exemplo 2
+##############################################################################
+AbstractFactory:
+  - Widget                 # nome da fabrica abstrata
+  - getTipo                # nome do método que seleciona o tipo
+
+ConcreteFactory:
+  - Qt                     # tipo de produto
+    - janela               # produto concreto <janelaQt>
+    - botão                # produto concreto <botãQt>
+
+AbstractProduct:
+  - janela                 # produto abstrato
+  ConcreteProduct:
+    - janelaQt             # produto concreto
+
+  - botao                  # produto abstrato
+  ConcreteProduct:
+    - botãoQt              # produto concreto
+
+Client:
+  - name                   # nome do cliente
+
+##############################################################################
+# exemplo 3
+##############################################################################
+AbstractFactory:
+  - Widget                 # nome da fabrica abstrata
+  - getFramework           # nome do método que seleciona o tipo
+
+ConcreteFactory:
+  - Qt                     # tipo de produto
+    - janela               # produto concreto <janelaQt>
+    - botão                # produto concreto <botãQt>
+
+  - Motif                  # tipo de produto
+    - janela               # produto concreto <janelaMotif>
+    - botão                # produto concreto <botãMotif>
+
+AbstractProduct:
+  - janela                 # produto abstrato
+  ConcreteProduct:
+    - janelaQt             # produto concreto
+    - janelaMotif          # produto concreto
+
+  - botao                  # produto abstrato
+  ConcreteProduct:
+    - botãoQt              # produto concreto
+    - botãoMotif           # produto concreto
+
+Client:
+  - name                   # nome do cliente
+
+##############################################################################
+# exemplo 4
+##############################################################################
+AbstractFactory:
+  - Carro                  # nome da fabrica abstrata
+  - getMarcaDeCarro        # nome do método que seleciona o tipo
+
+ConcreteFactory:
+  - Fiat                   # tipo de produto
+    - sedan                # produto concreto <sedanFiat>
+    - popular              # produto concreto <popularFiat>
+
+  - Ford                   # tipo de produto
+    - sedan                # produto concreto <sedanFord>
+    - popular              # produto concreto <popularFord>
+
+AbstractProduct:
+  - sedan                  # produto abstrato
+  ConcreteProduct:
+    - sedanFord            # produto concreto <FiestaSedan>
+    - sedanFiat            # produto concreto <Siena>
+
+  - popular                # produto abstrato
+  ConcreteProduct:
+    - popularFord          # produto concreto <Fiesta>
+    - popularFiat          # produto concreto <Palio>
+
+Client:
+  - name                   # nome do cliente
+
+##############################################################################
+# exemplo 5
+##############################################################################
+AbstractFactory:
+  - Perfume              # nome da fabrica abstrata
+  - getSexo              # nome do método que seleciona o tipo
+
+ConcreteFactory:
+  - Masculino            # tipo de produto
+    - boticário          # produto concreto <boticárioMasculino>
+    - natura             # produto concreto <naturaMasculino>
+    - chanel             # produto concreto <chanelMasculino>
+
+  - Feminino             # tipo de produto
+    - boticário          # produto concreto <boticárioFeminino>
+    - natura             # produto concreto <naturaFeminino>
+    - chanel             # produto concreto <chanelFeminino>
+
+AbstractProduct:
+  - boticário            # produto abstrato
+  ConcreteProduct:
+    - boticárioFeminino  # produto concreto <Fiestaboticário>
+    - boticárioMasculino # produto concreto <Siena>
+
+  - natura               # produto abstrato
+  ConcreteProduct:
+    - naturaFeminino     # produto concreto <Fiesta>
+    - naturaMasculino    # produto concreto <Palio>
+
+  - chanel               # produto abstrato
+  ConcreteProduct:
+    - chanelFeminino     # produto concreto <Fiesta>
+    - chanelMasculino    # produto concreto <Palio>
+
+Client:
+  - name                 # nome do cliente
+

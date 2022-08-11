@@ -1,0 +1,16 @@
+# python.snippets - Snippets for python file type
+
+global !p
+import px.snippets
+endglobal
+
+snippet shebang "Shebang" b
+#!${1:/usr/bin/env python}
+$0
+endsnippet
+
+# se a linha for a 1 a -> Shebang
+post_jump "px.snippets.expand(snip)"
+snippet s "desc" "snip.line == 0" Ae
+shebang$1
+endsnippet

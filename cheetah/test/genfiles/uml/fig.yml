@@ -1,0 +1,8 @@
+texlive:
+  image: texlive_texlive
+  command: make
+  volumes:
+   - ${HOME}/Dropbox/texlive:/usr/local/texlive
+   - ${PWD}/tex:/home/developer/code
+  environment:
+   - PATH=/bin:/usr/local/bin:/usr/bin:/usr/local/bin:/usr/local/texlive/2014/bin/x86_64-linux

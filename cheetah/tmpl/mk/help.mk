@@ -1,0 +1,19 @@
+.PHONY: help
+help:
+	@printf "%s\n" "Useful targets:"
+	@grep -E '^[a-zA-Z0-9_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m  make %-15s\033[0m %s\n", $$1, $$2}'
+
+.PHONY: db-reset
+db-reset: ## Reset the database
+	docker-compose exec web flask db reset --with-testdb
+
+.PHONY: routes
+routes: ## List available routes
+	docker-compose exec web flask routes
+
+.PHONY: flask
+flask: ## Execute Flask command
+	docker-compose exec web flask $(ARGS)
+
+whatisphony: ## This won't print as is
+	@echo "This will not print because a file named 'whatisphony' exists on disk"

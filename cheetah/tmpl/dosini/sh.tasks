@@ -1,0 +1,5 @@
+[file-run]
+command=bash "$(VIM_FILENAME)"
+cwd=$(VIM_FILEDIR)
+#output=quickfix
+output=terminal

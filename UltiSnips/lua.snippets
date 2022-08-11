@@ -1,0 +1,146 @@
+# lua.snippets - Snippets for lua file type
+
+global !p
+linelen = 78
+
+def floor(i):
+	if int(i) == i:
+		return int(i)
+	elif i > 0:
+		return int(i)
+	elif i < 0:
+		return int(i) - 1
+
+def ceil(i):
+	if int(i) == i:
+		return int(i)
+	elif i > 0:
+		return int(i) + 1
+	elif i < 0:
+		return int(i)
+endglobal
+
+snippet _skeleton "esqueleto 1" b
+-- programa em lua
+$0
+endsnippet
+
+snippet _after_plugin "Plugin Lua (after)" b
+-- `!v expand('%')` - `!v expand('%<')`
+-- Maintainer: Ivan Lopes
+-- ~/.config/nvim/after/plugin
+
+local has_`!p snip.rv = snip.basename.replace('-','_')`, `!p snip.rv = snip.basename.replace('-','_')` = pcall(require, "`!p snip.rv = snip.basename`")
+if not has_`!p snip.rv = snip.basename.replace('-','_')` then
+    return
+end
+$0
+
+-- vim: fdm=marker:sw=4:sts=4:et
+endsnippet
+
+snippet _ftdetect "Lua Script file type detect" b
+-- `!v expand('%')` - `!v expand('%<')`
+-- Maintainer: Ivan Lopes
+-- ~/.config/nvim/ftdetect
+
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+-- group = group,
+pattern  = { "*.`!v expand("%:t:r")`" },
+callback = function()
+   vim.bo.filetype = "`!v expand("%:t:r")`"
+end,
+})
+-- vim: fdm=marker:sw=4:sts=4:et
+endsnippet
+
+snippet _lua_tj "Plugin Lua tj" b
+-- `!v expand('%')` - `!v expand('%<')`
+-- Maintainer: Ivan Lopes
+-- ~/.config/nvim/lua/tj
+
+$0
+
+-- vim: fdm=marker nowrap sw=4 sts=4 et
+endsnippet
+
+snippet oo "Lua OO" b
+Dog = {}                                   -- 1.
+
+function Dog:new()                         -- 2.
+  self.__index = self                      -- 4.
+  local newObj = {sound = 'woof'}          -- 3.
+  return setmetatable(newObj, self)        -- 5.
+end
+
+function Dog:makeSound()                   -- 6.
+  print('I say ' .. self.sound)
+end
+
+mrDog = Dog:new()                          -- 7.
+mrDog:makeSound()  -- 'I say woof'         -- 8.
+
+
+local caetano = Dog:new()
+caetano:makeSound()
+endsnippet
+
+snippet oo2 "Lua OO2" b
+local Class = {}
+
+function Class.new(factor)
+    local instance = {factor = factor}
+
+    return setmetatable(instance, {__index = Class})
+end
+
+function Class:multiply(n)
+    return self.factor * n
+end
+
+local m = Class.new(5)
+print(m:multiply(6)) --> 30
+endsnippet
+
+
+snippet premake "premak5" b
+-- premake5.lua
+workspace "HelloWorld"
+   configurations { "Debug", "Release" }
+
+project "HelloWorld"
+   kind "ConsoleApp"
+   language "C"
+   targetdir "bin/%{cfg.buildcfg}"
+
+   files { "**.h", "**.c" }
+
+   filter "configurations:Debug"
+      defines { "DEBUG" }
+      symbols "On"
+
+   filter "configurations:Release"
+      defines { "NDEBUG" }
+      optimize "On"
+endsnippet
+
+#################################
+# Snippets for the Lua language #
+#################################
+snippet #! "#!/usr/bin/env lua" b
+#!/usr/bin/env lua
+$0
+endsnippet
+
+snippet assert "Assertion" b
+assert(${1:condition}`!p
+if t[2]:
+	snip.rv = ", "
+else:
+	snip.rv = ""
+`${2:msg})
+=>$1
+endsnippet
+
+
+# vim:ft=snippets:

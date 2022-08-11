@@ -1,0 +1,15 @@
+#encoding UTF-8
+#compiler commentStartToken = "//"
+// :Template chuck [data]
+#compiler reset
+{
+    "./.projections.json": { "type": "dit" },
+
+    "*.ck": {
+        "type": "ck",
+        "skeleton": "iiiii",
+        "make": "chuck --add {file}",
+        "start": "chuck --loop",
+        "dispatch": "pkill chuck"
+    }
+}

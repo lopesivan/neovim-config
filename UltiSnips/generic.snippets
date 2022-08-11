@@ -1,0 +1,158 @@
+###########################################################################
+#              General Stuff                                              #
+###########################################################################
+# global !p
+# from vimsnippets import complete
+# from Cheetah.Template import Template
+# endglobal
+
+# The b is the option for when to trigger completion:
+# b only triggers if the keyword is at the start of the line.
+# i trigers it inline
+# A triggers automatically
+#
+global !p
+def insert_method_call(name):
+	vim.command('normal G')
+	snip.expand_anon(name + '($1)\n')
+endglobal
+
+##############################################################################
+#                                 Templates                                  #
+##############################################################################
+
+snippet _skeleton "Generic template" b
+# A generic file
+$0
+endsnippet
+
+snippet _model "Generic model template" b
+# A generic model
+class `!v expand("%:t:r")`_model {
+    $0
+}
+endsnippet
+
+snippet _view "Generic view template" b
+# A generic view
+class `!v expand("%:t:r")`_view {
+    $0
+}
+endsnippet
+
+snippet _controller "Generic controller template" b
+# A generic controller
+class `!v expand("%:t:r")`_controller {
+    $0
+}
+endsnippet
+
+snippet ===
+`!p
+snip.rv = '=' * len(vim.current.buffer[vim.current.window.cursor[0] - 2])
+`
+endsnippet
+
+snippet st "Status" b
+status $1`!p snip.rv = complete(t[1], ["new", "incomplete", "invalid"])`
+endsnippet
+
+snippet 75ws "Log a 750words.com session" b
+750words.com: ${1:750} words in ${2:20} minutes - `!p snip.rv = fraction(t[1], t[2])` wpm.
+endsnippet
+
+##############################################################################
+# ---------------------------- Experimentações ----------------------------- #
+##############################################################################
+
+##############################################################################
+# Substituições condicionais ----------------------------------------------- #
+##############################################################################
+
+# uso:
+# digito: cond<c-a>
+# expande: se começar com "o"  então "one"
+#          se começar com "t"  então "two"
+#          caso contrario "some_text"
+
+snippet cond
+${1:some_text}${1/(o)|(t)|..*/(?1:ne)(?2:wo)/}
+endsnippet
+
+##############################################################################
+#                              Character types                               #
+##############################################################################
+snippet char "Character types"
+${1:char}`!p snip.rv = complete(t[1], ["char16_t", "char32_t", "wchar_t"])`
+endsnippet
+# char     | Exactly one byte in size. At least 8 bits.
+# char16_t | Not smaller than char. At least 16 bits.
+# char32_t | Not smaller than char16_t. At least 32 bits.
+# wchar_t  | Can represent the largest supported character set.
+
+snippet title "Titelize in the Transformation"
+${1:a text}
+${1/\w+\s*/\u$0/g}
+endsnippet
+
+##############################################################################
+# Integer types (signed)                                                     #
+##############################################################################
+# signed char|Same size as char. At least 8 bits.
+# signed short int|Not smaller than char. At least 16 bits.
+# signed int|Not smaller than short. At least 16 bits.
+# signed long int|Not smaller than int. At least 32 bits.
+# signed long long int|Not smaller than long. At least 64 bits.
+
+# Integer types (unsigned)  unsigned char   (same size as their signed counterparts)
+# unsigned short int
+# unsigned int
+# unsigned long int
+# unsigned long long int
+# Floating-point types  float
+# double    Precision not less than float
+# long double   Precision not less than double
+# Boolean type  bool
+# Void type void    no storage
+# Null pointer  decltype(nullptr)
+#
+#
+
+snippet var "'${var}'" !w
+"${${1:var}}" $0
+endsnippet
+##############################################################################
+#                                                                            #
+# --------------------- TEST TEST TEST TEST TEST TEST ---------------------- #
+#                                                                            #
+##############################################################################
+
+# se a linha for a 3 a ->
+snippet a "desc" "snip.line == 2" Ae
+autotriggered
+endsnippet
+
+##################
+# Special snippets
+##################
+
+pre_expand "snip.buffer[snip.line] = ' '*4; snip.cursor.set(snip.line, 4)"
+snippet d1
+def $1():
+	$0
+endsnippet
+
+post_expand "snip.buffer[snip.snippet_end[0]+1:snip.snippet_end[0]+1] = ['']"
+snippet d2 "Description" b
+def $1():
+	$2
+endsnippet
+
+
+
+post_jump "if snip.tabstop == 0: insert_method_call(snip.tabstops[1].current_text)"
+snippet d "method declaration" b
+def $1():
+	$2
+endsnippet
+

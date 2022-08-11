@@ -1,0 +1,7 @@
+begin
+documentclass
+doublespace
+end
+onehalfspace
+singlespace
+usepackage

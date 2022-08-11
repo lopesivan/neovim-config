@@ -1,0 +1,85 @@
+\newcommand\Epura[4]{
+   \begingroup
+   \pgfmathsetmacro{\cota}{#3}
+   \pgfmathsetmacro{\afastamento}{#2}
+
+   \newif\ifisCotaNegative
+   \newif\ifisAfastamentoNegative
+
+   \FPifneg \cota
+      \isCotaNegativetrue
+   \fi
+
+   \FPifneg \afastamento
+      \isAfastamentoNegativetrue
+   \fi
+
+   \newif\ifisAfastamentoCotaEqual
+
+   \FPabs{\AbsAfastamento}{\afastamento}
+   \FPabs{\AbsCota}{\cota}
+
+   \FPifeq{\AbsCota}{\AbsAfastamento}
+      \isAfastamentoCotaEqualtrue
+   \fi
+
+   \ifisCotaNegative
+      \ifisAfastamentoNegative
+         %diedro 3
+         \FPeval\result{clip(-1*\cota)}
+         \tkzDefPoint(#1,\result{}){#4}
+         \tkzDefPoint(#1,#3){#4'}
+         \tkzDrawPoints(#4,#4')
+         \tkzLabelPoints(#4,#4')
+         \tkzDrawSegments[color=gray, style=dashed](#4,#4')
+      \else
+         %diedro 4
+         \ifisAfastamentoCotaEqual
+            \tkzDefPoint(#1,#3){#4}
+            \tkzDrawPoints(#4)
+            \node[below =.5]() at (#4) {$4d#4=#4'$};
+         \else
+            \tkzDefPoint(#1,-#2){#4}
+            \tkzDefPoint(#1,#3){#4'}
+            \tkzDrawPoints(#4,#4')
+            \tkzLabelPoints(#4,#4')
+            \tkzDrawSegments[color=gray, style=dashed](#4,#4')
+         \fi
+      \fi
+
+   \else
+
+      \ifisAfastamentoNegative
+         %diedro 2
+         \ifisAfastamentoCotaEqual
+            \tkzDefPoint(#1,#3){#4}
+            \tkzDrawPoints(#4)
+            \node[below =.5](coincidente) at (#4) {$#4=#4'$};
+         \else
+            \FPeval\result{clip(-1*\afastamento)}
+            \tkzDefPoint(#1,\result{}){#4}
+            \tkzDefPoint(#1,#3){#4'}
+            \tkzDrawPoints(#4,#4')
+            \tkzLabelPoints(#4,#4')
+            \tkzDrawSegments[color=gray, style=dashed](#4,#4')
+         \fi
+      \else
+         %diedro 1
+         \tkzDefPoint(#1,-#2){#4}
+         \tkzDefPoint(#1,#3){#4'}
+
+         \ifisAfastamentoCotaEqual
+            \FPifzero{\cota}
+            \tkzDefPoint(#1,#3){#4}
+            \tkzDrawPoints(#4)
+            \node[below =.5](coincidente) at (#4) {$#4=#4'$};
+         \else
+            \tkzDrawPoints(#4,#4')
+            \tkzLabelPoints(#4,#4')
+            \tkzDrawSegments[color=gray, style=dashed](#4,#4')
+         \fi
+      \fi
+   \fi
+
+   \endgroup
+}

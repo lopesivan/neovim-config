@@ -1,0 +1,19 @@
+APP  = `brew --prefix`/opt/template-code/w-ezored-linux/w/v/app.py
+Y    = `brew --prefix`/opt/template-code/w-ezored-linux/w/u/1.yml
+YAML =  config.yml
+dir  = ./out
+
+all: view
+
+save:
+	python $(APP) -s -y $(YAML)
+view:
+	python $(APP) -p -y $(YAML)
+get-yaml:
+	cp $(Y) $(YAML)
+clean:
+	rm -rf ${dir}
+	make view 2>&1 |grep File:| sed 's/File: /rm /'
+#	ls | grep -vE '(Makefile|app.py|*.yml)' | xargs rm
+
+# END OF FILE

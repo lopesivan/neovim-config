@@ -1,0 +1,6 @@
+#encoding UTF-8
+#compiler commentStartToken = '//'
+// :Template fennel [data]
+#compiler reset
+%.lua: %.fnl fennel
+	./fennel --compile \$< > \$@

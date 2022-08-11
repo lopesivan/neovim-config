@@ -1,0 +1,13 @@
+#currentdir(kernelopts(homedir)); #Set directory where file will go.
+
+ExportJPGMyPlot:= proc(MyPlot, Name::string)
+     plotsetup(jpeg, plotoutput= cat(Name, ".jpg"));
+     Threads:-Sleep(2); #2 secs to synchronize I/O.
+     print(MyPlot);
+     plotsetup(default);
+     Threads:-Sleep(2);
+     MyPlot
+end proc:
+
+ExportJPGMyPlot(plot(x^2, x= -2..2), "XSqr"):
+

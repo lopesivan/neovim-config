@@ -1,0 +1,18 @@
+\usepackage{luacode}
+\directlua{dofile("lua/my-lua-functions.lua")}
+
+\newcommand*{\two}[1]{
+  \directlua{tex.write(two(#1))}
+}
+
+\newcommand*{\fatorial}[1]{
+  \directlua{tex.write(fact(#1))}
+}
+\newcommand*{\myluafact}[1]{
+  \directlua{tex.write(fact(\the\numexpr(#1)\relax))}
+}
+
+\newcommand*{\epura}[4]{
+  %\directlua{tex.write(epura(#1,#2,#3,#4))}
+  \directlua{tex.write(epura(\the\numexpr(#1)\relax,\the\numexpr(#2)\relax,\the\numexpr(#3)\relax, "\luatexluaescapestring{\detokenize{#4}}"))}
+}

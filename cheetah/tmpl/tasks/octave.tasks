@@ -1,0 +1,9 @@
+[file-run]
+command=octave "$(VIM_FILENAME)"
+#cwd=$(VIM_FILEDIR)
+# output mode: run in a terminal
+#output=tab
+#output=quickfix
+mode=term
+pos=tmux
+

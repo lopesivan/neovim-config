@@ -1,0 +1,159 @@
+\# configure.ac
+\# vim:set foldmethod=expr foldexpr=getline(v\:lnum)=~'^\#\#'?'>1'\:'=':
+
+\#CFLAGS="-std=iso9899:1990"
+\#\# Header
+\# Process this file with autoconf to produce a configure script.
+AC_INIT([jupter], [0.02], [http://github.com/lopesivan/jupter/issue],
+        [jupter], [http://github.com/lopesivan/jupter])
+
+\#\# Set autoconf version
+\# Force autoconf to be at least this version number:
+AC_PREREQ([2.68])
+
+\#\# "about.c"
+\# Safety check - list a source file that wouldn't be in other
+\# directories:
+AC_CONFIG_SRCDIR([about.c])
+
+\#\# "config.h"
+\# Put configuration results here, \#include "config.h"
+AC_CONFIG_HEADERS([config.h])
+
+\#\# "config.h" -> LICENSE_URL
+\# Crio uma variável no config.h de nome `LICENSE_URL' e seto como
+\# "http://gnu.org/licenses/gpl.html".
+AC_DEFINE(LICENSE_URL, ["http://gnu.org/licenses/gpl.html"], [Essa variável aparece no config.h])
+
+\#\# "config.h" -> AUTHOR
+\# Crio uma variável no config.h de nome `AUTHOR' e seto como
+\# "Ivan Lopes".
+AC_DEFINE(AUTHOR, ["Ivan Lopes"], [Essa variável aparece no config.h])
+
+\#\# build-aux
+\# Put autotools auxiliary files in a subdir, so they don't
+\# clutter top dir:
+AC_CONFIG_AUX_DIR([build-aux])
+
+\#\# m4
+\# The modern autotools convention is that you should use an "m4"
+\# subdirectory for internal "m4" files, instead of the default
+\# aclocal.m4.
+AC_CONFIG_MACRO_DIR([m4])
+
+\#\# automake `-Wall -Werror'
+\# Enable "automake" to simplify creating makefiles:
+AM_INIT_AUTOMAKE([1.11 -Wall -Werror])
+
+\#\# Enable LIBTOOLS
+LT_PREREQ([2.4.6])
+
+\#\# Checks for programs.
+AC_PROG_CC
+AC_PROG_CC_C99
+\#AC_PROG_INSTALL
+\#AC_PROG_CC_STDC
+
+\#AC_PROG_LN_S    \# faz LN_S="ln -s"
+\#AC_PROG_SED     \# faz SED=/bin/sed
+\#AC_PROG_MKDIR_P \# faz MKDIR_P="mkdir -p"
+
+\#AM_PROG_CC_C_O
+AM_PROG_AR
+
+\#\# Enable libtools features
+LT_INIT([dlopen])
+
+\#\# Checks for header files
+AC_HEADER_STDC
+AC_HEADER_DIRENT
+AC_CHECK_HEADERS([thisonlyworksonc99.h])
+\#AC_CHECK_HEADERS([stdlib.h stdio.h math.h libintl.h locale.h])
+
+\#\# Checks for typedefs, structures, and compiler characteristics
+
+\#\# Checks for library functions
+\# enable -lm
+\#AC_SEARCH_LIBS([cos], [m], [], [
+\#   AC_MSG_ERROR([unable to find the cos() function])
+\#])
+
+\#\# Check for functions:
+\#AC_CHECK_FUNCS([setlocale strtol])
+
+\#\# Checks for command line options
+
+m4_include([m4/autotools_disable_gnu_args.m4])
+
+\# \#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#
+\# --disable-gnu-args \#
+\# \#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#
+
+\#     |----------------------+---------------+-------|
+\#     | Command Line         | Variable      | State |
+\#     |----------------------+---------------+-------|
+\#     | ""                   | WITH_GNU_ARGS | 1     |
+\#     | "--disable-gnu-args" | WITH_GNU_ARGS | NULL  |
+\#     |----------------------+---------------+-------|
+
+AM_CONDITIONAL([WITH_GNU_ARGS], [test x\${gnu_args} = xyes])
+
+\# \#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#
+\# --enable-debug \#
+\# \#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#
+
+m4_include([m4/autotools_enable_debug.m4])
+
+\#
+\#  |------------------+------------+-------|
+\#  | Command Line     | Variable   | State |
+\#  |------------------+------------+-------|
+\#  | ""               | DEBUG      | NULL  |
+\#  | "--enable-debug" | DEBUG      | 1     |
+\#  |----------------------+--------+-------|
+
+AM_CONDITIONAL([DEBUG], [test x\$debug = xyes])
+
+if test "x\${debug}" = xyes; then
+  AC_DEFINE(DEBUG, 1, [Turn on debugging])
+fi
+
+\#\# pkg-config
+\#PKG_PROG_PKG_CONFIG
+\#PKG_CHECK_MODULES(XXX, QtDBus libpostproc)
+
+\#AC_SUBST(XXX_CFLAGS)
+\#AC_SUBST(XXX_LIBS)
+
+
+\#\# Makefiele.am
+AC_CONFIG_FILES([ Makefile
+                  common/args/Makefile
+                  src/projectX/Makefile ])
+
+AC_OUTPUT
+
+\#\# Output
+
+echo \
+"-------------------------------------------------
+
+ \${PACKAGE_NAME} Version \${PACKAGE_VERSION}
+
+ Prefix: '\${prefix}'.
+ Compiler: '\${CC}'
+ CFLAGS: '\${CFLAGS}'
+ LDFLAG: '\${LDFLAGS}'
+ LIBS: '\${LIBS}'
+
+ Package features:
+   Debug Mode: \${debug}
+   Comand Line: \${gnu_args}
+
+ Now type 'make @<:@<target>@:>@'
+   where the optional <target> is:
+     all                - build all binaries
+     install            - install everything
+
+--------------------------------------------------"
+

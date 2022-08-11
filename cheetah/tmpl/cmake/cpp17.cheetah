@@ -1,0 +1,74 @@
+#encoding UTF-8
+#compiler commentStartToken = '//'
+// :Template cpp17 [data]
+#compiler reset
+\# here be an example medium sized CMakeLists.txt (the backbone of a CMake project)
+\# this is for a node addon/electron project I was working on, so there are some bits specific to that
+
+\# specify minimum version of cmake required
+cmake_minimum_required(VERSION 3.5)
+
+\# name the project, semver version
+project(combat VERSION 0.0.1)
+
+\# any -D flags you pass to your compiler for \#define \#ifdef type code
+\# this particular line not required for something that isn't a node c++ addon
+add_definitions(-DNAPI_VERSION=3)
+
+\# link to libc++
+set(CMAKE_EXE_LINKER_FLAGS "\${CMAKE_EXE_LINKER_FLAGS} -stdlib=libc++")
+
+\# we want c++17, libc++, to use clang memory sanitizer and to track the origin of the memory issues
+set(CMAKE_CXX_FLAGS "\${CMAKE_CXX_FLAGS} -std=c++17 -stdlib=libc++ -fsanitize=memory -fsanitize-memory-track-origins")
+
+\# header include directories, linking against custom build of libc++ and node-addon-api
+include_directories(
+  \${PROJECT_SOURCE_DIR}/include
+  \${PROJECT_SOURCE_DIR}/node_modules/node-addon-api
+  /usr/include/nodejs/src
+  /home/jmoyers/dev/llvm-project/build/include
+)
+
+\# library search directory
+link_directories(
+  /home/jmoyers/dev/llvm-project/build/lib
+)
+
+\# link against pthread for c++ standard library thread classes on linux and c++abi for libc++
+link_libraries(pthread c++abi)
+
+\# create a shared library target from the source list, cmakejs is a tool for using cmake with
+\# node addons, safe to ignore. it adds a source list that lets you skip using gyp tool
+add_library(combat_addon SHARED src/main.cpp \${CMAKE_JS_SRC})
+
+\# add a static library with these source files
+add_library(combat_lib
+  include/logs.hpp
+  include/pool.hpp
+)
+
+\# set target specific build properties. these things generally
+\# change compiler flags, sometimes do other target specific things
+\# CXX_STANDARD is the modern CMake way to set -std=c++17 etc
+\# PREFIX/SUFFIX stuff is node specific, they want their addon libraries to
+\# end in .node
+set_target_properties(combat_addon PROPERTIES
+  PREFIX ""
+  SUFFIX ".node"
+  CXX_STANDARD 17
+  LINKER_LANGUAGE CXX
+)
+
+set_target_properties(combat_lib PROPERTIES
+  CXX_STANDARD 17
+  LINKER_LANGUAGE CXX
+)
+
+\# add subdirectories, which INCLUDE child CMakeLists.txt
+add_subdirectory(test)
+add_subdirectory(benchmarks)
+
+\# these are literally cloned versions of google test and google benchmark. we link
+\# against them inside the tests/ and benchmarks/ subprojects
+add_subdirectory(vendor/googletest)
+add_subdirectory(vendor/benchmark)

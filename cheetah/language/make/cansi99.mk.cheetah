@@ -1,0 +1,13 @@
+# Makefile
+#
+HEADERS = Address.h Customer.h Order.h
+#OBJECTS = main.o MemoryPool_Customer.o
+OBJECTS = main.o Customer.o
+
+main: $(OBJECTS)
+	$(CC) -o $@ $<
+
+clean:
+	/bin/rm $(OBJECTS)
+
+$(OBJECTS): ${HEADERS}

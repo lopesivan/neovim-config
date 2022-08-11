@@ -1,0 +1,2 @@
+cansi.adt -w -f array.yaml
+cansi.adt -w -f matrix.yaml

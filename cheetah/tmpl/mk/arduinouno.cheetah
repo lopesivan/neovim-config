@@ -1,0 +1,8 @@
+#encoding UTF-8
+#compiler commentStartToken = '//'
+// :Template arduinouno [data]
+#compiler reset
+BOARD_TAG    = uno
+AVRDUDE_CONF = /etc/avrdude.conf
+include \${HOME}/developer/Arduino-Makefile/Arduino.mk
+

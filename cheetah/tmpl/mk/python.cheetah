@@ -1,0 +1,7 @@
+#encoding UTF-8
+#compiler commentStartToken = '//'
+// :Template python [data]
+#compiler reset
+.PHONY: clean
+clean:
+	find . -name "*.pyc" -delete

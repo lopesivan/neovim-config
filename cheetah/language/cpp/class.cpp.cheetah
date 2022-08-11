@@ -1,0 +1,10 @@
+#encoding UTF-8
+#compiler commentStartToken = '//'
+// cpp11 [name]
+//        ^^^^---- app name
+#compiler reset
+%% PUTTING AN VECTOR OF NUMBERS IN AN ASCENDING ORDER?
+% Language     : Matlab 2007a
+% Authors      : <%= os.popen("git config --get user.name").read().strip() %>
+disp('Authors: <%= os.popen("git config --get user.name").read().strip() %>')
+disp('<%= os.popen("git config --get user.site").read().strip() %>')

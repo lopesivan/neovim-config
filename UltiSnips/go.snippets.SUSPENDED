@@ -1,0 +1,17 @@
+# go.snippets - Snippets for go file type
+# {{{ Global:
+# global !p
+# import px.snippets
+# endglobal
+
+snippet _skeleton "Skeleton" b
+package main
+
+import "fmt"
+
+func main() {
+  fmt.Println("Hello World!")
+}
+$0
+endsnippet
+

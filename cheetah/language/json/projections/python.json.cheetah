@@ -1,0 +1,18 @@
+{
+
+  "./.projections.json": { "type": "dit" },
+  "README.md":           { "type": "md"  },
+
+  "main.py":        {
+#for key, value in $d.main.iteritems():
+    "${key}": "${value}",
+#end for
+  },
+
+  "*.py":        {
+#for key, value in $d.py.iteritems():
+    "${key}": "${value}",
+#end for
+  }
+
+}

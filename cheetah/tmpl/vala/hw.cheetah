@@ -1,0 +1,7 @@
+#encoding UTF-8
+#compiler commentStartToken = '//'
+// :Template hw [data]
+#compiler reset
+void main () {
+	print ("Olá, Mundo!\n");
+}

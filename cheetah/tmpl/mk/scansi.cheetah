@@ -1,0 +1,12 @@
+#encoding UTF-8
+#compiler commentStartToken = '//'
+// :Template scansi [data]
+#compiler reset
+#set source = os.popen("find . -type f -name \*.[c] -printf '%P\n'").read().strip()
+\# Makefile: A standard Makefile for ${source}
+
+CFLAGS=-g -Wall
+all  : ${source.split('.')[0]}
+clean:
+	/bin/rm -rf ${source.split('.')[0]} ${source.split('.')[0]}.o
+\# END OF FILE

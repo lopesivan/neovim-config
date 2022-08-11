@@ -1,0 +1,24 @@
+#encoding UTF-8
+#compiler commentStartToken = '//'
+// :Template cansi app
+//           0     1    2    3 4
+#set $size_data = len($data)
+#if $size_data == 1
+#set $app = "app"
+#else
+#set $a   = $data
+#set $app = $a[1]
+#end if
+#compiler reset
+cmake_minimum_required(VERSION 3.8)
+project(${app})
+
+set(CMAKE_C_STANDARD 99)
+set(CMAKE_VERBOSE_MAKEFILE ON)
+set(CMAKE_C_FLAGS "-Wall -Werror")
+
+file(GLOB SOURCE_FILES "*.c")
+file(GLOB HEADER_FILES "*.h")
+
+# your app
+add_executable(${app} \${SOURCE_FILES} \${HEADER_FILES})

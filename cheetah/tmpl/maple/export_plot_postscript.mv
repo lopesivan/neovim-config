@@ -1,0 +1,10 @@
+savePlot:=proc(v_p, v_fileName, v_w:="450", v_h:="350")
+    plotsetup("ps", plotoutput=v_fileName, plotoptions=cat("quality=100,portrait,noborder,width=",v_w,",height=",v_h));
+    print(plots[display](v_p));
+    Threads[Sleep](2):
+    fclose(v_fileName):
+    plotsetup(default);
+end:
+
+p:=plot(sin(x), x=0..10);
+savePlot(p, "myfile.ps");

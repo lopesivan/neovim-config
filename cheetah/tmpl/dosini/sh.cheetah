@@ -1,0 +1,9 @@
+#encoding UTF-8
+#compiler commentStartToken = '//'
+// :Template sh [data]
+#compiler reset
+[file-run]
+command=bash "\$(VIM_FILENAME)"
+cwd=\$(VIM_FILEDIR)
+\#output=quickfix
+output=terminal

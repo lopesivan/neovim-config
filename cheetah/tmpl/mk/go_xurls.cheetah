@@ -1,0 +1,25 @@
+#encoding UTF-8
+#compiler commentStartToken = '//'
+// :Template go_xurls [data]
+#compiler reset
+pkgname = xurls
+_name=\${pkgname}
+
+git:
+	git clone https://github.com/mvdan/xurls
+
+prepare: \$(pkgname)
+	mkdir -p "src/mvdan.cc"
+	mv \${_name} src/mvdan.cc/\${_name}
+
+
+build: export srcdir := \$(shell pwd)
+build:
+	cd \${srcdir}/src/mvdan.cc/\${_name}/cmd/\${_name}; GOPATH="\${srcdir}" go build -ldflags='-w -s'
+
+package: export srcdir := \$(shell pwd)
+package: export pkgdir := /tmp/kk
+package:
+	cd \${srcdir}/src/mvdan.cc/\${_name};
+	install -Dm755 cmd/\${_name}/\${_name} \${pkgdir}/usr/local/bin/\${_name};
+	install -Dm644 LICENSE \${pkgdir}/usr/local/share/licenses/\${pkgname}/LICENSE

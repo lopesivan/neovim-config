@@ -1,0 +1,6 @@
+snippet _skeleton "skeleton" b
+toolsets = gnu vs2010;
+program `!v expand("%:t:r")` {
+    sources { hello.cpp } // could also have been "hello.c"
+}
+endsnippet

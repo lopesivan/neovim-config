@@ -1,0 +1,45 @@
+#encoding UTF-8
+#compiler commentStartToken = '//'
+// :Template matrix name type L C
+//           0      1    2    3 4
+#set $a = $data
+#set $var_name = $a[1]
+#set $type     = $a[2]
+#set $L        = $a[3]
+#set $C        = $a[4]
+#compiler reset
+void F (int n, int m, int a[n][m])
+{
+    for (int i = 0; i < n; i++)
+    {
+        for (int k = 0; k < m; k++)
+        {
+            printf (" %d ", a[i][k]);
+        }
+        printf ("\n");
+    }
+}
+
+int main()
+{
+    int n = ${L};
+    int m = ${C};
+    int (*${var_name})[n][m] = malloc (sizeof * ${var_name});
+    if (!${var_name}) {
+        fprintf(stderr, "Memory Allocation Failed!");
+    }
+    int j  = 0;
+
+    for (int i = 0; i < n; i++)
+    {
+        for (int k = 0; k < m; k++)
+        {
+            (*${var_name})[i][k] = j;
+            j++;
+        }
+    }
+
+    F (n, m, *${var_name});
+
+    free (${var_name});
+}

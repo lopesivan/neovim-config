@@ -1,0 +1,8 @@
+#mkdir -p view/C/adt
+#touch  view/C/__init__.py
+#touch  view/C/adt/__init__.py
+#
+#make
+#./genfile.sh c adt AdtHeader.h
+#./genfile.sh c adt AdtSource.c
+#./genfile.sh c adt AdtTest.c

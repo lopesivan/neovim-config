@@ -1,0 +1,10 @@
+#encoding UTF-8
+#compiler commentStartToken = '//'
+// :Template spice [data]
+#compiler reset
+[file-run]
+command=ngspice -b "\$(VIM_FILENAME)"
+cwd=\$(VIM_FILEDIR)
+\#output=quickfix
+output=terminal
+

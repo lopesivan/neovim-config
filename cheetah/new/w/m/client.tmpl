@@ -1,0 +1,8 @@
+log_level    :${log.level}
+log_location ${log.location}
+
+chef_server_url        'https://${chef.url}:${chef.port}'
+validation_client_name '${validation.client_name}'
+validation_key         '${etc}/${validation.client_name}.pem'
+node_name              '${chef.node_name}'
+

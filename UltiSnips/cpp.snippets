@@ -1,0 +1,154 @@
+# cpp.snippets - Snippets for cpp file type
+
+global !p
+from vimsnippets import complete
+from Cheetah.Template import Template
+endglobal
+
+# The b is the option for when to trigger completion:
+# b only triggers if the keyword is at the start of the line.
+# i trigers it inline
+# A triggers automatically
+#
+
+snippet _cppsource "Skeleton" b
+`!v cpp#OpenSource()`
+$0
+endsnippet
+
+snippet _cppheader "Skeleton" b
+`!v cpp#OpenHeader()`
+$0
+endsnippet
+###############################################################################
+#snippet q "quotes around stuff" i
+#std::cout << "$1\n";
+#endsnippet
+###############################################################################
+#snippet iN "Include" A
+##include <$1.h>
+#endsnippet
+
+##############################################################################
+snippet "(static|const|dynamic|reinterpret)_cast" "cast" rw
+`!p snip.rv = match.group(1)`_cast<${1:new_type}>(${2:`!p snip.rv = snip.v.text or "klass"`})
+endsnippet
+
+##############################################################################
+snippet "ne(w)?( (\S+))?( (\d+))?" "new try..catch" rb
+`!p
+ans = "something"
+ans2 = "delete"
+if match.group(4) is not None:
+    if match.group(2) is not None:
+        ans = match.group(3) + " ["+match.group(5).strip()+"]"
+        ans2 = ans2+"[]"
+else:
+    if match.group(2) is not None:
+        ans = match.group(3)
+`
+try {
+    ${1:type}* ${2:pointer} = new ${3:`!p snip.rv = ans`};
+} catch (std::bad_alloc& ba) {
+    std::cerr << "bad_alloc caught: " << ba.what() << '\n';
+}
+$0
+`!p snip.rv = ans2` $2;
+endsnippet
+
+##############################################################################
+snippet "ne(w)?( (\S+))?( (\d+))?" "new" rb
+`!p
+ans = "something"
+ans2 = "delete"
+if match.group(4) is not None:
+    if match.group(2) is not None:
+        ans = match.group(3) + " ["+match.group(5).strip()+"]"
+        ans2 = ans2+"[]"
+else:
+    if match.group(2) is not None:
+        ans = match.group(3)
+`
+${1:pointer} = new ${2:`!p snip.rv = ans`};
+if ($1 == nullptr)
+    std::cout << "Error: memory could not be allocated" << std::endl;
+
+$0
+`!p snip.rv = ans2` $1;
+endsnippet
+
+##############################################################################
+snippet "noth(row)?( (\S+))?( (\d+))?" "new nothrow" rb
+`!p
+ans = "something"
+ans2 = "delete"
+if match.group(4) is not None:
+    if match.group(2) is not None:
+        ans = match.group(3) + " ["+match.group(5).strip()+"]"
+        ans2 = ans2+"[]"
+else:
+    if match.group(2) is not None:
+        ans = match.group(3)
+`
+${1:pointer} = new (std::nothrow) ${2:`!p snip.rv = ans`};
+if ($1 == nullptr)
+    std::cout << "Error: memory could not be allocated" << std::endl;
+
+$0
+`!p snip.rv = ans2` $1;
+endsnippet
+
+# foo = new (nothrow) int [5];
+# pointer = new type
+# pointer = new type [number_of_elements]
+# delete pointer;
+# delete[] pointer
+
+##############################################################################
+snippet ctor "construtor padrão"
+${1:`!p snip.rv = snip.basename.title() or "untitled"`}(); // costrutor padrão
+endsnippet
+
+##############################################################################
+snippet ctorcp "construtor de cópia"
+${1:`!p snip.rv = snip.basename.title() or "untitled"`}(const ${2:`!p snip.rv = t[1]`}& rhs); // costrutor de cópia
+endsnippet
+
+##############################################################################
+snippet ctor= "construtor de atribuição de cópia"
+${1:`!p snip.rv = snip.basename.title() or "untitled"`}& operator= (const ${2:`!p snip.rv = t[1]`}& rhs); // construtor de atribuição de cópia
+endsnippet
+
+##############################################################################
+snippet dtor "destrutor padrão"
+${1:`!p snip.rv = snip.basename.title() or "untitled"`}(); // destrutor padrão
+endsnippet
+
+# Use:
+# Vim* cursor;
+# ^cursor em "v"
+# viW <c-a>
+# escrevo "up"
+# <c-a>
+#out:
+#std::unique_ptr<Vim> cursor
+snippet up "Unique Pointer" i
+std::unique_ptr<${1:`!p snip.rv = snip.v.text.strip("*") or "klass"`}>
+endsnippet
+
+##############################################################################
+snippet uns "using namespace std"
+using namespace ${1:std};
+${0}
+endsnippet
+##############################################################################
+#                              Character types                               #
+##############################################################################
+snippet "char type" "Character types" r
+${1}`!p snip.rv = complete(t[1], [
+"char;\n/* Exactly one byte in size. At least 8 bits. */",
+"char16_t;\n/* Not smaller than char. At least 16 bits. */",
+"char32_t;\n/* Not smaller than char16_t. At least 32 bits. */",
+"wchar_t;\n/* Can represent the largest supported character set. */",
+])`
+endsnippet

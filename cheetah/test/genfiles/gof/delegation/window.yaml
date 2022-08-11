@@ -1,0 +1,24 @@
+---
+  project: "exemplo de delegação"
+  language: "cpp"
+  gof: "delegation"
+  description: >
+    A delegação é um exemplo extremo da composição de objetos. Ela mostra que
+    você pode substituir a herança pela composição de opjetos como um
+    mecanismo para reutilização do código.
+# ----------------------------------------------------------------------------
+  delegator:
+    -
+      name: Window
+      methods:
+        -
+          name: area
+          return: double
+          arguments: ""
+
+  interface: Shape
+  # abstract: "Shape"
+
+  delegate:
+    - Rectangle
+    - Circle

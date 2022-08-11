@@ -1,0 +1,23 @@
+#encoding UTF-8
+#compiler commentStartToken = '//'
+// :Template src [data]
+#compiler reset
+bin_PROGRAMS    = jupiter
+jupiter_SOURCES = main.c alpha.c beta.c
+
+if WITH_GNU_ARGS
+jupiter_CFLAGS  = -I\$(top_srcdir)/common/args
+
+\# static
+jupiter_LDADD   = \$(top_srcdir)/common/args/libargs.a
+
+\#\#dinamic
+\#jupiter_LDADD   = \$(top_srcdir)/common/args/libargs-1.0.la
+\# conecta a biblioteca com o programa
+\#jupiter_LDFLAGS = -no-install
+endif
+
+include_HEADERS = \
+	alpha.h \
+	beta.h
+

@@ -1,0 +1,14 @@
+[file-build]
+# macros in the "$(...)" form will be substituted,
+# shell command, use quotation for filenames containing spaces
+command=g++ -O2 "$(VIM_FILEPATH)" -o "$(VIM_FILEDIR)/$(VIM_FILENOEXT)"
+# working directory
+cwd=$(VIM_FILEDIR)
+
+[file-run]
+command="$(VIM_FILEDIR)/$(VIM_FILENOEXT)"
+cwd=$(VIM_FILEDIR)
+# output mode: run in a terminal
+#output=terminal
+output=quickfix
+

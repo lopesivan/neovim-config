@@ -1,0 +1,23 @@
+#encoding UTF-8
+#compiler commentStartToken = '//'
+// :Template title [data]
+#compiler reset
+\title
+{UERJ - Tópicos Especiais em Eletrônica - Lista 1}
+
+\author{IVAN CARLOS DA SILVA LOPES \\ %autor
+	      \texttt{Matricula: 202010087711} \\
+	      \texttt{lopes.ivan@graduacao.uerj.br}
+}
+
+% Disciplina: IME04-00627 Introdução ao Processamento de Dados
+% Turma: 2
+% Professor: JOSE ROBERTO DE ALBUQUERQUE LACERDA
+% AVA: SALA23IMECOMPUT
+
+% Nome aluno: IVAN CARLOS DA SILVA LOPES
+% Matricula: 202010087711
+% email institucional: lopes.ivan@graduacao.uerj.br
+
+
+% vim: set ts=4 sw=4 tw=64 ft=tex et :

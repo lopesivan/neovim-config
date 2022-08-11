@@ -1,0 +1,21 @@
+---
+  project: "Matrix"
+  language: "c"
+  gof: "Adt"
+  description: >
+    The abstract data type.
+
+  header:
+    -
+      name: matrix.h
+      arguments:
+        - size_t rows
+        - size_t columns
+
+  source:
+    -
+      name: matrix.c
+      struct:
+        - size_t   rows
+        - size_t   columns
+        - Scalar   **data

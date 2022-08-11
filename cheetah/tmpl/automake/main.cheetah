@@ -1,0 +1,33 @@
+#encoding UTF-8
+#compiler commentStartToken = '//'
+// :Template main [data]
+#compiler reset
+\# We don't want to follow GNU file setup (no README, no AUTHORS, etc)
+AUTOMAKE_OPTIONS = foreign
+
+ACLOCAL_AMFLAGS  = -I m4 --install
+\#
+\# = Program =
+\#
+
+\#WARNINGCFLAGS   = -std=gnu99 -Wall -Wno-parentheses
+AM_CFLAGS       = \$(WARNINGCFLAGS)
+bin_PROGRAMS    = about
+include_HEADERS = config.h
+about_SOURCES   = about.c
+about_CFLAGS    = \$(LIBFOOCFLAGS) \$(AM_CFLAGS)
+about_LDFLAGS   = \$(LIBFOOLDFLAGS)
+\#if DEBUG
+\#DBG = debug
+\#else
+\#DBG =
+\#endif
+\#noinst_PROGRAMS = \$(DBG)
+
+\#
+if WITH_GNU_ARGS
+  MODULEARGS = common/args
+endif
+SUBDIRS =\
+         \$(MODULEARGS) \
+         src/projectX

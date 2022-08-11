@@ -1,0 +1,19 @@
+#encoding UTF-8
+#compiler commentStartToken = '//'
+// :Template dot1
+#compiler reset
+```dot-15
+graph ER {
+    layout=neato
+    node [shape=box]; terminal; markkown; images; awesome;
+    node [shape=circle,style=filled,color=lightgrey]; lookatme;
+
+    terminal -- lookatme;
+    markkown -- lookatme;
+    images -- lookatme;
+    awesome -- lookatme;
+
+    label = "\n\nLookatme & Graphviz";
+    fontsize=10;
+}
+```

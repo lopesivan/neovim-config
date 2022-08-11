@@ -1,0 +1,9 @@
+#encoding UTF-8
+#compiler commentStartToken = '//'
+// :Template etc.tikzpicture [data]
+#compiler reset
+\thispagestyle{empty}%        xxxxxxxxxx IMPORTANT
+\usepackage{amsmath,tikz}
+\usepackage[active,tightpage]{preview}
+\PreviewEnvironment{tikzpicture}
+\setlength\PreviewBorder{0pt}%

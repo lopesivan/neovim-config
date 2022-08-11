@@ -1,0 +1,27 @@
+DomainName =`< www.42algoritmos.com.br >`
+package    =$(shell echo $(DomainName)| sed 's/www.\([^.]\+\).\([^.]\+\).\([^.]\+\)/\3.\2._\1/')
+project    =`< romanos >`
+
+JAVA_HOME=/usr/lib/jvm/java-8-oracle/
+
+all: getting-started-with-maven-java-console-app
+
+getting-started-with-maven-java-console-app :$(project)
+
+$(project):
+	JAVA_HOME=$(JAVA_HOME) mvn archetype:generate -DgroupId=$(package) -DartifactId=$(project) -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
+
+package:
+	(cd $(project); JAVA_HOME=$(JAVA_HOME) mvn $@)
+compile:
+	(cd $(project); JAVA_HOME=$(JAVA_HOME) mvn $@)
+test:
+	(cd $(project); JAVA_HOME=$(JAVA_HOME) mvn $@)
+clean:
+	(cd $(project); JAVA_HOME=$(JAVA_HOME) mvn $@)
+run:
+	(cd $(project); JAVA_HOME=$(JAVA_HOME) mvn exec:java -Dexec.mainClass="$(package).App")
+
+clean-project:
+	rm -rf $(project)
+

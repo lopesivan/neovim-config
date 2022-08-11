@@ -1,0 +1,23 @@
+#encoding UTF-8
+#compiler commentStartToken = '//'
+// :Template slide [data]
+#compiler reset
+---
+title: title
+author: <%= os.popen("git config --get user.name").read().strip() %> (<%= os.popen("git config --get user.site").read().strip() %>)
+date: <%= os.popen("date '+%Y%m%d'").read().strip() %>
+extensions:
+  - image_ueberzug
+  - render
+---
+
+\# Slide 1
+
+Some text
+
+---
+
+\# Slide 2
+
+More text
+

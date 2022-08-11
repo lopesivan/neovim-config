@@ -1,0 +1,17 @@
+#encoding UTF-8
+#compiler commentStartToken = '//'
+// :Template m3 [data]
+#compiler reset
+#set source = os.popen("find . -type f -name \*.cpp -printf '%P\n'").read().strip()
+\# Makefile: A standard Makefile for ${source}
+
+CC       = g++
+LD       = \$(CC)
+CPPFLAGS =-g -std=c++17 -Wall -Werror -Wpedantic -Wno-parentheses
+\#LDFLAGS  = -lstdc++
+
+all  : ${source.split('.')[0]}
+${source.split('.')[0]}:${source.split('.')[0]}.o
+clean:
+	/bin/rm -rf ${source.split('.')[0]} ${source.split('.')[0]}.o
+\# END OF FILE

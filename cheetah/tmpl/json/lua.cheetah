@@ -1,0 +1,16 @@
+#encoding UTF-8
+#compiler commentStartToken = '//'
+// :Template lua [data]
+#compiler reset
+{
+  "./.projections.json": { "type": "dit" },
+
+  "README.md": {
+    "type": "doc"
+  },
+
+  "*.lua": {
+    "type": "lua",
+    "skeleton": "after_plugin"
+  }
+}

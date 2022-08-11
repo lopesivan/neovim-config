@@ -1,0 +1,10 @@
+class ${Window}
+{
+public:
+    ${Window} (${Shape} *s):_${shape}(s) {}
+    double ${area}() {
+        return _${shape}->${area}();
+    }
+private:
+    ${Shape} *_${shape};
+};

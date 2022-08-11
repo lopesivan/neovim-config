@@ -1,0 +1,173 @@
+# spice.snippets - Snippets for spice file type
+
+global !p
+from vimsnippets import complete
+from Cheetah.Template import Template
+endglobal
+
+#snippet _skeleton "Skeleton" b
+snippet _skeleton "Skeleton" b
+${1:Título...}
+
+****************************************************************
+* Descrição: ${2: Era uma vez...}
+*
+* Copyright © `date +%Y` - Ivan Carlos S. Lopes
+* Distribuido sob a licença GNU GPL3
+
+
+
+*
+****************************************************************
+
+****************************************************************
+* Descrição do circuito
+*
+
+****************************************************************
+* Parâmetros de simulação
+*
+
+$0
+*.end
+endsnippet
+
+snippet suffe "scale suffix" b
+* F   => 1E-15
+* P   => 1E-12
+* N   => 1E-9
+* U   => 1E-6
+* MIL => 25.4E-6
+* M   => 1E-3
+* K   => 1E3
+* MEG => 1E6
+* G   => 1E9
+* T   => 1E12
+endsnippet
+
+
+snippet suffu "unit suffix" b
+* V   => volt
+* A   => amp
+* HZ  => hertz
+* OHM => ohm
+* H   => henry
+* F   => farad
+* DEG => degree
+endsnippet
+
+
+snippet .tran "transiente" b
+* tran <tstep> <tstop> [tstart] [tmax] uic
+*
+* tstep  - intervalo entre dados para plot e print
+* tstop  - tempo final da simulação
+* tstart - a simulação começa do zero, mas começa a ser
+*          mostrada a partir de <tstart>
+*
+* tmax   - intervalo de dados para a simulação
+* uic    - use condições iniciais {palavra chave}
+
+*.IC
+.tran ${1:${VISUAL:tstep}} ${2:${VISUAL:tstop}} ${3:${VISUAL:tstart}} ${4:${VISUAL:tmax}} ${5:${VISUAL:uic}}
+endsnippet
+
+
+snippet fsin "fonte senoidal" b
+.param A={${1:${VISUAL:Amplitude do sinal}}} f={${2:${VISUAL:frequencia em Hertz}}} T={1/f}
+
+V${3:${VISUAL:fonte}} ${4:${VISUAL:Nó positivo}} ${5:${VISUAL:GND}} sin( ${6:${VISUAL:<offset>}} A f ${7:${VISUAL:<delay>}} ${8:${VISUAL:<theta>}} ${9:${VISUAL:fase em graus}} )
+endsnippet
+
+
+snippet 1f "fonte monofásica" b
+*.param  Vp = 169.70 Vef = {Vp/sqrt(2)}  f = 60 T = {1/f}
+*.param Vef = 120     Vp = {Vef*sqrt(2)} f = 60 T = {1/f}
+
+V${1:${VISUAL:fonte}} ${2:${VISUAL:Nó positivo}} ${3:${VISUAL:GND}} AC {Vef} 0 sin( ${4:${VISUAL:<offset>}} Vp f ${5:${VISUAL:<delay>}} ${6:${VISUAL:<theta>}} ${7:${VISUAL:fase em graus}} )
+*.tran {T/100} {2*T} {T}
+endsnippet
+
+snippet 3f "fonte trifásica" b
+*.param  Vp = 169.70 Vef = {Vp/sqrt(2)}  f = 60 T = {1/f}
+*.param Vef = 120     Vp = {Vef*sqrt(2)} f = 60 T = {1/f}
+
+V1 phi1  0 AC {Vef}   0 SIN(0 Vp f)
+V2 phi2  0 AC {Vef} 120 SIN(0 Vp f 0 0 120)
+V3 phi3  0 AC {Vef} 240 SIN(0 Vp f 0 0 249)
+
+*.tran {T/100} {2*T} {T}
+endsnippet
+
+snippet .ac "Análise ac" b
+* ac <dec|oct|lin> np f0 ff
+* np - Número de pontos
+* f0 - frequencia inicial
+* ff - frequancia final
+*
+.ac $1`!p snip.rv = complete(t[1],
+    [ "dec",
+      "oct",
+      "lin"])` ${2:${VISUAL:número de pontos}} ${3:${VISUAL:frequencia inicial}} ${4:${VISUAL:frequencia final}}
+$0
+endsnippet
+
+snippet wh "while" b
+let	${2:${VISUAL:loopindex}} = 0
+while ${1:${VISUAL:conditional}}
+	${3:${VISUAL:block}}
+	let $2 = $2 + 1
+end$0
+endsnippet
+
+
+snippet dowh "dowhile" b
+let	${2:${VISUAL:loopindex}} = 0
+dowhile ${1:${VISUAL:conditional}}
+	${3:${VISUAL:block}}
+	let $2 = $2 + 1
+end$0
+endsnippet
+
+snippet foreach "foreach var list ..." b
+foreach	${1:${VISUAL:var}} ${2:${VISUAL:-40 -20 0 20 40}}
+	echo $1 is \$$1
+	${3:${VISUAL:statement}}
+end$0
+endsnippet
+
+snippet foreachset "foreach var $myvariable" b
+set ${2:${VISUAL:myvariable}} = ( ${3:${VISUAL:-40 -20 0 20 40}} )
+foreach	${1:${VISUAL:var}} \$$2
+	echo $1 is \$$1
+end$0
+endsnippet
+
+
+snippet if "if-then" b
+if ${1:${VISUAL:condition}}
+	${2:${VISUAL:statement}}
+end$0
+endsnippet
+
+snippet ife "if-then-else" b
+if ${1:${VISUAL:condition}}
+	${2:${VISUAL:statement}}
+else
+	${3:${VISUAL:statement}}
+end$0
+endsnippet
+
+
+snippet label "Label" b
+label ${1:${VISUAL:word}}
+$0
+endsnippet
+
+snippet goto "Goto" b
+goto ${1:${VISUAL:word}}
+$0
+endsnippet
+
+#hardcopy file vector <vectors> <title text> <xlabel text> <ylabel text>
+

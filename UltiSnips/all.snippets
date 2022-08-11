@@ -1,0 +1,226 @@
+# all.snippets - Global snippets
+
+snippet author "Author's name"
+`!v util#snippet#Author()`
+endsnippet
+
+snippet email "Author's email"
+`!v util#snippet#Email()`
+endsnippet
+
+snippet "copy(right)?" "Copyright notice" r
+`!v util#snippet#Copyright()`
+endsnippet
+
+# ----------------------------------------------------------------------------
+
+snippet date "Current date (%d-%m-%Y)"
+`!v strftime('%d-%m-%Y')`
+endsnippet
+
+snippet Date "Current date (%B %e, %Y)"
+`!v strftime('%B %e, %Y')`
+endsnippet
+
+snippet pwd "print name of current/working directory"
+`pwd`
+endsnippet
+
+# ----------------------------------------------------------------------------
+
+# snip.rv = vim.eval("util#editing#Comment()[0]") * vim.eval("&tw")
+snippet note "NOTE" b
+`!p
+snip.rv = vim.eval("util#editing#Comment()[0][0]") * int(vim.eval("&tw"))
+`
+`!v util#editing#Comment()[0]` NOTE: 📰    > $0
+`!p
+snip.rv = vim.eval("util#editing#Comment()[0][0]") * int(vim.eval("&tw"))
+`
+endsnippet
+
+
+snippet sep "separador de linha" b
+`!v util#editing#Comment()[0][0]`------------8<------------------------------------8<-------------------------
+endsnippet
+
+
+snippet todo "TODO" b
+`!v util#editing#Comment()[0]` TODO: 🐱    > $0
+Presentation Wish List:
+
+- [ ] Design principles of Lua
+    - Goal being, understand why Lua is made the way it is.
+    - As well as understanding the tradeoffs that happen because of these
+        decisions
+- [ ] Why did Neovim choose Lua
+    - Timers / Async / Callbacks
+        - Copy some examples / docs from `luv`
+- [ ] Why do I use .*vim editor
+- [ ] Why do I use Neovim compared to Vim
+
+- [ ] How to set up lua stuff in vim
+- [ ] nvim-lsp video
+endsnippet
+
+snippet fix "FIXME 💩" b
+`!v util#editing#Comment()[0]` FIXME: 💩   > $0
+endsnippet
+
+snippet xxx "XXX 😢 " b
+`!v util#editing#Comment()[0]` XXX: 😢     > $0
+endsnippet
+
+snippet spider "🕷 " b
+`!v util#editing#Comment()[0]` XXX: 🕷     > $0
+endsnippet
+
+# ----------------------------------------------------------------------------
+
+snippet ===
+`!p
+snip.rv = '=' * len(vim.current.buffer[vim.current.window.cursor[0] - 2])
+`
+endsnippet
+
+snippet ---
+`!p
+snip.rv = '-' * len(vim.current.buffer[vim.current.window.cursor[0] - 2])
+`
+endsnippet
+
+snippet "--(\W+)" "Read File" rb
+`!p
+if match.group(1) is not None:
+    sep = match.group(1)
+    if vim.eval("&ft") == "c":
+        snip.rv = '/*'+ sep * (int(vim.eval("&tw"))-4) + '*/'
+    elif vim.eval("&ft") == "cpp":
+        snip.rv = '// '+ sep * (int(vim.eval("&tw"))-3)
+    elif vim.eval("&ft") == "sh":
+        snip.rv = '# '+ sep * (int(vim.eval("&tw"))-2)
+    else:
+        snip.rv = sep * int(vim.eval("&tw"))
+`
+$0
+endsnippet
+
+# ----------------------------------------------------------------------------
+
+# s (*x*)	The sine of x, x is in radians.
+# c (*x*)	The cosine of x, x is in radians.
+# a (*x*)	The arctangent of x, arctangent returns radians.
+# l (*x*)	The natural logarithm of x.
+# e (*x*)	The exponential function of raising e to the value x.
+# j (*n*,*x*)	The bessel function of integer order n of x.
+
+# bc Variable	Description
+# scale	Defines how some operations use digits after the decimal point. Default value is 0 unless bc is used with the -l option, then default is 20.
+# ibase	Defines the conversion base for input numbers. Default is to use base 10.
+# obase	Defines the conversion base four output numbers. Default is to use base 10.
+# last	Contains the value of the last printed number. It is a GNU bc extension.
+
+# scale ( expression )
+# The value of the scale function is the number of digits after the decimal
+# point in the expression.
+
+# sqrt ( expression )
+# The value of the sqrt function is the square root of the expression. If the
+# expression is negative, a run time error is generated.
+
+#pi=$(echo "scale=10; 4*a(1)" | bc -l)
+# bc -q
+# define f (x) {
+#  if (x <= 1) return (1);
+#  return (f(x-1) * x);
+# }
+# f(1)
+# 1
+# f(3)
+# 6
+# f(9)
+# 362880
+
+
+snippet bc "bc calculate"
+${1:${VISUAL}} = `!p
+snip.rv = ''
+import subprocess
+command1 = ['echo']
+command1.append(str(t[1]))
+process1 = subprocess.Popen(command1,stdout=subprocess.PIPE)
+
+command2 = ['bc']
+command2.append('-l')
+command2.append('-q')
+process2 = subprocess.Popen(command2,stdin=process1.stdout,stdout=subprocess.PIPE)
+
+# Get the stdout and stderr text
+(out,err) = process2.communicate()
+
+try:
+    snip.rv = out.decode('utf-8')
+except:
+    pass
+if not snip.rv:
+    snip.rv = '...'
+`$0
+endsnippet
+
+snippet dc "dc calculate"
+${1:${VISUAL}} = `!p
+snip.rv = ''
+import subprocess
+command1 = ['echo']
+command1.append(str(t[1]))
+process1 = subprocess.Popen(command1,stdout=subprocess.PIPE)
+
+command2 = ['dc']
+process2 = subprocess.Popen(command2,stdin=process1.stdout,stdout=subprocess.PIPE)
+
+# Get the stdout and stderr text
+(out,err) = process2.communicate()
+
+try:
+    snip.rv = out.decode('utf-8')
+except:
+    pass
+if not snip.rv:
+    snip.rv = '...'
+`$0
+endsnippet
+
+# snippet fold "Fold method" b
+# `!v util#editing#Comment()[0]` vim:set foldmethod=expr foldexpr=getline(v\:lnum)=~'^!##'?'>1'\:'=':
+# `!v util#editing#Comment()[1]`
+# endsnippet
+#  # ~/.xfiles/keysym
+
+# ----------------------------------------------------------------------------
+
+snippet box "Box"
+`!p snip.rv = '┌' + '─' * (len(t[1]) + 2) + '┐'`
+│ $1 │
+`!p snip.rv = '└' + '─' * (len(t[1]) + 2) + '┘'`
+$0
+endsnippet
+
+
+snippet abox "Ascii box"
+`!p snip.rv = '+' + '─' * (len(t[1]) + 2) + '+'`
+│ $1 │
+`!p snip.rv = '+' + '─' * (len(t[1]) + 2) + '+'`
+$0
+endsnippet
+
+snippet abox2 "Ascii box2"
+`!p snip.rv = '+' + '─' * (len(t[1]) + 2) + '+'`
+`!p snip.rv = '|' + ' ' * (len(t[1]) + 2) + '|'`
+│ $1 │
+`!p snip.rv = '|' + ' ' * (len(t[1]) + 2) + '|'`
+`!p snip.rv = '+' + '─' * (len(t[1]) + 2) + '+'`
+$0
+endsnippet
+
+# ----------------------------------------------------------------------------
+

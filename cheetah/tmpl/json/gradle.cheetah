@@ -1,0 +1,29 @@
+#encoding UTF-8
+#compiler commentStartToken = '//'
+// :Template gradle [data]
+#compiler reset
+\#encoding UTF-8
+\#compiler commentStartToken = "//"
+// :Template gradle [data]
+\#compiler reset
+{
+  "./.projections.json": { "type": "dit" },
+
+  "README.md": {
+    "type": "doc"
+  },
+
+  "*.gradle": {
+    "type": "gradle"
+  },
+
+  "pom.xml": {
+    "type": "pom"
+  },
+
+  "src/main/java/*.java": {
+    "type": "java",
+    "make": "gradle build",
+    "dispatch": "gradle run"
+  }
+}

@@ -1,0 +1,13 @@
+validation: {'client_name': chef-validator}
+
+log: { 'level': info,
+       'location': STDOUT }
+
+chef: { 'url': chef,
+        'port': 443,
+        'node_name': admin }
+
+chef_conf_dir: /etc/chef
+chef_path: /var/chef
+timeout: 300
+trusted_certs_dir: ~/.chef/trusted_certs

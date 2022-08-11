@@ -1,0 +1,19 @@
+#encoding UTF-8
+#compiler commentStartToken = '//'
+// :Template python [data]
+#compiler reset
+{
+  "README.md":      { "type": "readme" },
+  "main.py":        {
+    "type": "main",
+    "make": "python {file|basename}",
+    "start": "ptpython --vi --interactive={file|basename}",
+    "dispatch": "bpython -i {file|basename}"
+  },
+  "*.py":     {
+    "type": "cartas",
+    "make": "python {file|basename}",
+    "start": "ptpython --vi --interactive={file|basename}",
+    "dispatch": "bpython -i {file|basename}"
+  }
+}

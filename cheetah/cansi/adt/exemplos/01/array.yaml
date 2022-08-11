@@ -1,0 +1,11 @@
+AdtHeader:
+- array.h
+- Arguments:
+    - size_t size
+
+AdtSource:
+- array.c
+- struct:
+    - size_t    size
+    - float     **data
+

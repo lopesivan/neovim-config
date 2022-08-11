@@ -1,0 +1,10 @@
+#encoding UTF-8
+#compiler commentStartToken = '//'
+// :Template vala.meson [data]
+#compiler reset
+project('test', 'vala', 'c')
+
+add_global_arguments('--profile=posix', language: 'vala')
+
+executable('thing',
+  sources: ['thing.vala'])

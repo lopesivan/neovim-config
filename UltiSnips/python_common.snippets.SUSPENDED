@@ -1,0 +1,307 @@
+############
+#  global  #
+############
+global !p
+
+class Arg(object):
+	def __init__(self, arg):
+		self.arg = arg
+		self.default = None
+		self.type_ = None
+		if '=' in arg:
+			parts = arg.split('=')
+			arg = '' if len(parts) < 1 else parts[0].strip()
+			self.default = '' if len(parts) < 2 else parts[1].strip()
+		if ':' in arg:
+			parts = arg.split(':')
+			arg = '' if len(parts) < 1 else parts[0].strip()
+			self.type_ = '' if len(parts) < 2 else parts[1].strip()
+		self.name = arg.strip()
+
+	def __str__(self):
+		return self.name
+
+	def __unicode__(self):
+		return self.name
+
+	def is_kwarg(self):
+		return self.default is not None
+
+	def has_type(self):
+		return self.type_ is not None
+
+
+def get_args(arglist):
+	args = [Arg(arg) for arg in arglist.split(',') if arg]
+	args = [arg for arg in args if arg.name != 'self']
+
+	return args
+
+def get_attrs(attr_str):
+	attr_list = [attr.strip() for attr in attr_str.split('\n')]
+	to_document = []
+	for attr in attr_list:
+		if attr.startswith('_'):
+			continue
+		parts = attr.split('=')
+		if len(parts) == 0:
+			continue
+		to_document.append(parts[0].strip())
+	return to_document
+
+def triple_quotes_handle_trailing(snip, quoting_style):
+	"""
+	Generate triple quoted strings and handle any trailing quote char,
+	which might be there from some autoclose/autopair plugin,
+	i.e. when expanding ``"|"``.
+	"""
+	if not snip.c:
+		# Do this only once, otherwise the following error would happen:
+		# RuntimeError: The snippets content did not converge: …
+		_, col = vim.current.window.cursor
+		line = vim.current.line
+
+		# Handle already existing quote chars after the trigger.
+		_ret = '"' * 3
+		while True:
+			try:
+				nextc = line[col]
+			except IndexError:
+				break
+			if nextc == '"' and len(_ret):
+				_ret = _ret[1:]
+				col = col+1
+			else:
+				break
+		snip.rv = _ret
+	else:
+		snip.rv = snip.c
+
+
+def format_arg(arg, snip):
+	if arg.has_type():
+		snip += arg.name
+	else:
+		snip += "%s: TODO" % arg.name
+	snip >> 1
+	if arg.is_kwarg():
+		snip.rv += "{} optional".format(
+			',' if not arg.has_type() else ':')
+		snip += "TODO, defaults to %s" % arg.default
+	else:
+		snip += "TODO"
+	snip << 1
+
+def write_docstring_args(args, snip):
+	kwargs = [arg for arg in args if arg.is_kwarg()]
+	args = [arg for arg in args if not arg.is_kwarg()]
+
+	if len(args) > 0:
+		snip += "Parameters"
+		snip += "----------"
+		for arg in args:
+			format_arg(arg, snip)
+		snip.rv += '\n' + snip.mkline('', indent='')
+	if len(kwargs) > 0:
+		snip += "Keyword Arguments"
+		snip += "-----------------"
+
+		for kwarg in kwargs:
+			format_arg(kwarg, snip)
+		snip.rv += '\n' + snip.mkline('', indent='')
+
+
+def write_init_body(args, parents, snip):
+	parents = [p.strip() for p in parents.split(",")]
+	parents = [p for p in parents if p != 'object']
+
+	for p in parents:
+		snip += p + ".__init__(self)"
+	if len(parents) > 0:
+		snip.rv += '\n' + snip.mkline('', indent='')
+
+	for arg in args:
+		snip += "self._%s = %s" % (arg, arg)
+	if len(args) > 0:
+		snip.rv += '\n' + snip.mkline('', indent='')
+
+
+def write_slots_args(args, snip):
+	args = ['"_%s"' % arg for arg in args]
+	snip += '__slots__ = (%s,)' % ', '.join(args)
+
+
+def write_function_docstring(snip, args):
+	"""
+	Writes a function docstring in the numpy style.
+	"""
+	snip.rv += '"""'
+	snip += "TODO"
+	snip.rv += '\n' + snip.mkline('', indent='')
+	snip += "TODO"
+	snip.rv += '\n' + snip.mkline('', indent='')
+
+	if args:
+		write_docstring_args(args, snip)
+
+	snip += 'Raises'
+	snip += '------'
+	snip += 'TODO'
+	snip.rv += '\n' + snip.mkline('', indent='')
+
+	snip += 'Returns'
+	snip += '-------'
+	snip += 'TODO'
+	snip.rv += '\n' + snip.mkline('', indent='')
+
+	snip += 'Examples'
+	snip += '--------'
+	snip += '..doctest::'
+	snip.rv += '\n' + snip.mkline('', indent='')
+	snip >> 1
+	snip += '>>> TODO'
+	snip << 1
+
+	snip += '"""'
+
+def write_class_docstring(snip, attrs, args):
+	"""
+	Writes a class docstring in the numpy style.
+	"""
+	snip.rv += '"""'
+	snip += "TODO"
+	snip.rv += '\n' + snip.mkline('', indent='')
+	snip += "TODO"
+	snip.rv += '\n' + snip.mkline('', indent='')
+
+	if args:
+		write_docstring_args(args, snip)
+
+	snip += 'Raises'
+	snip += '------'
+	snip += 'TODO'
+	snip.rv += '\n' + snip.mkline('', indent='')
+
+	snip += 'Attributes'
+	snip += '----------'
+	if len(attrs) < 1:
+		snip += 'TODO'
+	else:
+		for attr in attrs:
+			snip += '%s: TODO' % attr
+			snip >> 1
+			snip += 'TODO'
+			snip << 1
+	snip.rv += '\n' + snip.mkline('', indent='')
+
+	snip += 'Examples'
+	snip += '--------'
+	snip += '..doctest::'
+	snip.rv += '\n' + snip.mkline('', indent='')
+	snip >> 1
+	snip += '>>> TODO'
+	snip << 1
+
+	snip += '"""'
+
+
+def get_dir_and_file_name(snip):
+	return os.getcwd().split(os.sep)[-1] + '.' + snip.basename
+
+def generate_anon_docstring(lines):
+	edited_lines = []
+	tabstop = 1
+	for line in lines:
+		if "TODO" in line:
+			# add tabstop
+			edited_lines.append(
+				line.replace("TODO", "${%d:TODO}" % tabstop))
+			tabstop += 1
+			continue
+		edited_lines.append(line)
+	return '\n'.join(edited_lines)
+
+def expand_docstring(snip):
+	docstring = []
+	doc_start = None
+	doc_end = None
+	for line_n in range(snip.snippet_start[0], snip.snippet_end[0] + 1):
+		line = snip.buffer[line_n]
+		if line.strip() == '"""':
+			if doc_start is not None:
+				doc_end = line_n
+				break
+			doc_start = line_n
+			continue
+		if doc_start is None:
+			continue
+		docstring.append(line)
+	if doc_start is None or doc_end is None:
+		# malformed docstring
+		return
+	snip.buffer[doc_start + 1:doc_end] = [""]
+	snip.cursor.set(doc_start + 1, 0)
+	snip.expand_anon(generate_anon_docstring(docstring))
+
+def replace_docstring(snip, test=False):
+	c_line = snip.line - 1
+	start_pos = None
+	content = []
+	while start_pos is None and c_line >= 0 :
+		line = snip.buffer[c_line]
+		if line.strip() == '"""':
+			start_pos = c_line
+		content.insert(0, line)
+		c_line -= 1
+	if test:
+		return start_pos is not None
+	snip.buffer[start_pos:snip.line] = [""]
+	# snip.cursor.set(start_pos + 1, 0)
+	# vim.command('normal j')
+	snip.expand_anon(generate_anon_docstring(content))
+
+endglobal
+
+###############
+#  functions  #
+###############
+
+post_jump "if snip.tabstop == 0: expand_docstring(snip)"
+snippet def "function with docstring" bms
+def ${1:function}(`!p
+if snip.indent:
+	snip.rv = 'self' + (", " if len(t[2]) else "")`${2:arg1}):
+	`!p
+snip >> 1
+write_function_docstring(snip, get_args(t[2])) `
+	${5:${VISUAL:pass}}
+endsnippet
+
+#############
+#  classes  #
+#############
+
+post_jump "if snip.tabstop == 0: expand_docstring(snip)"
+snippet class "class with docstring" bms
+class ${1:MyClass}(${2:object}):
+
+	`!p snip >> 1; write_class_docstring(snip, get_attrs(t[3]), get_args(t[4]))`
+
+	${3:attributes}
+
+	def __init__(self$4):`!p
+snip >> 2;
+write_init_body(get_args(t[4]), t[2], snip)`
+		$5
+$0
+endsnippet
+
+################
+#  docstrings  #
+################
+
+# seriously buggy, get really confused if you trigger it
+# on the opening triple quote
+pre_expand "replace_docstring(snip)"
+snippet """ "edit docstring" "replace_docstring(snip, True)" bems
+endsnippet

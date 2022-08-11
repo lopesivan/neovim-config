@@ -1,0 +1,23 @@
+snippet ins "Simple insert"
+INSERT INTO ${1:schema}.${2:table} VALUES ($3);
+endsnippet
+
+snippet insc "Simple insert with columns"
+INSERT INTO ${1:schema}.${2:table} ($3) VALUES ($3);
+endsnippet
+
+snippet upd "Simple update"
+UPDATE ${1:schema}.${2:table} SET ${3:column} = ${4:value} WHERE $5;
+endsnippet
+
+snippet upda "Simple update without where"
+UPDATE ${1:schema}.${2:table} SET ${3:column} = ${4:value};
+endsnippet
+
+snippet del "Simple delete"
+DELETE FROM ${1:schema}.${2:table} WHERE $3;
+endsnippet
+
+snippet dela "Simple delete without where"
+DELETE FROM ${1:schema}.${2:table};
+endsnippet

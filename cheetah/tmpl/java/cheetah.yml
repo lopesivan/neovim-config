@@ -1,0 +1,11 @@
+# caminho onde se localiza o template
+type: "language/c"
+# O nome do template
+#cheetah: "main.c"
+
+#cheetah: "class.c"
+# Os campos chave valor que serão usados
+data: { 'chave1': descrição,
+        'chave2': como usar,
+        'chave3': "mantenedor" }
+

@@ -1,0 +1,15 @@
+GDB      = -g
+CXXFLAGS = \$(GDB) -Wall -std=c++14
+
+#set $main = $d.data.main.strip('.cpp')
+#set $dependencies = $d.data.dependencies
+#set $dependencies = ' '.join(dependencies).replace('.cpp','.o')
+all: $main
+$main: ${main}.o $dependencies
+	\$(CXX) \$^ -o \$@
+
+clean:
+	rm -rf *.o $main
+
+\#debug:
+\#	gdb -q -x ./${main}.gdb

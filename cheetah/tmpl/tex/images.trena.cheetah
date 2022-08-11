@@ -1,0 +1,17 @@
+#encoding UTF-8
+#compiler commentStartToken = '//'
+// :Template images.trena [data]
+#compiler reset
+\documentclass[tikz]{standalone}
+\usepackage{tikz}
+\usepackage{tgadventor}
+
+\begin{document}
+\definecolor{azulunam}{HTML}{13406F}
+\begin{tikzpicture}[scale=0.3, line width=2pt, color=white]
+    \node[inner sep=0pt] (russell) at (0,0)
+        {\includegraphics[width=\textwidth]{49563bc9-1816-4d54-b72c-773506c9ce44.jpeg}};
+\end{tikzpicture}
+\end{document}
+
+\end{document}

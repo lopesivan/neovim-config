@@ -1,0 +1,11 @@
+#encoding UTF-8
+#compiler commentStartToken = '//'
+// :Template loop [data]
+#compiler reset
+apps =  app1 app2 app3 app4
+
+all: \$(apps)
+
+\$(apps):
+	@echo \$@
+

@@ -1,0 +1,35 @@
+#encoding UTF-8
+#compiler commentStartToken = 'COMMENT:'
+public class ${d.data.Class[0].name} implements java.io.Serializable
+{
+#for att in $d.data.Class[1].attributes:
+#set type = list($att.values())[0]
+#set name = list($att.keys())[0]
+    private ${type} ${name};
+#end for
+
+#for att in $d.data.Class[1].attributes:
+#set type = list($att.values())[0]
+#set name = list($att.keys())[0]
+#if type == "boolean":
+    public ${type} is${name.title()}()
+    {
+        return this.${name};
+    }
+#else
+    public ${type} get${name.title()}()
+    {
+        return this.${name};
+    }
+#end if
+
+    public void set${name.title()} (${type} ${name})
+    {
+        this.${name} = ${name};
+    }
+
+#end for
+}
+
+// vim: set ts=4 sw=4 tw=78 ft=java:
+#compiler reset

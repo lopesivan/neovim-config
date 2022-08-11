@@ -1,0 +1,24 @@
+#encoding UTF-8
+#compiler commentStartToken = '//'
+// :Template hw [Text]
+//              ^^^^^^ --- mensagem que será exibida.
+#compiler reset
+#set $size_data = len($data)
+#if $size_data == 1
+#set $message = "Hello, world!"
+#else
+#set $a = $data
+#set $message = " ".join($a[1:])
+#end if
+/* hello.c: A standard "Hello, world!" program */
+\#include <stdio.h>
+
+int
+main (int argc, char *argv[])
+{
+    printf ("%s\n", "${message}");
+
+    return 0;
+}
+
+/* vim: set ts=4 sw=4 tw=78 ft=c: */

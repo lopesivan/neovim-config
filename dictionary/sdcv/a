@@ -1,0 +1,7 @@
+tar xvjf stardict-acronyms-2.4.2.tar.bz2
+tar xvjf stardict-freedict-por-eng-2.4.2.tar.bz2
+tar xvjf stardict-idp-eng-por-2.4.2.tar.bz2
+tar xvjf stardict-wordnet-3.0.0.tar.bz2
+tar xvjf stardict-xfardic-computer-elec-2.4.2.tar.bz2
+tar xvjf stardict-xfardic-gnu-linux-2.4.2.tar.bz2
+

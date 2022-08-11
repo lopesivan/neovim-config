@@ -1,0 +1,45 @@
+AbstractFactory:
+  - Pet:                # nome da fabrica abstrata
+    - get_pet
+    - get_food
+
+ConcreteFactory:
+  - pet:                # tipo de produto
+    - cat               # produto concreto <PetCat>
+    - dog               # produto concreto <PetDog>
+
+AbstractProduct:
+  - Pet:                # produto abstrato
+    - speak
+    - __str__
+    ConcreteProduct:
+      - Cat            # produto concreto
+      - Dog            # produto concreto
+
+Client:
+  - name                # nome do cliente
+
+
+##############################################################################
+AbstractFactory:
+  - Widget                 # nome da fabrica abstrata
+  - getTipo                # nome do método que seleciona o tipo
+
+ConcreteFactory:
+  - Pet                 # tipo de produto
+    - Dog               # produto concreto <DogPet>
+    - Cat               # produto concreto <CatPet>
+
+AbstractProduct:
+  - Dog                 # produto abstrato
+  ConcreteProduct:
+    - DogPet             # produto concreto
+
+  - Cat                  # produto abstrato
+  ConcreteProduct:
+    - CatPet              # produto concreto
+
+Client:
+  - name                   # nome do cliente
+
+

@@ -1,0 +1,12 @@
+{
+  "./.projections.json": { "type": "dit" },
+
+  "README.md": {
+    "type": "doc"
+  },
+
+  "*.lua": {
+    "type": "lua",
+    "skeleton": "after_plugin"
+  }
+}

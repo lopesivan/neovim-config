@@ -1,0 +1,7 @@
+# Makefile: A standard Makefile for survive.c
+LDLIBS=-lncurses -pthread
+
+all  : survive
+clean:
+	/bin/rm -rf survive survive.o
+# END OF FILE

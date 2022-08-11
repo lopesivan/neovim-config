@@ -1,0 +1,16 @@
+global !p
+import px.snippets
+endglobal
+
+snippet shebang "Shebang" b
+${1:<!DOCTYPE HTML>}
+$0
+endsnippet
+
+# se a linha for 1 a -> Shebang
+post_jump "px.snippets.expand(snip)"
+snippet s "desc" "snip.line == 0" Ae
+shebang$1
+endsnippet
+
+

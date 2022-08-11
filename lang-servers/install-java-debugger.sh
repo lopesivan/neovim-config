@@ -1,9 +1,9 @@
-#!/usr/bin/sh
+#!/bin/sh
 
 INSTALL_FOLDER="$HOME/.local/share/nvim"
 
 # Set this if necessary
-export JAVA_HOME="/usr/lib/jvm/java-11-openjdk"
+export JAVA_HOME="/usr/lib/jvm/java-11-openjdk-amd64"
 export PATH="$JAVA_HOME/bin:$PATH"
 
 # Install java-debug

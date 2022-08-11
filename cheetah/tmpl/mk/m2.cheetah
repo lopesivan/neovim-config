@@ -1,0 +1,15 @@
+#encoding UTF-8
+#compiler commentStartToken = '//'
+// :Template m2 [data]
+#compiler reset
+#set source = os.popen("find . -type f -name \*.[c] -printf '%P\n'").read().strip()
+\# Makefile: A standard Makefile for ${source}
+
+CFLAGS=-g -std=gnu99 -Wall -Wno-parentheses
+LDFLAGS=-lm
+
+all  : ${source.split('.')[0]}
+${source.split('.')[0]}:${source.split('.')[0]}.o
+clean:
+	/bin/rm -rf ${source.split('.')[0]} ${source.split('.')[0]}.o
+\# END OF FILE

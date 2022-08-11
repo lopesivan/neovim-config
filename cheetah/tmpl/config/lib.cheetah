@@ -1,0 +1,15 @@
+#encoding UTF-8
+#compiler commentStartToken = '//'
+// :Template lib [data]
+#compiler reset
+\#\# static
+noinst_LIBRARIES       = libargs.a
+libargs_a_SOURCES      = args.c
+
+\#\# dinamic
+\# lib_LTLIBRARIES        = libargs-1.0.la
+\# libargs_1_0_la_SOURCES = args.c
+\# libargs_1_0_la_LDFLAGS = -version-info 0:0:0
+
+include_HEADERS     = \
+args.h

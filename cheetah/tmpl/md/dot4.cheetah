@@ -1,0 +1,25 @@
+#encoding UTF-8
+#compiler commentStartToken = '//'
+// :Template dot1
+#compiler reset
+```dot-15
+class Animal
+{
+  public:
+    void die();
+    string name;
+    int age;
+};
+
+class Dog : public Animal
+{
+  public:
+    void bark();
+};
+
+class Cat : public Animal
+{
+  public:
+    void meow();
+};
+```

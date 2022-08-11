@@ -1,0 +1,34 @@
+log_level     :${log.level}
+log_location  ${log.location}
+
+node_name '${chef.node_name}'
+
+#ssl_verify_mode       :verify_peer
+validation_client_name '${validation.client_name}'
+chef_server_url        'https://${chef.url}:${chef.port}'
+trusted_certs_dir      '${certs}'
+validation_key         '${etc}/${validation.client_name}.pem'
+
+checksum_path "${var}/checksums"
+
+cookbook_path [
+               '${var}/cookbooks',
+               '${var}/site-cookbooks'
+              ]
+
+#environment "production"
+environment_path '${var}/environments'
+file_backup_path '${var}/backup'
+file_cache_path  '${var}/cache'
+#role_path       '${var}/roles'
+#json_attribs    '${var}/node.json'
+
+syntax_check_cache_path  '/root/.chef/syntax_check_cache'
+client_key               '${etc}/admin.pem'
+
+data_bag_path                      '${var}/data_bags'
+encrypted_data_bag_secret_key_path '${etc}/encrypted_data_bag_secret'
+
+cookbook_copyright '42algoritmos, Inc.'
+cookbook_license   'apachev2'
+cookbook_email     'ivan@42algoritmos.com.br'

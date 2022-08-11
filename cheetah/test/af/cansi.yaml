@@ -1,0 +1,41 @@
+file:
+  array
+
+define:
+  - DELTA(a, b, c)     (SQR((b)) - 4*(a)*(c))
+  - REAL_PART(a, b)    (-(b)/(2*(a)))
+
+types:
+  typedef:
+    - Scalar*              Array
+    - Scalar**             Matrix
+    -
+    - const unsigned long  Row
+    - const unsigned long  Column
+    - const unsigned long  Size
+
+    # elementos lista
+    - |
+      struct ListElmt_ {
+
+      void               *data;
+      struct ListElmt_   *next;
+
+      } ListElmt;
+
+    - |
+      struct List_ {
+
+      int                size;
+
+      int                (*match)(const void *key1, const void *key2);
+      void               (*destroy)(void *data);
+
+      ListElmt           *head;
+      ListElmt           *tail;
+
+      } List;
+
+functions:
+  - void zero(Array array, Size size)
+  - void one(Array array, Size size)

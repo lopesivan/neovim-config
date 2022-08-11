@@ -1,0 +1,14 @@
+# cling.snippets - Snippets for cling file type
+
+snippet _skeleton "Skeleton" b
+#! /opt/cling/bin/cling --nologo --std=c++11
+
+// modes:
+//   --std=c++11
+//   --std=c++14
+//   --std=c++1z
+
+.L 01/min_int.cpp
+$0
+.q /* End */
+endsnippet

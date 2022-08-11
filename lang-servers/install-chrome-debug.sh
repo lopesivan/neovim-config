@@ -1,4 +1,4 @@
-#!/usr/bin/sh
+#!/bin/sh
 
 INSTALL_FOLDER="$HOME/.local/share/nvim"
 

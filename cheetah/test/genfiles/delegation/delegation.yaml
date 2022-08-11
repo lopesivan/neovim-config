@@ -1,0 +1,26 @@
+---
+  project: "exemplo de delegação"
+  language: "cpp"
+  description: >
+    Delegation makes composition as powerful for reuse as inheritance. With
+    delegation, two objects are involved in handling a request. A receiving
+    object delegates operations to its delegate, which is similar to the case
+    when subclass defers requests to parent class.
+# ----------------------------------------------------------------------------
+  method:
+    -
+      name: area
+      return: double
+      arguments:
+        - void
+
+# ----------------------------------------------------------------------------
+  delegator: Window
+# ----------------------------------------------------------------------------
+
+  interface: Shape
+  # abstract: "Shape"
+
+  delegate:
+    - Rectangle
+    - Circle

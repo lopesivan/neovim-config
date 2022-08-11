@@ -1,0 +1,41 @@
+# octave.snippets - Snippets for octave file type
+
+snippet _skeleton "Skeleton" b
+% `!v expand('%')` - `!v expand('%<')`
+% Maintainer: Ivan Lopes
+
+$0
+endsnippet
+
+
+snippet fun "function" b
+function ${1:v} = `!v expand("%:t:r")`(${2})
+    % ${3:Description}
+    $1 = ${3};
+    $0
+end
+endsnippet
+
+
+snippet switch "switch ... otherwise"
+switch ${1:n}
+	case ${2:0}
+		${3}${4:
+	otherwise
+		${5}}
+end
+endsnippet
+
+snippet clc "class with constructor" b
+classdef ${1:`!p
+snip.rv = snip.basename or "class_name"`}
+	properties
+		${2}
+	end
+	methods
+		function obj = $1(${3})
+			${4}
+		end${0}
+	end
+end
+endsnippet

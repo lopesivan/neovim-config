@@ -1,0 +1,8 @@
+#encoding UTF-8
+#compiler commentStartToken = '//'
+// :Template etc.tikzgeometria [data]
+#compiler reset
+\usepackage{tkz-euclide}
+\usetkzobj{all}
+
+\usetikzlibrary{backgrounds,calc}

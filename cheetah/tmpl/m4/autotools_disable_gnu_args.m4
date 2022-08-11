@@ -1,0 +1,16 @@
+\#
+\#  |----------------------+---------------+-------|
+\#  | Command Line         | Variable      | State |
+\#  |----------------------+---------------+-------|
+\#  | ""                   | GNU_ARGS      | 1     |
+\#  | "--disable-gnu-args" | GNU_ARGS      | NULL  |
+\#  |----------------------+---------------+-------|
+
+AC_ARG_ENABLE([gnu-args],
+  [AS_HELP_STRING([--disable-gnu-args],
+    [disable gnu args @<:@default: no@:>@])],
+  [gnu_args=\${enableval}], [gnu_args=yes])
+
+if test "x\${gnu_args}" = xyes; then
+   AC_DEFINE(GNU_ARGS, 1, [Enable args])
+fi

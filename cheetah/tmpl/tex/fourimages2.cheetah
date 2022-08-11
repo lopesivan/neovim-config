@@ -1,0 +1,43 @@
+#encoding UTF-8
+#compiler commentStartToken = '//'
+// :Template fourimages2 [data]
+#compiler reset
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\pagestyle{empty}
+\begin{document}
+\begin{figure}[ht]
+	\begin{subfigure}[b]{0.5\linewidth}
+		\centering
+		\includegraphics[width=0.75\linewidth]{example-image-a}
+		\caption{Initial condition}
+		\label{fig7:a}
+		\vspace{4ex}
+	\end{subfigure}%%
+	\begin{subfigure}[b]{0.5\linewidth}
+		\centering
+		\includegraphics[width=0.75\linewidth]{example-image-b}
+		\caption{Rupture}
+		\label{fig7:b}
+		\vspace{4ex}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.5\linewidth}
+		\centering
+		\includegraphics[width=0.75\linewidth]{example-image-c}
+		\caption{DFT, Initial condition}
+		\label{fig7:c}
+	\end{subfigure}%%
+	\begin{subfigure}[b]{0.5\linewidth}
+		\centering
+		\includegraphics[width=0.75\linewidth]{example-image}
+		\caption{DFT, rupture}
+		\label{fig7:d}
+	\end{subfigure}
+	\caption{Illustration of various images}
+	\label{fig7}
+\end{figure}
+
+The illustrations in figure~\ref{fig7}\ldots but in figure~\ref{fig7:d} you see\ldots
+
+\end{document}

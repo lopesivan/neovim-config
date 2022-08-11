@@ -1,0 +1,24 @@
+# sed.snippets - Snippets for sed file type
+
+global !p
+from vimsnippets import complete
+from Cheetah.Template import Template
+import px.snippets
+endglobal
+
+snippet shebang "Shebang" b
+#!`which sed` -f
+$0
+endsnippet
+
+# se a linha for a 1 a -> Shebang
+post_jump "px.snippets.expand(snip)"
+snippet s "desc" "snip.line == 0" Ae
+shebang$1
+endsnippet
+
+snippet _skeleton "Skeleton" b
+#!`which sed` -f
+
+$0
+endsnippet

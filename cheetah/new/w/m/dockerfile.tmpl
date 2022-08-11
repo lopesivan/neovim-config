@@ -1,0 +1,35 @@
+FROM chef_solo:latest
+MAINTAINER <%= os.popen("git config --get user.name").read().strip() %> <<%= os.popen("git config --get user.email").read().strip() %>>
+
+# chef-solo
+# ---------
+
+RUN mkdir -p\
+  ${etc} \
+  /root/.chef \
+  /root/.chef/syntax_check_cache \
+  ${var}/roles        \
+  ${var}/checksums    \
+  ${var}/environments \
+  ${var}/backup       \
+  ${var}/cache
+
+# add nodes
+ADD src/nodes/node.json  ${var}/node.json
+
+# add roles
+ADD src/roles/superuser.json ${var}/roles/superuser.json
+
+# Add latest default chef-solo config files
+ADD src/client.rb                      ${etc}/client.rb
+ADD src/solo.rb                        ${etc}/solo.rb
+ADD src/knife.rb                       /root/.chef/knife.rb
+ADD src/pem/admin.pem                  ${etc}/admin.pem
+ADD src/pem/chef-validator.pem         ${etc}/chef-validator.pem
+ADD src/keys/encrypted_data_bag_secret ${etc}/encrypted_data_bag_secret
+
+ADD src/chef-initialize.sh /usr/local/bin/chef-initialize.sh
+RUN chmod +x               /usr/local/bin/chef-initialize.sh
+
+# copy supervisor conf
+ADD src/supervisord.conf /etc/supervisor/conf.d/supervisord.conf

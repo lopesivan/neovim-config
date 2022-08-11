@@ -1,0 +1,12 @@
+" map <F5> :A<CR>:BufOnly<CR>
+
+" let g:surround_{char2nr('c')} = "\\\1command\1{\r}"
+" map <F9> ysiwc
+
+" colorscheme molokai
+" "" Guimode
+" if has("gui_running")
+"   colorscheme molokai
+" endif
+
+

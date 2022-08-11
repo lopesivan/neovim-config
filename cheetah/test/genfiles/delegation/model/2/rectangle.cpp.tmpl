@@ -1,0 +1,14 @@
+class ${Rectangle} : public ${Shape}
+{
+private:
+    double _${height},
+           _${width};
+public:
+    ${Rectangle}(double a_${height}, double a_${width}) {
+        _${height} = a_${height};
+        _${width}  = a_${width};
+    }
+    double ${area}() {
+        return _${height} * _${width};
+    }
+};

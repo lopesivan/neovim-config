@@ -1,0 +1,153 @@
+#encoding UTF-8
+#compiler commentStartToken = '//'
+// :Template main [data]
+#compiler reset
+\documentclass[a4paper, 12pt]{article}
+
+\input{preamble/report.tex}
+
+\input{title.tex}
+
+\begin{document}
+
+\maketitle % Print the title
+
+\begin{enumerate}
+    % 1
+   \item Solução exercício 1
+   \begin{enumerate}
+        % a
+	   \item Gráfico da função \$f(x) = x^{3}-3x^{2}+1\$ no intervalo \$[-\frac{1}{2}) \leq x \leq 4]\$
+            \lstinputlisting[language=Matlab]{code/code1.m}
+
+            \begin{figure}[h!]
+                \begin{center}
+                    \includegraphics[width=.85\textwidth]{code/code1.png}
+                \end{center}
+            \end{figure}
+        % b
+	   \item Determinar valores máximos e mínimos de \$f(x)\$ no formato \$(x,f(x))\$:
+            \begin{enumerate}[{b}.1)]
+                \item Método analítico
+                    \newpage
+                    \begin{figure}[h!]
+                      \begin{center}
+                          \includegraphics[width=.85\textwidth]{images/hands1.jpeg}
+                      \end{center}
+                    \end{figure}
+                \item Busca exaustiva (precisão = \$0,1\$)
+
+                    Encontrando os pares ordenados:
+                    \lstinputlisting[language=Matlab]{code/code2.m}
+                \item Busca exaustiva (precisão = \$0,01\$)
+                    \\
+                    Encontrando os pares ordenados:
+                    \lstinputlisting[language=Matlab]{code/code3.m}
+            \end{enumerate}
+        %c
+        \item Comente os resultados.
+            \\
+            Por se tratar de uma função bem coportada o aumento
+            da precisão não altera o resultado.
+   \end{enumerate}
+
+    % 2
+   \item Solução exercício 2
+   \begin{enumerate}
+        % a
+		\item Gráfico da função \$f(x) = -3x^{4}+16x^{3}-18x^{2}\$ no intervalo \$[-1 \leq x \leq 4]\$
+
+            \lstinputlisting[language=Matlab]{code/code4.m}
+
+            \begin{figure}[h!]
+                \begin{center}
+                    \includegraphics[width=.85\textwidth]{code/code4.png}
+                \end{center}
+            \end{figure}
+        % b
+		\item Determinar valores máximos e mínimos de \$f(x)\$ no formato \$(x,f(x))\$:
+			\begin{enumerate}[{b}.1)]
+				\item Método analítico
+                    \includepdf[pages=1]{images/hand2}
+                    \includepdf[pages=2]{images/hand2}
+				\item Busca exaustiva (precisão = \$0,1\$)
+                    \lstinputlisting[language=Matlab]{code/code5.m}
+            \end{enumerate}
+        %c
+        \item Comente os resultados.
+            \\
+            Da mesma forma que a primeira o aumento da precisão
+            não altera de forma siguinificativa a resposta.
+   \end{enumerate}
+
+    % 3
+   \item Solução exercício 3
+   \begin{enumerate}
+        % a
+		\item Gráfico da função \$f(x) = x sen(10\pi x) + 1\$ no intervalo \$[-1 \leq x \leq 2]\$
+            \\
+            Definindo a função:
+            \lstinputlisting[language=Matlab]{code/f.m}
+
+            Plotando a função:
+            \lstinputlisting[language=Matlab]{code/code6.m}
+
+            \begin{figure}[h!]
+                \begin{center}
+                    \includegraphics[width=.85\textwidth]{code/code6.png}
+                \end{center}
+            \end{figure}
+        % b
+		\item Determinar valores máximos e mínimos de \$f(x)\$ no formato \$(x,f(x))\$:
+			\begin{enumerate}[{b}.1)]
+				\item Método analítico
+				\item Busca exaustiva (precisão = \$0,1\$) e (precisão = \$0,01\$)
+                    \\
+                    precisão = \$0,1\$:
+                    \lstinputlisting[language=Matlab]{code/code7.m}
+
+                    \newpage
+                    precisão = \$0,01\$:
+                    \lstinputlisting[language=Matlab]{code/code8.m}
+            \end{enumerate}
+
+            A função possui um valor elevado de oscilações,
+            sendo assim, o aumento da precisão é muito
+            siguinificativo sobre a resposta.
+   \end{enumerate}
+
+    % 4
+   \item Solução exercício 4
+	\\
+		função \$f(x,y) = x sen(4 x) + 1,1 y sen(2 y)\$ no intervalo \$[0 \leq x \leq 10]\$, \$[0 \leq y \leq 10]\$
+   \begin{enumerate}
+        % a
+		\item Busca exaustiva (precisão = \$0,1\$)
+            \\
+            precisão = \$0,1\$:
+            \lstinputlisting[language=Matlab]{code/code9.m}
+        % b
+		\item Busca exaustiva (precisão = \$0,01\$)
+            \\
+            precisão = \$0,01\$:
+            \lstinputlisting[language=Matlab]{code/code10.m}
+        %c
+		\item Busca exaustiva (precisão = \$0,001\$)
+            \\
+            precisão = \$0,001\$:
+            \lstinputlisting[language=Matlab]{code/code11.m}
+        %d
+        \item Comente os resultados.
+            \\
+            Como a faixa de valores é muito extensa, mudamos
+            nosso algorítmo para não acumular valores no formato
+            vetorial, processando de forma direta as comparações
+            do loop.
+   \end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{enumerate}
+
+\end{document}
+
+% vim: set ts=4 sw=4 tw=64 ft=tex et :

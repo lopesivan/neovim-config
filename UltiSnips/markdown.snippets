@@ -1,0 +1,76 @@
+
+snippet _slide "is an interactive, terminal-based markdown presentation tool that supports" b
+---
+title: \`<  =Main title=  >\`
+author: `git config --get user.name` (`git config --get user.email`)
+date:   `!v strftime('%Y-%m-%d')`
+extensions:
+  - image_ueberzug
+  - render
+---
+
+# \`<  =Title 1=  >\`
+
+	\`< =paragraph= >\`
+
+---
+
+# \`<  =Title 2=  >\`
+
+	\`< =paragraph= >\`
+$0
+endsnippet
+
+
+snippet lnk "link"
+[$1]($2)
+endsnippet
+
+snippet img "image tag"
+![${1:screenshot}]($2)
+endsnippet
+
+snippet cb "Fenced Code Block" b
+\`\`\`${1:console}
+$2
+\`\`\`
+endsnippet
+
+# snippet _skeleton "Slide Header" b
+# ---
+# title: title
+# author: `git config --get user.name` (`git config --get user.site`)
+# date: `!v strftime('%Y-%m-%d')`
+# extensions:
+#   - image_ueberzug
+#   - render
+# ---
+
+# # Slide 1
+
+# Some text
+
+# ---
+
+# # Slide 2
+
+# More text
+# $0
+# endsnippet
+
+snippet _tldr_project_model "this is a test" b
+# `!v util#snippet#Title(expand("%:t:r"))`
+
+> Short, snappy description.
+> Preferably one line; two are acceptable if necessary.
+> More information: <https://example.com>.
+
+- Example description:
+
+\`command -opt1 -opt2 -arg1 {{arg_value}}\`
+
+- Example description:
+
+\`command -opt1 -opt2\`
+endsnippet
+

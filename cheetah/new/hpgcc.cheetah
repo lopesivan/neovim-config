@@ -1,0 +1,25 @@
+\#include <hpgcc49.h>
+
+int main(void)
+{
+    //your variables
+
+    //optional clear screen for direct text output
+    //clear_screen();
+
+    //full speed ahead
+    sys_slowOff();
+
+    //your critical code here
+
+    //back to slow
+    sys_slowOn();
+
+    //optional notify/pause for cancel
+    //beep();
+    //WAIT_CANCEL;
+
+    return(0);
+}
+# DOCKER-VERSION        $docker_version
+# DATA                  $data

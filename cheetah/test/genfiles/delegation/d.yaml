@@ -1,0 +1,36 @@
+---
+  project: "exemplo de delegação"
+  language: "cpp"
+  description: >
+    Delegation makes composition as powerful for reuse as inheritance. With
+    delegation, two objects are involved in handling a request. A receiving
+    object delegates operations to its delegate, which is similar to the case
+    when subclass defers requests to parent class.
+
+  Rectangle: "Rectangle"
+  height: "height"
+  width: "width"
+  area: "area"
+
+  Window: "Window"
+  rectangle: "rectangle"
+
+  wRect: "wRect"
+
+  main
+  # Shape: "Shape"
+
+  # Rectangle: "Rectangle"
+  # height: "height"
+  # area: "area"
+  # width: "width"
+
+  # Circle: "Circle"
+  # radius: "radius"
+
+  # Window: "Window"
+  # shape: "shape"
+
+  # wCirc: "wCirc"
+  # wRect: "wRect"
+

@@ -1,0 +1,23 @@
+# awk.snippets - Snippets for awk file type
+
+global !p
+import px.snippets
+endglobal
+
+snippet _skeleton "Skeleton" b
+#!/usr/bin/awk -f
+
+$0
+exit
+endsnippet
+
+snippet shebang "Shebang" b
+#!${1:/usr/bin/env awk}
+$0
+endsnippet
+
+# se a linha for a 1 a -> Shebang
+post_jump "px.snippets.expand(snip)"
+snippet s "desc" "snip.line == 0" Ae
+shebang$1
+endsnippet

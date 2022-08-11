@@ -1,0 +1,51 @@
+\documentclass[a4paper]{article}
+
+%encoding
+%--------------------------------------
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+%--------------------------------------
+
+%Portuguese-specific commands
+%--------------------------------------
+\usepackage[brazilian]{babel}
+%--------------------------------------
+
+%Hyphenation rules
+%--------------------------------------
+\usepackage{hyphenat}
+\hyphenation{mate-mática recu-perar}
+%--------------------------------------
+
+\usepackage{amsmath}
+\usepackage{graphicx}
+
+\title{Tarefa 2 Integrais múltiplas}
+
+\author{Ivan Lopes}
+
+\date{24 Abril, 2015}
+
+\begin{document}
+\maketitle
+
+\LARGE Fórmulas Gerais
+
+\newcommand{\IntegralDupla}{\iint\limits}
+
+\begin{equation}
+  \IntegralDupla_{g(Q)} \, f(x,y) \, dx\, dy =
+  \IntegralDupla_Q \, f(x(u,v), y(u,v)) \left| \frac{\partial (x,y)}{\partial (u,v)}(u,v) \right|\, du\,dv
+\end{equation}
+
+\begin{equation}
+  g(u,v)=(x(u,v),y(u,v))
+\end{equation}
+
+\section{Calcule $\iint\limits_B e^{-(x^2+y^2)}\,dx\,dy$, onde $B$ é o
+  círculo $x^2 + y^2 \leq a^2$.}
+
+\section{Calcule $\iint\limits_D e^{(x-y)/(x+y)}\,dx\,dy$, onde $D$ é a
+  região triangular limitada pela reta $x+y=2$ e os eixos coordenados.}
+
+\end{document}

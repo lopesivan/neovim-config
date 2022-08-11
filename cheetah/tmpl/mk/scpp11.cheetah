@@ -1,0 +1,18 @@
+#encoding UTF-8
+#compiler commentStartToken = '//'
+// :Template scpp11 [data]
+#compiler reset
+#set source = os.popen("find . -type f -name \*.cpp -printf '%P\n'").read().strip()
+\# Makefile: A standard Makefile for ${source}
+
+\#-std=c++11 or -std=gnu++11
+\#-std=c++14 or -std=gnu++14
+\#-std=c++17 or -std=gnu++17
+\#-std=c++20 (use -std=c++2a in GCC 9 and earlier) to your g++ command line.
+\#-std=gnu++20
+CPPFLAGS=-std=c++11 -g -Wall
+
+all  : ${source.split('.')[0]}
+clean:
+	/bin/rm -rf ${source.split('.')[0]} ${source.split('.')[0]}.o
+\# END OF FILE

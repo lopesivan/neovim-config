@@ -1,0 +1,6 @@
+project('test', 'vala', 'c')
+
+add_global_arguments('--profile=posix', language: 'vala')
+
+executable('thing',
+  sources: ['thing.vala'])

@@ -1,0 +1,9 @@
+$d.data.frutas[0].nome
+$d.data.frutas[0].cor
+$d.data.frutas[0].qtde
+
+#for v in $d.data.frutas:
+$v.nome
+$v.cor
+$v.qtde
+#end for
