@@ -1,6 +1,6 @@
 local M = {}
 
--- local util = require "lspconfig.util"
+local util = require "lspconfig.util"
 
 local ok, nvim_status = pcall(require, "lsp-status")
 if not ok then
@@ -134,6 +134,17 @@ local servers = {
 		cmd = { vim.fn.expand "$NVIM_BEGINNER/share/nvim/mason/bin/omnisharp", "--languageserver", "--hostPID", tostring(vim.fn.getpid()) },
 	},
 	--]]
+
+    gradle_ls = {
+        cmd = {
+            vim.fn.stdpath('data').. "/vscode-gradle/gradle-language-server/build/install/gradle-language-server/bin/gradle-language-server",
+        },
+        root_dir = function(fname)
+            return util.root_pattern(unpack { "settings.gradle", "settings.gradle.kts" })(fname)
+            or util.root_pattern(unpack { "build.gradle" })(fname)
+        end,
+        filetypes = { "groovy" },
+    },
 
 	kotlin_language_server = {},
 	emmet_ls = {},
