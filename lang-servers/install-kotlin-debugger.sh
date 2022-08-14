@@ -1,6 +1,6 @@
 #!/bin/sh
 
-INSTALL_FOLDER="$HOME/.local/share/nvim"
+INSTALL_FOLDER="$NVIM_BEGINNER/share/nvim"
 
 # Install kotlin-debug-adapter
 rm -rf "$INSTALL_FOLDER/kotlin-debug-adapter"

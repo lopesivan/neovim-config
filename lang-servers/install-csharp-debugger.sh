@@ -1,6 +1,6 @@
 #!/bin/sh
 
-INSTALL_FOLDER="$HOME/.local/share/nvim"
+INSTALL_FOLDER="$NVIM_BEGINNER/share/nvim"
 
 # Remove existing installation
 rm -rf "$INSTALL_FOLDER/netcoredbg"

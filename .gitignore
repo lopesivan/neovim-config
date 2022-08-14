@@ -1,3 +1,4 @@
 scratch/*
 templates/*
 
+plugin/packer_compiled.lua

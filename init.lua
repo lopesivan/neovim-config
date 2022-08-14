@@ -29,7 +29,16 @@ require "config.globals"
 -- Turn off builtin plugins I do not use.
 require "config.disable_builtin"
 
+--require "config"
 require "plugins"
 
+-- Neovim builtin LSP configuration
+-- require "config.lsp"
+
+-- Telescope BTW
+require "config.telescope.setup"
+require "config.telescope.mappings"
+
 -- Build system
--- require "config.nvim_dev"
+require "config.nvim_dev"
+

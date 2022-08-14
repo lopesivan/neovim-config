@@ -1,6 +1,6 @@
 #!/bin/sh
 
-INSTALL_FOLDER="$HOME/.local/share/nvim"
+INSTALL_FOLDER="$NVIM_BEGINNER/share/nvim"
 
 # Install vscode-chrome-debug
 rm -rf "$INSTALL_FOLDER/vscode-chrome-debug"

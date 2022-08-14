@@ -1,6 +1,6 @@
 #!/bin/sh
 
-INSTALL_FOLDER="$HOME/.local/share/nvim"
+INSTALL_FOLDER="$NVIM_BEGINNER/share/nvim"
 
 # Set this if necessary
 export JAVA_HOME="/usr/lib/jvm/java-11-openjdk-amd64"

@@ -1,5 +1,7 @@
 #!/bin/sh
 
+INSTALL_FOLDER="$NVIM_BEGINNER/share/nvim"
+cd $INSTALL_FOLDER
 git clone --depth=1 https://hub.fastgit.xyz/sumneko/lua-language-server
 
 cd lua-language-server
