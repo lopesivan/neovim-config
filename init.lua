@@ -37,7 +37,7 @@ require "plugins"
 
 -- Telescope BTW
 require "config.telescope.setup"
-require "config.telescope.mappings"
+--require "config.telescope.mappings"
 
 -- Build system
 require "config.nvim_dev"

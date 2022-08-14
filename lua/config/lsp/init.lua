@@ -2,6 +2,11 @@ local M = {}
 
 -- local util = require "lspconfig.util"
 
+local ok, nvim_status = pcall(require, "lsp-status")
+if not ok then
+	nvim_status = nil
+end
+
 local servers = {
 	gopls = {
 		settings = {
@@ -18,6 +23,9 @@ local servers = {
 			},
 		},
 	},
+
+
+
 	html = {},
 	jsonls = {
 		settings = {
@@ -54,7 +62,7 @@ local servers = {
 				},
 				diagnostics = {
 					-- Get the language server to recognize the `vim` global
-					globals = { "vim", "describe", "it", "before_each", "after_each", "packer_plugins" },
+					globals = { 'vim', 'describe', 'it', 'before_each', 'after_each', 'packer_plugins' },
 					-- disable = { "lowercase-global", "undefined-global", "unused-local", "unused-vararg", "trailing-space" },
 				},
 				workspace = {
@@ -119,7 +127,14 @@ local servers = {
 	dockerls = {},
 	graphql = {},
 	bashls = {},
-	omnisharp = {},
+	-- omnisharp = {},
+	--[[
+
+	omnisharp = {
+		cmd = { vim.fn.expand "$NVIM_BEGINNER/share/nvim/mason/bin/omnisharp", "--languageserver", "--hostPID", tostring(vim.fn.getpid()) },
+	},
+	--]]
+
 	kotlin_language_server = {},
 	emmet_ls = {},
 	marksman = {},
@@ -205,7 +220,6 @@ function M.setup()
 
 	-- Inlay hints
 	-- require("config.lsp.inlay-hints").setup()
-	--
 	vim.cmd[[colorscheme begin]]
 end
 

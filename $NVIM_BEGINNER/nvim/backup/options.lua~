@@ -107,8 +107,8 @@ opt.sm = true
 -- antes do mesmo ser alterado
 opt.backup     = true
 opt.backupcopy = 'yes'
-opt.backupdir  = string.format("%s/%s", vim.fn.stdpath('config'), "backup")
-opt.directory  = string.format("%s/%s", vim.fn.stdpath('config'), "tmp")
+opt.backupdir  = string.format("%s/nvim/%s", vim.fn.stdpath('config'), vim.env.NVIM_BEGINNER, "backup")
+opt.directory  = '$NVIM_BEGINNER/nvim/tmp/' -- directory is the directory for temp file
 
 -- Ganhamos a opção de guardar nossos undos! Para isso, é só ativar com
 opt.undofile = true
@@ -118,7 +118,7 @@ opt.undofile = true
 -- que o diretório corrente pode ficar uma bagunça, ainda mais se for de algum
 -- projeto que estamos utilizando controle de versão, então para isso existe a
 -- opção de indicar onde os arquivos de undo serão gravados:
-opt.undodir = string.format("%s/%s", vim.fn.stdpath('config'), "undo")
+opt.undodir = '$NVIM_BEGINNER/nvim/undo'
 
 -- The command line is used to display echodoc
 vim.g.echodoc_enable_at_startup = 1

@@ -62,6 +62,9 @@ return require("packer").startup {
         -- Performance
         use "lewis6991/impatient.nvim"
 
+		use { "neoclide/redismru.vim", run = "npm install" }
+		vim.g.redismru_limit = 100
+
         -- Load only when require
         -- use { "nvim-lua/plenary.nvim", module = "plenary" }
         use { "nvim-lua/plenary.nvim", rocks = "lyaml"}
@@ -446,6 +449,8 @@ m<BS>      Remove all markers
 
         use { "lopesivan/typecast.vim", branch = "main" }
 
+		use { "google/vim-searchindex", event = "BufReadPre" }
+
         -- Code documentation
         use {
           "danymat/neogen",
@@ -466,6 +471,16 @@ m<BS>      Remove all markers
           cmd = { "DogeGenerate", "DogeCreateDocStandard" },
           disable = false,
         }
+
+        -- Translation
+        use {
+          "voldikss/vim-translator",
+          cmd = { "Translate", "TranslateV", "TranslateW", "TranslateWV", "TranslateR", "TranslateRV", "TranslateX" },
+          config = function()
+            vim.g.translator_target_lang = "en"
+            vim.g.translator_history_enable = true
+          end,
+        }
         --
         -- TIM POPE ==========================================================
         --
@@ -483,7 +498,46 @@ m<BS>      Remove all markers
         use "tpope/vim-haml"
         use "tpope/vim-liquid"
         use "tpope/vim-markdown"
-        use "tpope/vim-obsession"
+        -- use "tpope/vim-obsession"
+
+		-- Session
+		use {
+		  "rmagatti/auto-session",
+		  opt = true,
+		  cmd = { "SaveSession", "RestoreSession" },
+		  requires = { "rmagatti/session-lens" },
+		  wants = { "telescope.nvim", "session-lens" },
+		  config = function()
+			require("bad_practices").setup()
+		  end,
+		  disable = false,
+		}
+		use {
+		  "jedrzejboczar/possession.nvim",
+		  config = function()
+			require("config.possession").setup()
+		  end,
+		  cmd = { "PossessionSave", "PosessionLoad", "PosessionShow", "PossessionList" },
+		  disable = true,
+		}
+		use {
+		  "tpope/vim-obsession",
+		  cmd = { "Obsess" },
+		  config = function()
+			require("config.obsession").setup()
+		  end,
+		  disable = true,
+		}
+
+		-- Practice
+		use {
+		  "antonk52/bad-practices.nvim",
+		  event = "BufReadPre",
+		  config = function()
+			require("bad_practices").setup()
+		  end,
+		  disable = true,
+		}
         use "tpope/vim-projectionist" -- STREAM: Alternate file editting and some helpful stuff
         use "tpope/vim-ragtag"
         use "tpope/vim-rake"

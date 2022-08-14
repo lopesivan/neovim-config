@@ -1,5 +1,7 @@
 local M = {}
 
+local themes = require "telescope.themes"
+
 -- Find a file either using git files or search the filesystem.
 function M.find_files()
   local opts = {}
@@ -34,8 +36,35 @@ end
 function M.find_dotfiles()
   require("telescope.builtin").find_files {
     prompt_title = "<Dotfiles>",
-    cwd = "$HOME/workspace/alpha2phi/dotfiles/",
+    cwd = "$HOME/ivan/.config/neovim-config",
   }
+end
+
+function M.redis_list()
+  local opts = themes.get_dropdown {
+    winblend = 10,
+    prompt_title = "~ redis ~",
+    border = true,
+    previewer = false,
+    shorten_path = false,
+    -- find_command = {
+    --   'redis-cli',
+    --   '--raw',
+    --   'ZRANGE',
+    --   'vimmru',
+    --   '0',
+    --   '-1',
+    -- },
+    find_command = {
+      'redis-cli',
+      '--raw',
+      'ZRANGE',
+      'vimmru',
+      '-12',
+      '-1',
+    },
+  }
+  require('telescope.builtin').find_files(opts)
 end
 
 return M
