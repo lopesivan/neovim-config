@@ -194,14 +194,14 @@ local opts = {
 }
 
 -- Setup LSP handlers
--- require("config.lsp.handlers").setup()
+require("config.lsp.handlers").setup()
 
 function M.setup()
 	-- null-ls
 	-- require("config.lsp.null-ls").setup(opts)
 
 	-- Installer
-	-- require("config.lsp.installer").setup(servers, opts)
+	require("config.lsp.installer").setup(servers, opts)
 
 	-- Inlay hints
 	-- require("config.lsp.inlay-hints").setup()

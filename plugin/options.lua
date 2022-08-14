@@ -36,6 +36,7 @@ opt.hidden         = true -- I like having buffers stay around
 opt.cursorline     = true -- Highlight the current line
 opt.cursorcolumn   = true
 
+
 opt.equalalways = false -- I don't like my windows changing all the time
 opt.splitright  = true -- Prefer windows splitting to the right
 opt.splitbelow  = true -- Prefer windows splitting to the bottom

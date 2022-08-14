@@ -1,4 +1,4 @@
-set list
+set nolist
 
 if !get(g:, 'loaded_cyclist', v:false)
   finish

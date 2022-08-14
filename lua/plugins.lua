@@ -915,7 +915,7 @@ m<BS>      Remove all markers
         -- Terminal
         use {
           "akinsho/toggleterm.nvim",
-          keys = { [[<C-\>]] },
+          keys = { [[<space>ot]] },
           cmd = { "ToggleTerm", "TermExec" },
           module = { "toggleterm", "toggleterm.terminal" },
           config = function()
