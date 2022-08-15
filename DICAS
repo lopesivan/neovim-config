@@ -1,0 +1,107 @@
+|mode|command| Description
++----+-------+---------------------------------------------------------------
+|'n' |  gr   | go reference - posicionamos o cursor sobre a palavra que o
+|    |       | grep bunsca no projeto
++----+-------+---------------------------------------------------------------
+|'n' |  gd   | go definition
+|'n' |  gD   | go declaration
+|'n' |  gi   | go implementation
+|'n' |  K    | show doc
+
+
+|<space>rn | Rename
+|<space>ww | lsp_workspace_symbols
+|<space>wd | lsp_document_symbols
+|<space>wf | lsp_workspace_symbols
+
+<leader>
+|en | edit neovim
+|N  | novo arquivo
+|F  | files in dir
+|<leader> | file browser
+
+|gw | pesquisa por palavra conforme a linha
+|/  | pesquisa por palavra em arquivos
+|ge | files por extensão
+
+|R  | redis list
+|O  | Old files
+
+|G  | git files
+|C  | commits
+|B  | Branches
+|W  | workspaces
+
+|P  | projects
+
+|M  | man pages
+
+|E  | my exaples
+|T  | templates
+|sd | short docs
+|ld | ldocs
+|pd | pdocs
+
+<leader>hm | Harpoon Mark file
+<leader>hg | Harpoon Go file
+<leader>ht | Harpoon Terminal"
+<leader>hr | Harpoon Run on terminal"
+==         | menu Toggle
+
+			require("harpoon").setup({
+				projects = {
+					-- Yes $HOME works
+					["/workspace/cppPonto2d"] = {
+						term = {
+							cmds = {
+								"cmake . && bear make\n",
+							}
+						}
+					}
+				}
+			})
+
+<leader>D  require'lspsaga.provider'.preview_definition()<CR>
+kk         require'lspsaga.provider'.lsp_finder()<CR>
+<leader>kd require'lspsaga.diagnostic'.lsp_jump_diagnostic_next()<CR>
+nnoremap <silent><c-x>ot <cmd>Lspsaga open_floaterm<CR>
+nnoremap <silent><c-x>ct <cmd>Lspsaga close_floaterm<CR>
+
+<leader>LC require('lspsaga.codeaction').code_action()<CR>
+<leader>Lc require('lspsaga.codeaction').range_code_action()<CR>
+<leader>Ld require'lspsaga.provider'.preview_definition()<CR>
+<leader>D require'lspsaga.provider'.preview_definition()<CR>
+<leader>Lf require'lspsaga.provider'.lsp_finder()<CR>
+<leader>Lk require('lspsaga.hover').render_hover_doc()<CR>
+<leader>Ls require('lspsaga.signaturehelp').signature_help()<CR>
+
+<leader>gy GitLinker - pega a linha do projeto no github
+
+
+
+
+
+
+'<Leader>R', 'redis_list'
+'<Leader>E', 'my_examples'
+'<Leader>F', 'fd'
+'<Leader>ge ', 'search_only_certain_files' -- devo digitar a extensão/tipo -grep por extensão
+'<c-t>', 'tags'
+'<Leader>G', 'git_files'
+'<Leader>B', 'git_branches'
+
+"n", "<leader>C", "<Cmd>lua require('telescope.builtin.git').commits{}
+
+"n", "<leader>.", "<Cmd>lua require('telescope.builtin').tags{}<CR>"
+
+'<Leader>O', 'oldfiles'
+'<Leader>/', 'live_grep'
+'<Leader>M', 'man_pages'
+'<Leader>P', 'my_project'
+'<Leader>T', 'my_template'
+'<Leader>sd', 'short_docs'
+'<Leader>ld', 'edit_ldoc'
+'<Leader>pd', 'edit_pdoc'
+'<Leader>nv', 'edit_neovim'
+
+NrrwRgn plugin - A Vim plugin for focussing on a selected region
