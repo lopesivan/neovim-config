@@ -1,0 +1,12 @@
+#+title:  Commands
+#+author: Ivan Lopes
+#+date:   2021-09-08
+
+* Shortcuts of Nvim
+  [[/home/ivan/.config/org/NVIM.org][NVIM]]
+* Shortcuts of Emacs
+  [[/home/ivan/.config/org/EMACS.org][EMACS]]
+* Shortcuts of KiCad
+  [[/home/ivan/.config/org/KiCad.org][KiCad]]
+* Shortcuts of Neomutt
+  [[/home/ivan/.config/org/Neomutt.org][Neomutt]]
