@@ -78,6 +78,18 @@ return require("packer").startup {
           end,
         }
 
+		use {
+			"vim-scripts/ReplaceWithRegister",
+			event = "BufEnter",
+		}
+
+		use {
+			"smjonas/inc-rename.nvim",
+			config = function()
+				require("inc_rename").setup()
+			end,
+		}
+
         --
         -- TREE SITTER =======================================================
         --
@@ -128,6 +140,11 @@ return require("packer").startup {
         use "pianocomposer321/yabs.nvim"
         use "WaylonWalker/Telegraph.nvim"
 
+		-- Undo helper
+		use "sjl/gundo.vim"
+
+		use "RishabhRD/nvim-cheat.sh"
+		use "nvim-telescope/telescope-cheat.nvim"
         use "nvim-telescope/telescope-project.nvim"
         use "cljoly/telescope-repo.nvim"
         use "nvim-telescope/telescope-file-browser.nvim"
@@ -235,9 +252,38 @@ return require("packer").startup {
             -- after = {'completion-nvim'} -- if a completion plugin is using tabs load it before
         }
 
+		-- use 'vinibispo/ruby.nvim'
+		use "arnoudbuzing/wolfram-vim"
+		use { "cuducos/yaml.nvim" }
+
+		use {
+			"ellisonleao/dotenv.nvim",
+			config = function()
+				require("dotenv").setup()
+			end,
+		}
+
+		use "tjdevries/green_light.nvim"
+		use "justinmk/vim-syntax-extra"
+		-- use {
+		-- 	"iamcco/markdown-preview.nvim",
+		-- 	run = "cd app && npm install",
+		-- 	setup = function()
+		-- 		vim.g.mkdp_filetypes = { "markdown" }
+		-- 	end,
+		-- 	ft = { "markdown" },
+		-- }
+
+		-- Lean language: https://github.com/Julian/lean.nvim
+		--use 'Julian/lean.nvim'
+
+		use "jvirtanen/vim-octave"
+		use { "ellisonleao/glow.nvim", branch = "main" }
         --
         -- Nav ===============================================================
         --
+
+		-- use "yamatsum/nvim-cursorline"
         use {
           "antoinemadec/FixCursorHold.nvim",
           event = "BufReadPre",
@@ -498,7 +544,39 @@ m<BS>      Remove all markers
         use "tpope/vim-haml"
         use "tpope/vim-liquid"
         use "tpope/vim-markdown"
+		vim.g.markdown_fenced_languages = { "html", "python", "bash=sh", "maple" }
+		vim.g.markdown_minlines = 100
+		vim.g.markdown_syntax_conceal = 0
         -- use "tpope/vim-obsession"
+
+		use "tpope/vim-projectionist" -- STREAM: Alternate file editting and some helpful stuff
+		-- use "tpope/vim-dispatch"
+		-- use "radenling/vim-dispatch-neovim"
+
+		-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+		-- ULTISNIPS \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+		-- \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+		use {
+			"SirVer/ultisnips",
+			requires = { { "honza/vim-snippets", rtp = "." } },
+			config = function()
+				vim.g.UltiSnipsExpandTrigger = "<Plug>(ultisnips_expand)"
+				vim.g.UltiSnipsJumpForwardTrigger = "<Plug>(ultisnips_jump_forward)"
+				vim.g.UltiSnipsJumpBackwardTrigger = "<Plug>(ultisnips_jump_backward)"
+				vim.g.UltiSnipsListSnippets = "<c-x><c-s>"
+				vim.g.UltiSnipsRemoveSelectModeMappings = 0
+				vim.g.UltiSnipsSnippetDirectories = { "UltiSnips" }
+				vim.g.UltiSnipsEditSplit = "vertical"
+			end,
+		}
+
+		use "lopesivan/vim-pythonx"
+
+		-- CMP
+		use "quangnguyen30192/cmp-nvim-ultisnips"
+
+		use "lopesivan/noah.vim"
 
 		-- Session
 		use {
@@ -512,6 +590,7 @@ m<BS>      Remove all markers
 		  end,
 		  disable = false,
 		}
+
 		use {
 		  "jedrzejboczar/possession.nvim",
 		  config = function()
@@ -538,7 +617,7 @@ m<BS>      Remove all markers
 		  end,
 		  disable = true,
 		}
-        use "tpope/vim-projectionist" -- STREAM: Alternate file editting and some helpful stuff
+        -- use "tpope/vim-projectionist" -- STREAM: Alternate file editting and some helpful stuff
         use "tpope/vim-ragtag"
         use "tpope/vim-rake"
         use "tpope/vim-repeat" -- Repeat actions better
@@ -664,7 +743,15 @@ m<BS>      Remove all markers
           end,
         }
 
+		-- Optional: Used to make nice menus
+		use "skywind3000/quickmenu.vim"
+
+		-- For narrowing regions of text to look at them alone
+		use { "chrisbra/NrrwRgn" }
+
         use "AndrewRadev/switch.vim"
+
+		use "mg979/vim-visual-multi"
 
         -- Auto tag
         use {
@@ -677,6 +764,16 @@ m<BS>      Remove all markers
           end,
         }
 
+		use {
+			"skywind3000/asynctasks.vim",
+			requires = {
+				"skywind3000/asynctasks.vim",
+				"skywind3000/asyncrun.vim",
+				"skywind3000/asyncrun.extra",
+				"preservim/vimux",
+			},
+		}
+
         -- End wise
         use {
           "RRethy/nvim-treesitter-endwise",
@@ -685,6 +782,14 @@ m<BS>      Remove all markers
           event = "InsertEnter",
           disable = false,
         }
+        --[[
+		-- use "Pocco81/dap-buddy.nvim"
+		use "alpha2phi/DAPInstall.nvim"
+
+		use "jbyuki/one-small-step-for-vimkind" -- <-- this is a plugin OSV
+		use "leoluz/nvim-dap-go"
+		use "TravonteD/luajob"
+        --]]
 
         -- nvim-tree
         use {
@@ -814,6 +919,7 @@ m<BS>      Remove all markers
         use { "mattn/vim-gist", opt = true, requires = { "mattn/webapi-vim" }, cmd = { "Gist" } }
 
         -- Markdown
+		use "lukas-reineke/headlines.nvim"
         use {
           "iamcco/markdown-preview.nvim",
           opt = true,
@@ -963,9 +1069,18 @@ m<BS>      Remove all markers
           disable = true,
         }
 
+		-- Better increment/decrement
+		use "monaqa/dial.nvim"
+
+		use "jbyuki/venn.nvim"
+		-- Uso: VBox
+
+		use "untitled-ai/jupyter_ascending.vim"
+
         -- Kotlin
         use { "udalov/kotlin-vim", ft = { "kotlin" }, disable = true }
 
+		use "sbdchd/neoformat"
         -- Terminal
         use {
           "akinsho/toggleterm.nvim",
@@ -976,6 +1091,10 @@ m<BS>      Remove all markers
             require("config.toggleterm").setup()
           end,
         }
+		-- use :TermExec cmd="python %" to run the Python file.
+		-- use :TermExec cmd="python -m pdb %" to debug the Python file.
+		-- use :TermExec cmd="nodemon -e py%" to monitor the Python file.
+		-- npm install -g nodemon
 
         -- Debugging
         use {
