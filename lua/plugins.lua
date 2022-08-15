@@ -318,11 +318,12 @@ return require("packer").startup {
         -- Motions
         use { "andymass/vim-matchup", event = "CursorMoved" }
         use { "wellle/targets.vim", event = "CursorMoved" }
+        --[[ Mostra a letra se usar f,t,F,T,;
         use {
             "unblevable/quick-scope",
             event = "CursorMoved",
             disable = false,
-        }
+        } ]]
         use {
             "chaoren/vim-wordmotion",
             opt = true,
@@ -770,8 +771,8 @@ m<BS>      Remove all markers
           disable = false,
         }
 
-        use "tjdevries/colorbuddy.nvim"
 --]]
+        use "tjdevries/colorbuddy.nvim"
 
         --
         -- Auto pairs

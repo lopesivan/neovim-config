@@ -253,7 +253,6 @@ function M.setup()
 
     -- Inlay hints
     require("config.lsp.inlay-hints").setup()
-    -- vim.cmd [[colorscheme begin]]
 end
 
 local diagnostics_active = true
