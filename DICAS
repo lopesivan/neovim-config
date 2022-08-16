@@ -1,3 +1,10 @@
+
+			:vimgrep /theword/jg *.c
+			:for d in getqflist()
+			:   echo bufname(d.bufnr) ':' d.lnum '=' d.text
+			:endfor
+
+
 |mode|command| Description
 +----+-------+---------------------------------------------------------------
 |'n' |  gr   | go reference - posicionamos o cursor sobre a palavra que o

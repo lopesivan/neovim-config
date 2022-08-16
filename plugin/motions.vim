@@ -241,10 +241,10 @@ function WLast()
     endif
 endfunction
 
-nnoremap <silent> <c-Right> :<C-u>call WNext()<CR>
-nnoremap <silent> <c-Left>  :<C-u>call Wnext()<CR>
-" nnoremap <silent> <c-Right> :<C-u>call Wnext()<CR>
-" nnoremap <silent> <c-Left>  :<C-u>call WNext()<CR>
+" nnoremap <silent> <c-Right> :<C-u>call WNext()<CR>
+" nnoremap <silent> <c-Left>  :<C-u>call Wnext()<CR>
+nnoremap <silent> <c-Right> :<C-u>call Wnext()<CR>
+nnoremap <silent> <c-Left>  :<C-u>call WNext()<CR>
 nnoremap <silent> <c-UP>    :<C-u>call WFirst()<CR>
 nnoremap <silent> <c-Down>  :<C-u>call WLast()<CR>
 

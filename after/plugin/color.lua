@@ -50,10 +50,10 @@ Group.new("typescriptTSProperty", c.blue)
 
 Group.new("markdownCodeBlock", c.black, c.yellowVisual, s.bold)
 
-Group.new("WhichKey", c.red, nil, nil)
-Group.new("WhichKeySeperator", c.green, nil, nil)
-Group.new("WhichKeyGroup", c.yellow, nil, nil)
-Group.new("WhichKeyDesc", c.blue, nil, nil)
+-- Group.new("WhichKey", c.red, nil, nil)
+-- Group.new("WhichKeySeperator", c.green, nil, nil)
+-- Group.new("WhichKeyGroup", c.yellow, nil, nil)
+-- Group.new("WhichKeyDesc", c.blue, nil, nil)
 
 Group.new("CursorLine", nil, c.cursor, nil)
 Group.new("CursorColumn", nil, c.cursor, nil)

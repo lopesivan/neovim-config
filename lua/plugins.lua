@@ -748,6 +748,9 @@ m<BS>      Remove all markers
         --
         use {
             "Mofiqul/adwaita.nvim",
+            config = function()
+                vim.cmd "colorscheme adwaita"
+            end,
         }
 
         use {
@@ -1379,15 +1382,15 @@ m<BS>      Remove all markers
             disable = true,
         }
 
-		use {
-			"skywind3000/asynctasks.vim",
-			requires = {
-				"skywind3000/asynctasks.vim",
-				"skywind3000/asyncrun.vim",
-				"skywind3000/asyncrun.extra",
-				"preservim/vimux",
-			},
-		}
+        use {
+            "skywind3000/asynctasks.vim",
+            requires = {
+                "skywind3000/asynctasks.vim",
+                "skywind3000/asyncrun.vim",
+                "skywind3000/asyncrun.extra",
+                "preservim/vimux",
+            },
+        }
 
         -- Performance
         use { "dstein64/vim-startuptime", cmd = "StartupTime" }
