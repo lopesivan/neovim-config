@@ -729,14 +729,14 @@ m<BS>      Remove all markers
 
         -- Better surround
         use { "tpope/vim-surround", event = "BufReadPre" }
-        use {
-            "Matt-A-Bennett/vim-surround-funk",
-            event = "BufReadPre",
-            config = function()
-                require("config.surroundfunk").setup()
-            end,
-            disable = true,
-        }
+        -- use {
+        --     "Matt-A-Bennett/vim-surround-funk",
+        --     event = "BufReadPre",
+        --     config = function()
+        --         require("config.surroundfunk").setup()
+        --     end,
+        --     disable = true,
+        -- }
         --
         -- NVIM-LUA ==========================================================
         --
@@ -979,6 +979,11 @@ m<BS>      Remove all markers
             requires = { "mattn/webapi-vim" },
             cmd = { "Gist" },
         }
+
+        use { "lervag/vimtex", ft = "tex" }
+        vim.g.vimtex_view_method = "zathura"
+        vim.g.tex_flavor = "latex"
+        vim.opt.conceallevel = 2
 
         -- Markdown
         use "lukas-reineke/headlines.nvim"
