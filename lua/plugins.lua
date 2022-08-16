@@ -408,6 +408,7 @@ m<BS>      Remove all markers
         -- LSP ===============================================================
         --
 
+		use "wbthomason/lsp-status.nvim"
         use {
             "neovim/nvim-lspconfig",
             opt = true,

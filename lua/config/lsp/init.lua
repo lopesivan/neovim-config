@@ -168,6 +168,7 @@ local servers = {
     marksman = {},
     angularls = {},
     solargraph = {},
+    clangd = {},
 }
 
 function M.on_attach(client, bufnr)

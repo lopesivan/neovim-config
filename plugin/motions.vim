@@ -263,8 +263,8 @@ inoremap <silent> <s-Down> <C-o>:<C-u>call MoveLineDown()<CR>
 "map <a-Right> `l
 "map <a-Left>  `h
 
-nnoremap <silent> <c-k>  :<C-u>call MoveScreenToUP()<CR>
-nnoremap <silent> <c-j>  :<C-u>call MoveScreenToDown()<CR>
+"nnoremap <silent> <c-k>  :<C-u>call MoveScreenToUP()<CR>
+"nnoremap <silent> <c-j>  :<C-u>call MoveScreenToDown()<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

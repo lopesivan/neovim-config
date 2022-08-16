@@ -20,20 +20,12 @@ end
 
 local sources = {
     -- formatting
-    -- b.formatting.autopep8,
-    -- b.formatting.prettierd,
+    b.formatting.autopep8,
+    b.formatting.prettierd,
     -- b.formatting.shfmt,
     -- b.formatting.shellharden,
-    -- b.formatting.fixjson,
-    b.formatting.astyle.with {
-        extra_args = {
-            "--pad-first-paren-out",
-            "--style=linux",
-            "--A1",
-            "--indent=spaces=7",
-            "--convert-tabs",
-        },
-    },
+    b.formatting.fixjson,
+    b.formatting.astyle,
     -- b.formatting.clang_format,
     -- b.formatting.black.with { extra_args = { "--fast" } },
     -- b.formatting.isort,
@@ -79,6 +71,7 @@ local sources = {
 function M.setup(opts)
     nls.setup {
         debug = true,
+        log_level = "warn",
         debounce = 150,
         save_after_format = false,
         sources = sources,

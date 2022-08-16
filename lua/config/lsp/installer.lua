@@ -1,7 +1,7 @@
 local M = {}
 
 function M.setup(servers, options)
-    local lspconfig = require "lspconfig"
+    local lsp_config = require "lspconfig"
     local icons = require "config.icons"
 
     require("mason").setup {
@@ -15,7 +15,13 @@ function M.setup(servers, options)
     }
 
     require("mason-tool-installer").setup {
-        ensure_installed = { "codelldb", "stylua", "shfmt", "shellcheck", "prettierd" },
+        ensure_installed = {
+            "codelldb",
+            "stylua",
+            "shfmt",
+            "shellcheck",
+            "prettierd",
+        },
         auto_update = false,
         run_on_start = true,
     }
@@ -30,11 +36,20 @@ function M.setup(servers, options)
 
     require("mason-lspconfig").setup_handlers {
         function(server_name)
-			local opts = vim.tbl_deep_extend("force", options, servers[server_name] or {})
+            -- print("Load server: " .. server_name)
+
+            local opts = vim.tbl_deep_extend(
+                "force",
+                options,
+                servers[server_name] or {}
+            )
+
             if server_name == "sumneko_lua" then
-                lspconfig.sumneko_lua.setup(require("lua-dev").setup { opts })
+                lsp_config.sumneko_lua.setup(
+                    require("lua-dev").setup { opts }
+                )
             else
-                lspconfig[server_name].setup { opts }
+                lsp_config[server_name].setup { opts }
             end
         end,
     }
