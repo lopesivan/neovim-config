@@ -364,8 +364,11 @@ local function normal_keymap()
 
         g = {
             name = "Git",
+
+            i = { c "Git init", "git init" },
+            s = { c "Git", "git status" },
             b = { "<cmd>GitBlameToggle<CR>", "Blame" },
-            s = { "<cmd>Neogit<CR>", "Status" },
+            N = { "<cmd>Neogit<CR>", "Neogit Status" },
             y = {
                 "<cmd>lua require'gitlinker'.get_buf_range_url('n', {action_callback = require'gitlinker.actions'.open_in_browser})<cr>",
                 "Link",
@@ -373,6 +376,14 @@ local function normal_keymap()
             g = {
                 "<cmd>lua require('telescope').extensions.gh.gist()<CR>",
                 "Gist",
+            },
+
+            I = {
+                function()
+                    local options = vim.fn.input("language: ", "", "tag")
+                    vim.cmd(([[Git ignore %s]]):format(options))
+                end,
+                "git ignore",
             },
             -- g = {
             --   name = "+Github",
