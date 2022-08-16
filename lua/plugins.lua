@@ -408,7 +408,7 @@ m<BS>      Remove all markers
         -- LSP ===============================================================
         --
 
-		use "wbthomason/lsp-status.nvim"
+        use "wbthomason/lsp-status.nvim"
         use {
             "neovim/nvim-lspconfig",
             opt = true,
@@ -584,8 +584,12 @@ m<BS>      Remove all markers
         use "tpope/vim-haml"
         use "tpope/vim-liquid"
         use "tpope/vim-markdown"
-        vim.g.markdown_fenced_languages =
-            { "html", "python", "bash=sh", "maple" }
+        vim.g.markdown_fenced_languages = {
+            "html",
+            "python",
+            "bash=sh",
+            "maple",
+        }
         vim.g.markdown_minlines = 100
         vim.g.markdown_syntax_conceal = 0
         -- use "tpope/vim-obsession"
@@ -807,16 +811,6 @@ m<BS>      Remove all markers
             config = function()
                 require("nvim-ts-autotag").setup { enable = true }
             end,
-        }
-
-        use {
-            "skywind3000/asynctasks.vim",
-            requires = {
-                "skywind3000/asynctasks.vim",
-                "skywind3000/asyncrun.vim",
-                "skywind3000/asyncrun.extra",
-                "preservim/vimux",
-            },
         }
 
         -- End wise
@@ -1318,6 +1312,14 @@ m<BS>      Remove all markers
             end,
         }
 
+        -- Git worktree utility6
+        -- use 'ThePrimeagen/git-worktree.nvim'
+        use {
+            "ThePrimeagen/git-worktree.nvim",
+            config = function()
+                require("git-worktree").setup {}
+            end,
+        }
         -- Refactoring
         use {
             "ThePrimeagen/refactoring.nvim",
@@ -1376,6 +1378,16 @@ m<BS>      Remove all markers
             end,
             disable = true,
         }
+
+		use {
+			"skywind3000/asynctasks.vim",
+			requires = {
+				"skywind3000/asynctasks.vim",
+				"skywind3000/asyncrun.vim",
+				"skywind3000/asyncrun.extra",
+				"preservim/vimux",
+			},
+		}
 
         -- Performance
         use { "dstein64/vim-startuptime", cmd = "StartupTime" }
