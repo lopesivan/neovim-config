@@ -146,7 +146,6 @@ local servers = {
 	omnisharp = {
 		cmd = { vim.fn.expand "$NVIM_BEGINNER/share/nvim/mason/bin/omnisharp", "--languageserver", "--hostPID", tostring(vim.fn.getpid()) },
 	},
-	--]]
 
     gradle_ls = {
         cmd = {
@@ -162,9 +161,11 @@ local servers = {
         end,
         filetypes = { "groovy" },
     },
+	--]]
 
     kotlin_language_server = {},
     emmet_ls = {},
+    gradle_ls = {},
     marksman = {},
     angularls = {},
     solargraph = {},
