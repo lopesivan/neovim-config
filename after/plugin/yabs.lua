@@ -11,11 +11,12 @@ if not has_yabs then
     return
 end
 
-_TERM          = -1
+_TERM = -1
 _PROMPT_BUFFER = -1
 
 local console = function(cmd)
-    local shell = string.format("bash --rcfile %s/bashrc", vim.fn.stdpath('config'))
+    local shell =
+        string.format("bash --rcfile %s/bashrc", vim.fn.stdpath "config")
 
     local term = nil
 
@@ -24,25 +25,43 @@ local console = function(cmd)
     if (_TERM == -1) and (_PROMPT_BUFFER == -1) then
         OK = true
     else
-        if (#vim.fn.getbufinfo(_PROMPT_BUFFER) == 0) then
-            _TERM          = -1
+        if #vim.fn.getbufinfo(_PROMPT_BUFFER) == 0 then
+            _TERM = -1
             _PROMPT_BUFFER = -1
-            OK             = true
+            OK = true
         end
     end
 
     if OK then
         vim.cmd [[20new]]
         term = vim.fn.termopen(shell)
-        vim.wait(100, function() return false end)
+        vim.wait(100, function()
+            return false
+        end)
 
         _TERM = term
+
+        local closing_keys = { "q" }
+        local map_options = {
+            noremap = true,
+            silent = true,
+        }
+
+        for _, key in ipairs(closing_keys) do
+            vim.api.nvim_buf_set_keymap(
+                vim.api.nvim_get_current_buf(),
+                "n",
+                key,
+                "<CMD>q!<CR>",
+                map_options
+            )
+        end
     else
         term = _TERM
     end
 
     if OK then
-        local buf      = vim.api.nvim_get_current_buf()
+        local buf = vim.api.nvim_get_current_buf()
         _PROMPT_BUFFER = buf
     end
 
@@ -55,42 +74,43 @@ local languages = {
     kotlin = {
         tasks = {
             jar = {
-                command = "kotlinc % -include-runtime -d " .. vim.fn.expand("%<") .. ".jar",
+                command = "kotlinc % -include-runtime -d "
+                    .. vim.fn.expand "%<"
+                    .. ".jar",
                 output = "quickfix",
-                opts = { open_on_run = 'always' }
+                opts = { open_on_run = "always" },
             },
             run = {
-                command = "java -jar " .. vim.fn.expand("%<") .. ".jar",
+                command = "java -jar " .. vim.fn.expand "%<" .. ".jar",
                 output = "quickfix",
-                opts = { open_on_run = 'always' }
+                opts = { open_on_run = "always" },
             },
             clean = {
-                command = "rm " .. vim.fn.expand("%<") .. ".jar",
+                command = "rm " .. vim.fn.expand "%<" .. ".jar",
                 output = "quickfix",
-                opts = { open_on_run = 'always' }
+                opts = { open_on_run = "always" },
             },
             build = {
                 command = function()
-                    local source_name = vim.fn.expand("%<")
-                    vim.api.nvim_command('write')
+                    local source_name = vim.fn.expand "%<"
+                    vim.api.nvim_command "write"
 
-                    local key          = nil
+                    local key = nil
                     local query_result = nil
 
-                    key           = "make"
-                    query_result  = vim.fn["projectionist#query_exec"](key)[1]
+                    key = "make"
+                    query_result = vim.fn["projectionist#query_exec"](key)[1]
                     local compile = query_result[2]
 
-                    key          = "dispatch"
+                    key = "dispatch"
                     query_result = vim.fn["projectionist#query_exec"](key)[1]
-                    local run    = query_result[2]
+                    local run = query_result[2]
 
-                    local cmd = compile .. " && " ..
-                        run
+                    local cmd = compile .. " && " .. run
 
                     console(cmd)
                 end,
-                type = "lua"
+                type = "lua",
             },
         },
     },
@@ -101,35 +121,34 @@ local languages = {
                 command = "javac %",
                 output = "quickfix",
                 type = "shell",
-                opts = { open_on_run = 'always' }
+                opts = { open_on_run = "always" },
             },
             run = {
                 command = "java %<",
                 output = "quickfix",
-                opts = { open_on_run = 'always' }
+                opts = { open_on_run = "always" },
             },
             build = {
                 command = function()
-                    local source_name = vim.fn.expand("%<")
-                    vim.api.nvim_command('write')
+                    local source_name = vim.fn.expand "%<"
+                    vim.api.nvim_command "write"
 
-                    local key          = nil
+                    local key = nil
                     local query_result = nil
 
-                    key           = "make"
-                    query_result  = vim.fn["projectionist#query_exec"](key)[1]
+                    key = "make"
+                    query_result = vim.fn["projectionist#query_exec"](key)[1]
                     local compile = query_result[2]
 
-                    key          = "dispatch"
+                    key = "dispatch"
                     query_result = vim.fn["projectionist#query_exec"](key)[1]
-                    local run    = query_result[2]
+                    local run = query_result[2]
 
-                    local cmd = compile .. " && " ..
-                        run
+                    local cmd = compile .. " && " .. run
 
                     console(cmd)
                 end,
-                type = "lua"
+                type = "lua",
             },
         },
     },
@@ -139,36 +158,34 @@ local languages = {
         tasks = {
             run = {
                 command = function()
-                    local source_name = vim.fn.expand("%<")
+                    local source_name = vim.fn.expand "%<"
                     local cmd = string.format("./%s", source_name)
                     console(cmd)
                 end,
-                type = "lua"
+                type = "lua",
             },
             build = {
                 command = function()
-                    local source_name = vim.fn.expand("%<")
-                    vim.api.nvim_command('write')
+                    local source_name = vim.fn.expand "%<"
+                    vim.api.nvim_command "write"
 
-                    local key          = nil
+                    local key = nil
                     local query_result = nil
 
-                    key           = "CC"
-                    query_result  = vim.fn["projectionist#query_exec"](key)[1]
+                    key = "CC"
+                    query_result = vim.fn["projectionist#query_exec"](key)[1]
                     local compile = query_result[2]
 
-                    key          = "LD"
+                    key = "LD"
                     query_result = vim.fn["projectionist#query_exec"](key)[1]
-                    local link   = query_result[2]
+                    local link = query_result[2]
 
                     local run = string.format("./%s", source_name)
-                    local cmd = compile .. " && " ..
-                        link .. " && " ..
-                        run
+                    local cmd = compile .. " && " .. link .. " && " .. run
 
                     console(cmd)
                 end,
-                type = "lua"
+                type = "lua",
             },
         },
     },
@@ -177,36 +194,34 @@ local languages = {
         tasks = {
             run = {
                 command = function()
-                    local source_name = vim.fn.expand("%<")
+                    local source_name = vim.fn.expand "%<"
                     local cmd = string.format("./%s", source_name)
                     console(cmd)
                 end,
-                type = "lua"
+                type = "lua",
             },
             build = {
                 command = function()
-                    local source_name = vim.fn.expand("%<")
-                    vim.api.nvim_command('write')
+                    local source_name = vim.fn.expand "%<"
+                    vim.api.nvim_command "write"
 
-                    local key          = nil
+                    local key = nil
                     local query_result = nil
 
-                    key           = "CC"
-                    query_result  = vim.fn["projectionist#query_exec"](key)[1]
+                    key = "CC"
+                    query_result = vim.fn["projectionist#query_exec"](key)[1]
                     local compile = query_result[2]
 
-                    key          = "LD"
+                    key = "LD"
                     query_result = vim.fn["projectionist#query_exec"](key)[1]
-                    local link   = query_result[2]
+                    local link = query_result[2]
 
                     local run = string.format("./%s", source_name)
-                    local cmd = compile .. " && " ..
-                        link .. " && " ..
-                        run
+                    local cmd = compile .. " && " .. link .. " && " .. run
 
                     console(cmd)
                 end,
-                type = "lua"
+                type = "lua",
             },
         },
     },
@@ -215,32 +230,32 @@ local languages = {
         tasks = {
             make = {
                 command = function()
-                    require('config.nvim_dev').make({})
+                    require("config.nvim_dev").make {}
                 end,
-                type = "lua"
+                type = "lua",
             },
             run = {
                 command = function()
-                    require('config.nvim_dev').make({ 'run' })
+                    require("config.nvim_dev").make { "run" }
                 end,
-                type = "lua"
+                type = "lua",
             },
             clean = {
                 command = function()
-                    require('config.nvim_dev').make({ 'clean' })
+                    require("config.nvim_dev").make { "clean" }
                 end,
-                type = "lua"
+                type = "lua",
             },
             test = {
                 command = function()
-                    require('config.nvim_dev').make({ 'test' })
+                    require("config.nvim_dev").make { "test" }
                 end,
-                type = "lua"
+                type = "lua",
             },
             bear = {
                 command = "/usr/local/bin/bear make",
                 output = "quickfix",
-                opts = { open_on_run = 'always' }
+                opts = { open_on_run = "always" },
             },
         },
     }, -- make
@@ -253,7 +268,7 @@ local languages = {
                 -- output = "quickfix",
                 -- output = 'echo',
                 output = "quickfix",
-                opts = { open_on_run = 'always' }
+                opts = { open_on_run = "always" },
             },
         },
     }, -- lua
@@ -323,16 +338,16 @@ local languages = {
     julia = {
         tasks = {
             run = {
-                command = 'julia %',
-                output = 'terminal',
-                opts = { open_on_run = 'never' }
+                command = "julia %",
+                output = "terminal",
+                opts = { open_on_run = "never" },
             },
             test = {
                 command = "julia -e 'using Pkg; Pkg.test()'",
-                output = 'terminal',
-                opts = { open_on_run = 'auto' }
-            }
-        }
+                output = "terminal",
+                opts = { open_on_run = "auto" },
+            },
+        },
     }, -- Julia
 } -- languages
 
@@ -343,15 +358,14 @@ local tasks = {
         command = "cmake .",
         output = "quickfix",
     },
-
 } -- tasks
 
 local opts = {
     output_types = {
-        quickfix = { open_on_run = "always" }
-    }
+        quickfix = { open_on_run = "always" },
+    },
 } -- opts
 
-yabs:setup({ languages = languages, tasks = tasks, opts = opts })
+yabs:setup { languages = languages, tasks = tasks, opts = opts }
 
 -- vim: fdm=marker:sw=4:sts=4:et
