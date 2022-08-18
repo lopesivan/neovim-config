@@ -1,5 +1,13 @@
 local M = {}
 
+local function harpoon_status()
+    local status = require("harpoon.mark").status()
+    if status == "" then
+        status = "N"
+    end
+
+    return string.format("H:%s", status)
+end
 -- stylua: ignore
 local colors = {
 	blue   = '#80a0ff',
@@ -13,7 +21,7 @@ local colors = {
 
 local bubbles_theme = {
     normal = {
-        a = { fg = colors.black, bg = colors.violet },
+        a = { fg = colors.white, bg = colors.black },
         b = { fg = colors.white, bg = colors.grey },
         c = { fg = colors.white, bg = colors.black },
     },
@@ -157,7 +165,7 @@ function M.setup()
             lualine_b = {
                 "branch",
                 "diff",
-                {
+                --[[ {
                     "diagnostics",
                     sources = { "nvim_diagnostic" },
                     symbols = {
@@ -167,7 +175,7 @@ function M.setup()
                         hint = icons.diagnostics.Hint,
                     },
                     colored = false,
-                },
+                }, ]]
             },
             lualine_c = {
                 { separator },
@@ -200,8 +208,8 @@ function M.setup()
         -- Temporary disable winbar due to this issue
         -- https://github.com/neovim/neovim/issues/19458
         winbar = {
-            -- lualine_a = { "diagnostics" },
-            lualine_a = {},
+            lualine_a = { "diagnostics" },
+            -- lualine_a = {},
             lualine_b = {},
             lualine_c = {},
             -- lualine_x = { winbar.get_winbar },

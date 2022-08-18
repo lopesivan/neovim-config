@@ -25,8 +25,9 @@ local sources = {
     -- b.formatting.shfmt,
     -- b.formatting.shellharden,
     b.formatting.fixjson,
-    b.formatting.astyle, -- not working
+    -- b.formatting.astyle, -- not working
     b.formatting.rubocop,
+    -- clang-format -style=llvm -dump-config > .clang-format
     -- b.formatting.clang_format,
     -- b.formatting.black.with { extra_args = { "--fast" } },
     -- b.formatting.isort,

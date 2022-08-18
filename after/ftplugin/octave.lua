@@ -1,12 +1,4 @@
-vim.opt.shiftwidth=4
-vim.opt.commentstring = "// %s"
-
-vim.opt.foldmethod="expr"
-vim.opt.foldexpr="GetCppFoldExpr()"
-vim.opt.foldcolumn="1"
-vim.opt.foldlevel=999
-vim.opt.foldminlines=1
-vim.opt.foldtext="CppFoldText()"
+vim.opt.commentstring = "% %s"
 
 vim.g.easy_align_delimiters = {
   -- aperto d
@@ -17,8 +9,8 @@ vim.g.easy_align_delimiters = {
   },
 
   -- aperto c
-  ['c'] = {
-      ['pattern'] = '\\/\\/',
+  ['%'] = {
+      ['pattern'] = '%',
       ['ignore_groups'] = {'String'},
       ['ignore_unmatched'] = 0
   },
@@ -69,13 +61,6 @@ vim.g.easy_align_delimiters = {
       ['stick_to_left'] = 0
   },
 
-  -- aperto _
-  ['_'] = {
-      ['pattern'] = '_\\w',
-      ['left_margin'] = 1,
-      ['right_margin'] = 0,
-      ['stick_to_left'] = 0
-  },
   -- aperto ,
   [','] = {
       ['pattern'] = '\\w\\+,',
@@ -95,39 +80,32 @@ vim.g.easy_align_delimiters = {
   }
 }
 
-vim.g.VimuxPromptString = "cansi"
+vim.g.VimuxPromptString = "octave"
 vim.g.VimuxRunnerType = "window"
-vim.g.VimuxRunnerName = "+GDB"
+vim.g.VimuxRunnerName = "+Octave"
 vim.g.VimuxCloseOnExit = 1
+
 vim.g.projectionist_heuristics = {
-['*.cpp'] = { ['*.cpp'] = {
-['run'] = 'lua require(\'config.nvim_dev\').app(\'./{}\')',
-['CC'] = 'g++ -g -std=c++17 -Wall -Werror -Wpedantic -Wno-parentheses  -c -o {}.o {file|basename}',
-['LD'] = 'g++ -lm {}.o -o {}',
-['telescope']= 'Telescope yabs tasks',
-['type'] = 'cpp'
-}}}
+  ['*.m'] = {
+    ['*.m'] = {
+      ['start'] = 'octave --persist {file|basename}',
+      ['dispatch'] = 'octave {file} >{}.out',
+      ['async_run'] = 'AsyncRun -mode=term -pos=tmux octave --persist {file|basename}',
+	  -- ['yabs2']= 'save_output',
+      ['quit'] = 'call VimuxCloseRunner()',
+      ['run'] = 'lua require(\'config.nvim_dev\').app(\'octave\',{\'{file|basename}\'})',
+      ['type'] = 'octave'
+    }
+  }
+}
 
 local nmap = require("config.dispatch").nmap
-nmap {'<leader><CR>', 'telescope', 'build maneger'}
-nmap {'m<CR>', 'make', 'make'}
-nmap {'d<CR>', 'dispatch', 'make clean'}
-nmap {'r<CR>', 'run', 'Run'}
--- nmap {'s<CR>', 'start', 'Maple Interativo'}
+nmap {'s<CR>', 'start', 'Octave Interativo'}
+nmap {'<leader><CR>', 'run', 'nvim_dev Run'}
+nmap {'<leader><leader><CR>', 'async_run', 'Async Run'}
+nmap {'<leader><leader>q', 'quit', 'Close window'}
+-- nmap {'r<CR>', 'yabs', 'Run'}
+-- nmap {'m<CR>', 'make', 'Make'}
+nmap {'d<CR>', 'dispatch', 'Dispatch'}
 
 
--- vim.opt.equalprg={"astyle --pad-first-paren-out --style=linux -A1 --indent=spaces=4 --convert-tabs"}
-
--- clang
--- vim.opt.makeprg="clang++-12 -Wall -Werror -Wpedantic -fstandalone-debug -std=c++17 -D_GLIBCXX_DEBUG -g -o build/%< %"
-
--- CMake
--- vim.opt.makeprg = "cd build/debug && make -j 16"
--- note 16 is hardware concurrency for build
--- make does an "out of tree build," thats why we cd into a diff directory
--- this assumes you've run cmake ../.. inside build/debug ahead of time to generate the makefile
-
--- gcc
--- vim.opt.makeprg="g++ -Wall -Werror -Wpedantic -std=c++17 -g -o build/%< %"
-
--- vim: set ft=lua nowrap:
