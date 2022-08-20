@@ -968,6 +968,16 @@ m<BS>      Remove all markers
             disable = false,
         }
 
+        use {
+            "andrewferrier/debugprint.nvim",
+            config = function()
+                require("debugprint").setup({
+                    create_keymaps = false,
+                    create_commands = false
+                })
+            end,
+        }
+
         -- vimspector
         use {
             "puremourning/vimspector",
