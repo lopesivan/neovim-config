@@ -63,11 +63,11 @@ local sources = {
     -- b.code_actions.shellcheck,
     -- b.code_actions.gitsigns,
     -- b.code_actions.gitrebase,
-    b.code_actions.refactoring,
+    -- b.code_actions.refactoring,
     -- b.code_actions.shellcheck,
     -- b.code_actions.eslint,
     -- hover
-    b.hover.dictionary,
+    -- b.hover.dictionary,
 }
 
 function M.setup(opts)

@@ -92,40 +92,14 @@ local function normal_keymap()
             "<cmd>lua require'telescope'.extensions.repo.list{}<cr>",
             "Search",
         },
-        P = { "<cmd>TermExec cmd='BROWSER=brave yarn dev'<cr>", "Slidev" },
     }
 
     local keymap = {
-        -- ["w"] = { "<cmd>update!<CR>", "Save" },
-        -- ["q"] = { "<cmd>lua require('utils').quit()<CR>", "Quit" },
-        -- ["t"] = { "<cmd>ToggleTerm<CR>", "Terminal" },
-
-        a = {
-            name = "Attempt",
-            n = {
-                "<Cmd>lua require('attempt').new_select()<Cr>",
-                "New Select",
-            },
-            i = {
-                "<Cmd>lua require('attempt').new_input_ext()<Cr>",
-                "New Input Extension",
-            },
-            r = { "<Cmd>lua require('attempt').run()<Cr>", "Run" },
-            d = {
-                "<Cmd>lua require('attempt').delete_buf()<Cr>",
-                "Delete Buffer",
-            },
-            c = {
-                "<Cmd>lua require('attempt').rename_buf()<Cr>",
-                "Rename Buffer",
-            },
-            s = { "<Cmd>Telescope attempt<Cr>", "Search" },
-        },
 
         b = {
             name = "Buffer",
             -- c = { "<Cmd>bd!<Cr>", "Close current buffer" },
-            c = { "<Cmd>BDelete this<Cr>", "Close Buffer" },
+            d = { "<Cmd>BDelete this<Cr>", "Close Buffer" },
             f = { "<Cmd>BDelete! this<Cr>", "Force Close Buffer" },
             -- D = { "<Cmd>%bd|e#|bd#<Cr>", "Delete all buffers" },
             D = { "<Cmd>BWipeout other<Cr>", "Delete All Buffers" },
@@ -137,7 +111,7 @@ local function normal_keymap()
                 "Buffer to quickfix",
             },
         },
-
+        --[[
         c = {
             name = "Code",
             g = { "<cmd>Neogen func<Cr>", "Func Doc" },
@@ -150,6 +124,7 @@ local function normal_keymap()
             -- F = "Select Outer Class",
         },
 
+--]]
         d = {
             name = "Debug",
         },
@@ -157,8 +132,8 @@ local function normal_keymap()
         f = keymap_f,
         p = keymap_p,
 
-        j = {
-            name = "Jump",
+        h = {
+            name = "harpoon",
             a = {
                 "<Cmd>lua require('harpoon.mark').add_file()<Cr>",
                 "Add File",
@@ -171,109 +146,40 @@ local function normal_keymap()
                 "<Cmd>lua require('harpoon.cmd-ui').toggle_quick_menu()<Cr>",
                 "Command Menu",
             },
-        },
-        ["0"] = { "<Cmd>2ToggleTerm<Cr>", "ToggleTerm 2" },
-        ["1"] = {
-            "<Cmd>lua require('harpoon.ui').nav_file(1) <Cr>",
-            "File 1",
-        },
-        ["2"] = {
-            "<Cmd>lua require('harpoon.ui').nav_file(2) <Cr>",
-            "File 2",
-        },
-        ["3"] = {
-            "<Cmd>lua require('harpoon.term').gotoTerminal(1)<Cr>",
-            "Terminal 1",
-        },
-        ["4"] = {
-            "<Cmd>lua require('harpoon.term').gotoTerminal(2)<Cr>",
-            "Terminal 2",
-        },
-        ["5"] = {
-            "<Cmd>lua require('harpoon.term').sendCommand(1,1)<Cr>",
-            "Command 1",
-        },
-        ["6"] = {
-            "<Cmd>lua require('harpoon.term').sendCommand(1,2)<Cr>",
-            "Command 2",
-        },
+            f = {
+                ["1"] = {
+                    "<Cmd>lua require('harpoon.ui').nav_file(1) <Cr>",
+                    "File 1",
+                },
+                ["2"] = {
+                    "<Cmd>lua require('harpoon.ui').nav_file(2) <Cr>",
+                    "File 2",
+                },
+            },
 
-        -- t = {
-        --   name = "Test",
-        --   S = { "<cmd>UltestSummary<cr>", "Summary" },
-        --   a = { "<cmd>Ultest<cr>", "All" },
-        --   c = { "<cmd>UltestClear<cr>", "Clear" },
-        --   d = { "<cmd>UltestDebug<cr>", "Debug" },
-        --   f = { "<cmd>TestFile<cr>", "File" },
-        --   l = { "<cmd>TestLast<cr>", "Last" },
-        --   n = { "<cmd>TestNearest<cr>", "Nearest" },
-        --   o = { "<cmd>UltestOutput<cr>", "Output" },
-        --   s = { "<cmd>TestSuite<cr>", "Suite" },
-        --   v = { "<cmd>TestVisit<cr>", "Visit" },
-        --   p = { "<Plug>PlenaryTestFile", "PlenaryTestFile" },
-        -- },
-
-        -- keymap_c.s = { "<cmd>OverseerRun<cr>", "Overseer Run" }
-        -- keymap_c.S = { "<cmd>OverseerToggle!<cr>", "Overseer Toggle" }
-        -- keymap_c.a = { "<cmd>OverseerQuickAction<cr>", "Overseer Quick Action" }
-        -- keymap_c.A = { "<cmd>OverseerTaskAction<cr>", "Overseer Task Action" }
-
-        o = {
-            name = "Overseer",
-            C = { "<cmd>OverseerClose<cr>", "OverseerClose" },
-            a = { "<cmd>OverseerTaskAction<cr>", "OverseerTaskAction" },
-            b = { "<cmd>OverseerBuild<cr>", "OverseerBuild" },
-            c = { "<cmd>OverseerRunCmd<cr>", "OverseerRunCmd" },
-            d = { "<cmd>OverseerDeleteBundle<cr>", "OverseerDeleteBundle" },
-            l = { "<cmd>OverseerLoadBundle<cr>", "OverseerLoadBundle" },
-            o = { "<cmd>OverseerOpen!<cr>", "OverseerOpen" },
-            q = { "<cmd>OverseerQuickAction<cr>", "OverseerQuickAction" },
-            r = { "<cmd>OverseerRun<cr>", "OverseerRun" },
-            s = { "<cmd>OverseerSaveBundle<cr>", "OverseerSaveBundle" },
-            t = { "<cmd>OverseerToggle!<cr>", "OverseerToggle" },
+            s = {
+                ["1"] = {
+                    "<Cmd>lua require('harpoon.term').sendCommand(1,1)<Cr>",
+                    "Command 1",
+                },
+                ["2"] = {
+                    "<Cmd>lua require('harpoon.term').sendCommand(1,2)<Cr>",
+                    "Command 2",
+                },
+            },
         },
 
         t = {
-            name = "Test",
-            a = { "<cmd>lua require('neotest').run.attach()<cr>", "Attach" },
-            f = {
-                "<cmd>lua require('neotest').run.run(vim.fn.expand('%'))<cr>",
-                "Run File",
+            name = "Terminal",
+            ["1"] = {
+                "<Cmd>lua require('harpoon.term').gotoTerminal(1)<Cr>",
+                "Terminal 1",
             },
-            F = {
-                "<cmd>lua require('neotest').run.run({vim.fn.expand('%'), strategy = 'dap'})<cr>",
-                "Debug File",
+            ["2"] = {
+                "<Cmd>lua require('harpoon.term').gotoTerminal(2)<Cr>",
+                "Terminal 2",
             },
-            l = {
-                "<cmd>lua require('neotest').run.run_last()<cr>",
-                "Run Last",
-            },
-            L = {
-                "<cmd>lua require('neotest').run.run_last({ strategy = 'dap' })<cr>",
-                "Debug Last",
-            },
-            n = {
-                "<cmd>lua require('neotest').run.run()<cr>",
-                "Run Nearest",
-            },
-            N = {
-                "<cmd>lua require('neotest').run.run({strategy = 'dap'})<cr>",
-                "Debug Nearest",
-            },
-            o = {
-                "<cmd>lua require('neotest').output.open({ enter = true })<cr>",
-                "Output",
-            },
-            S = { "<cmd>lua require('neotest').run.stop()<cr>", "Stop" },
-            s = {
-                "<cmd>lua require('neotest').summary.toggle()<cr>",
-                "Summary",
-            },
-            p = { "<Plug>PlenaryTestFile", "PlenaryTestFile" },
-            v = { "<cmd>TestVisit<cr>", "Visit" },
-            x = { "<cmd>TestSuite<cr>", "Suite" },
         },
-
         r = {
             name = "Refactor",
             i = {
