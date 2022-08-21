@@ -6,7 +6,8 @@
 \# Makefile: A standard Makefile for ${source}
 
 CFLAGS=-g -std=gnu99 -Wall -Wno-parentheses
-LDFLAGS=-lm
+#LDFLAGS=
+LDLIBS=-lm
 
 all  : ${source.split('.')[0]}
 clean:
