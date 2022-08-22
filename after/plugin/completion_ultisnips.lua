@@ -63,9 +63,9 @@ local sources = {
     { name = "nvim_lua" },
     { name = "treesitter" },
     { name = "path" },
-    { name = "buffer", keyword_length = 5 },
+    { name = "buffer", keyword_length = 3 },
     { name = "jptemplate", keyword_length = 3 },
-    { name = "dictionary", keyword_length = 5 },
+    { name = "dictionary", keyword_length = 3 },
     -- { name = "look", keyword_length=3, options={ convert_case=true, loud=true } }
 }
 

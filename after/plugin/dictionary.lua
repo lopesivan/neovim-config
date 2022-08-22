@@ -1,0 +1,287 @@
+-- dictionary.lua - dictionary
+-- Maintainer: Ivan Lopes
+-- ~/.config/nvim/after/plugin
+
+local f = string.format
+
+require("cmp_dictionary").setup {
+    dic = {
+        -- ["*"] = "/usr/share/dict/words",
+
+        -- HP50g =============================================================
+        ["hp50g"] = f("%s/dictionary/%s", vim.fn.stdpath "config", "hp.txt"),
+
+        -- efl ===============================================================
+        -- ["c"] = f(
+        --     "%s/dictionary/efl/%s",
+        --     vim.fn.stdpath "config",
+        --     "efl_ecore.txt"
+        -- ),
+        -- ["c"] = f(
+        --     "%s/dictionary/efl/%s",
+        --     vim.fn.stdpath "config",
+        --     "efl_ecore_audio.txt"
+        -- ),
+        -- ["c"] = f(
+        --     "%s/dictionary/efl/%s",
+        --     vim.fn.stdpath "config",
+        --     "efl_ecore_avahi.txt"
+        -- ),
+        -- ["c"] = f(
+        --     "%s/dictionary/efl/%s",
+        --     vim.fn.stdpath "config",
+        --     "efl_ecore_buffer.txt"
+        -- ),
+        -- ["c"] = f(
+        --     "%s/dictionary/efl/%s",
+        --     vim.fn.stdpath "config",
+        --     "efl_ecore_cocoa.txt"
+        -- ),
+        -- ["c"] = f(
+        --     "%s/dictionary/efl/%s",
+        --     vim.fn.stdpath "config",
+        --     "efl_ecore_con.txt"
+        -- ),
+        -- ["c"] = f(
+        --     "%s/dictionary/efl/%s",
+        --     vim.fn.stdpath "config",
+        --     "efl_ecore_drm2.txt"
+        -- ),
+        -- ["c"] = f(
+        --     "%s/dictionary/efl/%s",
+        --     vim.fn.stdpath "config",
+        --     "efl_ecore_drm.txt"
+        -- ),
+        -- ["c"] = f(
+        --     "%s/dictionary/efl/%s",
+        --     vim.fn.stdpath "config",
+        --     "efl_ecore_evas.txt"
+        -- ),
+        -- ["c"] = f(
+        --     "%s/dictionary/efl/%s",
+        --     vim.fn.stdpath "config",
+        --     "efl_ecore_fb.txt"
+        -- ),
+        -- ["c"] = f(
+        --     "%s/dictionary/efl/%s",
+        --     vim.fn.stdpath "config",
+        --     "efl_ecore_file.txt"
+        -- ),
+        -- ["c"] = f(
+        --     "%s/dictionary/efl/%s",
+        --     vim.fn.stdpath "config",
+        --     "efl_ecore_imf_evas.txt"
+        -- ),
+        -- ["c"] = f(
+        --     "%s/dictionary/efl/%s",
+        --     vim.fn.stdpath "config",
+        --     "efl_ecore_imf.txt"
+        -- ),
+        -- ["c"] = f(
+        --     "%s/dictionary/efl/%s",
+        --     vim.fn.stdpath "config",
+        --     "efl_ecore_input_evas.txt"
+        -- ),
+        -- ["c"] = f(
+        --     "%s/dictionary/efl/%s",
+        --     vim.fn.stdpath "config",
+        --     "efl_ecore_input.txt"
+        -- ),
+        -- ["c"] = f(
+        --     "%s/dictionary/efl/%s",
+        --     vim.fn.stdpath "config",
+        --     "efl_ecore_ipc.txt"
+        -- ),
+        -- ["c"] = f(
+        --     "%s/dictionary/efl/%s",
+        --     vim.fn.stdpath "config",
+        --     "efl_ecore_sdl.txt"
+        -- ),
+        -- ["c"] = f(
+        --     "%s/dictionary/efl/%s",
+        --     vim.fn.stdpath "config",
+        --     "efl_ecore_wayland.txt"
+        -- ),
+        -- ["c"] = f(
+        --     "%s/dictionary/efl/%s",
+        --     vim.fn.stdpath "config",
+        --     "efl_ecore_win32.txt"
+        -- ),
+        -- ["c"] = f(
+        --     "%s/dictionary/efl/%s",
+        --     vim.fn.stdpath "config",
+        --     "efl_ecore_wl2.txt"
+        -- ),
+        -- ["c"] = f(
+        --     "%s/dictionary/efl/%s",
+        --     vim.fn.stdpath "config",
+        --     "efl_ecore_x.txt"
+        -- ),
+        -- ["c"] = f(
+        --     "%s/dictionary/efl/%s",
+        --     vim.fn.stdpath "config",
+        --     "efl_ector.txt"
+        -- ),
+        -- ["c"] = f(
+        --     "%s/dictionary/efl/%s",
+        --     vim.fn.stdpath "config",
+        --     "efl_edje.txt"
+        -- ),
+        -- ["c"] = f(
+        --     "%s/dictionary/efl/%s",
+        --     vim.fn.stdpath "config",
+        --     "efl_eet.txt"
+        -- ),
+        -- ["c"] = f(
+        --     "%s/dictionary/efl/%s",
+        --     vim.fn.stdpath "config",
+        --     "efl_eeze.txt"
+        -- ),
+        -- ["c"] = f(
+        --     "%s/dictionary/efl/%s",
+        --     vim.fn.stdpath "config",
+        --     "efl_efl_canvas_wl.txt"
+        -- ),
+        -- ["c"] = f(
+        --     "%s/dictionary/efl/%s",
+        --     vim.fn.stdpath "config",
+        --     "efl_efl_mono.txt"
+        -- ),
+        -- ["c"] = f(
+        --     "%s/dictionary/efl/%s",
+        --     vim.fn.stdpath "config",
+        --     "efl_efl.txt"
+        -- ),
+        -- ["c"] = f(
+        --     "%s/dictionary/efl/%s",
+        --     vim.fn.stdpath "config",
+        --     "efl_efreet.txt"
+        -- ),
+        -- ["c"] = f(
+        --     "%s/dictionary/efl/%s",
+        --     vim.fn.stdpath "config",
+        --     "efl_eina.txt"
+        -- ),
+        -- ["c"] = f(
+        --     "%s/dictionary/efl/%s",
+        --     vim.fn.stdpath "config",
+        --     "efl_eio.txt"
+        -- ),
+        -- ["c"] = f(
+        --     "%s/dictionary/efl/%s",
+        --     vim.fn.stdpath "config",
+        --     "efl_eldbus.txt"
+        -- ),
+        -- ["c"] = f(
+        --     "%s/dictionary/efl/%s",
+        --     vim.fn.stdpath "config",
+        --     "efl_elementary.txt"
+        -- ),
+        -- ["c"] = f(
+        --     "%s/dictionary/efl/%s",
+        --     vim.fn.stdpath "config",
+        --     "efl_elput.txt"
+        -- ),
+        -- ["c"] = f(
+        --     "%s/dictionary/efl/%s",
+        --     vim.fn.stdpath "config",
+        --     "efl_elua.txt"
+        -- ),
+        -- ["c"] = f(
+        --     "%s/dictionary/efl/%s",
+        --     vim.fn.stdpath "config",
+        --     "efl_embryo.txt"
+        -- ),
+        -- ["c"] = f(
+        --     "%s/dictionary/efl/%s",
+        --     vim.fn.stdpath "config",
+        --     "efl_emile.txt"
+        -- ),
+        -- ["c"] = f(
+        --     "%s/dictionary/efl/%s",
+        --     vim.fn.stdpath "config",
+        --     "efl_emotion.txt"
+        -- ),
+        -- ["c"] = f(
+        --     "%s/dictionary/efl/%s",
+        --     vim.fn.stdpath "config",
+        --     "efl_eolian_cxx.txt"
+        -- ),
+        -- ["c"] = f(
+        --     "%s/dictionary/efl/%s",
+        --     vim.fn.stdpath "config",
+        --     "efl_eolian.txt"
+        -- ),
+        -- ["c"] = f(
+        --     "%s/dictionary/efl/%s",
+        --     vim.fn.stdpath "config",
+        --     "efl_eo.txt"
+        -- ),
+        -- ["c"] = f(
+        --     "%s/dictionary/efl/%s",
+        --     vim.fn.stdpath "config",
+        --     "efl_ephysics.txt"
+        -- ),
+        -- ["c"] = f(
+        --     "%s/dictionary/efl/%s",
+        --     vim.fn.stdpath "config",
+        --     "efl_ethumb_client.txt"
+        -- ),
+        -- ["c"] = f(
+        --     "%s/dictionary/efl/%s",
+        --     vim.fn.stdpath "config",
+        --     "efl_ethumb.txt"
+        -- ),
+        -- ["c"] = f(
+        --     "%s/dictionary/efl/%s",
+        --     vim.fn.stdpath "config",
+        --     "efl_evas.txt"
+        -- ),
+        -- ["c"] = f(
+        --     "%s/dictionary/efl/%s",
+        --     vim.fn.stdpath "config",
+        --     "efl_evil.txt"
+        -- ),
+
+        -- ["cpp"] = f(
+        --     "%s/dictionary/%s",
+        --     vim.fn.stdpath "config",
+        --     "wxclass.txt"
+        -- ),
+
+        -- c =================================================================
+        -- ["c"] = f(
+        --     "%s/dictionary/%s",
+        --     vim.fn.stdpath "config",
+        --     "c.txt"
+        -- ),
+
+        -- cpp ===============================================================
+        -- ["cpp"] = f(
+        --     "%s/dictionary/%s",
+        --     vim.fn.stdpath "config",
+        --     "cpp.txt"
+        -- ),
+
+        -- tex ===============================================================
+        -- ["tex"] = f(
+        --     "%s/dictionary/%s",
+        --     vim.fn.stdpath "config",
+        --     "tex_words.txt"
+        -- ),
+
+        -- ["tex"] = f(
+        --     "%s/dictionary/IntelliJ.Portuguese.Brazil.Dictionary/%s",
+        --     vim.fn.stdpath "config",
+        --     "portuguese-brazil.dic"
+        -- ),
+    },
+    -- The following are default values, so you don't need to write them if
+    -- you don't want to change them
+    exact = 2,
+    async = false,
+    capacity = 5,
+    debug = false,
+}
+
+-- vim: fdm=marker:sw=4:sts=4:et

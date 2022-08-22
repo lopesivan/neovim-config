@@ -1,6 +1,3 @@
-vim.o.termguicolors = true
-vim.o.laststatus = 3
-
 if not pcall(require, "colorbuddy") then
     return
 end

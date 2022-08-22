@@ -2,10 +2,26 @@
 --  https://github.com/neovim/neovim/pull/13479
 -- Until then, you can check out `./lua/tj/globals/opt.lua
 local opt = vim.opt
+-- local g = vim.g
 
+-- Remap leader and local leader to <Space>
+-- api.nvim_set_keymap("", "<Space>", "<Nop>", { noremap = true, silent = true })
+-- vim.keymap.set("", "<Space>", "<Nop>", { noremap = true, silent = true })
+-- g.mapleader = " "
+-- g.maplocalleader = ","
+
+-- Better search
+opt.path:remove "/usr/include"
+opt.path:append "**"
+-- vim.cmd [[set path=.,,,$PWD/**]] -- Set the path directly
+
+opt.wildignorecase = true
 -- Ignore compiled files
 opt.wildignore = "__pycache__"
 opt.wildignore = opt.wildignore + { "*.o", "*~", "*.pyc", "*pycache*" }
+
+opt.wildignore:append "**/node_modules/*"
+opt.wildignore:append "**/.git/*"
 
 opt.wildmode = { "longest", "list", "full" }
 
@@ -87,10 +103,23 @@ opt.bomb = true
 opt.binary = true
 opt.ttyfast = true
 
-opt.mouse = "n"
+opt.mouse = "a" --Enable mouse mode
+-- opt.mouse = "n"
+opt.laststatus = 3 -- Global statusline
+opt.termguicolors = true
+
 opt.visualbell = true
 -- opt.virtualedit    = 'all'
 opt.virtualedit = "block"
+
+-- Change to use lualine.nvim
+-- opt.winbar = "%{%v:lua.require'config.winbar'.get_winbar()%}"
+
+-- go to previous/next line with h,l,left arrow and right arrow when cursor reaches end/beginning of line
+opt.whichwrap:append "<>[]hl"
+
+-- disable nvim intro
+opt.shortmess:append "sI"
 
 -- Encoding
 opt.encoding = "utf-8"

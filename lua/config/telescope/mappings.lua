@@ -61,7 +61,7 @@ map_tele("<space>fg/", "grep_last_search", "Telescope: grep with last search", {
 -- map_tele('<Leader>te', 'my_examples', "Telescope: meus exemplos")
 vim.api.nvim_set_keymap(
     "n",
-    "<Leader>te",
+    "<Leader>E",
     "<CMD>luafile "
         .. string.format("%s/%s", vim.fn.stdpath "config", "lua/config")
         .. "/examples.lua<CR>",
@@ -104,7 +104,7 @@ vim.api.nvim_set_keymap(
 )
 vim.api.nvim_set_keymap(
     "n",
-    "<Leader>tt",
+    "<Leader>T",
     "<CMD>luafile "
         .. string.format(
             "%s/%s",

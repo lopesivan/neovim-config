@@ -500,7 +500,7 @@ return require("packer").startup {
             run = ":UpdateRemotePlugins",
         }
 
-        local_use "maps.vim"
+        -- local_use "maps.vim"
         local_use "hp50g.vim"
         local_use "uppercase.nvim"
         local_use "vim-dict"
@@ -1288,8 +1288,8 @@ m<BS>      Remove all markers
             requires = "tami5/sqlite.lua",
         }
 
-        -- use { "nvim-telescope/telescope-fzy-native.nvim" }
-        -- use { "nvim-telescope/telescope-fzf-native.nvim", run = "make" }
+        use { "nvim-telescope/telescope-fzy-native.nvim" }
+        use { "nvim-telescope/telescope-fzf-native.nvim", run = "make" }
 
         -- Debugging
         -- Debug adapter protocol

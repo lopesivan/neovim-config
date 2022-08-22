@@ -933,5 +933,3 @@ wxZipNotifier
 wxZipOutputStream
 wxZlibInputStream
 wxZlibOutputStream
-X
-Z
