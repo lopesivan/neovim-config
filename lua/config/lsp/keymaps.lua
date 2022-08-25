@@ -1,5 +1,8 @@
 M = {}
 
+local whichkey = require "which-key"
+local legendary = require "legendary"
+
 local function keymappings(client, bufnr)
     print "Load LSP: mappings "
     vim.keymap.set(
@@ -70,6 +73,62 @@ local function keymappings(client, bufnr)
         "<CMD>lua vim.diagnostic.goto_next { severity = vim.diagnostic.severity.ERROR }<CR>",
         { desc = "Go Next Error", buffer = bufnr }
     )
+
+    -- Whichkey
+    local keymap_l = {
+        l = {
+            name = "LSP",
+            R = { "<cmd>Trouble lsp_references<cr>", "Trouble References" },
+            a = { "<cmd>lua vim.lsp.buf.code_action()<CR>", "Code Action" },
+            d = { "<cmd>Telescope diagnostics<CR>", "Diagnostics" },
+            f = { "<cmd>Lspsaga lsp_finder<CR>", "Finder" },
+            i = { "<cmd>LspInfo<CR>", "Lsp Info" },
+            n = { "<cmd>lua require('renamer').rename()<CR>", "Rename" },
+            r = { "<cmd>Telescope lsp_references<CR>", "References" },
+            s = {
+                "<cmd>Telescope lsp_document_symbols<CR>",
+                "Document Symbols",
+            },
+            t = { "<cmd>TroubleToggle document_diagnostics<CR>", "Trouble" },
+            L = {
+                "<cmd>lua vim.lsp.codelens.refresh()<CR>",
+                "Refresh CodeLens",
+            },
+            l = { "<cmd>lua vim.lsp.codelens.run()<CR>", "Run CodeLens" },
+            D = {
+                "<cmd>lua require('config.lsp').toggle_diagnostics()<CR>",
+                "Toggle Inline Diagnostics",
+            },
+        },
+    }
+    if client.server_capabilities.documentFormattingProvider then
+        keymap_l.l.F = {
+            "<cmd>lua vim.lsp.buf.format({async = true})<CR>",
+            "Format Document",
+        }
+    end
+
+    local keymap_v_l = {
+        l = {
+            name = "LSP",
+            a = {
+                "<cmd>'<,'>lua vim.lsp.buf.range_code_action()<CR>",
+                "Code Action",
+            },
+        },
+    }
+
+    local o = { buffer = bufnr, prefix = "<leader>" }
+    whichkey.register(keymap_l, o)
+    legendary.bind_whichkey(keymap_l, o, false)
+
+    o = { mode = "v", buffer = bufnr, prefix = "<leader>" }
+    whichkey.register(keymap_v_l, o)
+    legendary.bind_whichkey(keymap_v_l, o, false)
+
+    -- o = { buffer = bufnr, prefix = "g" }
+    -- whichkey.register(keymap_g, o)
+    -- legendary.bind_whichkey(keymap_g, o, false)
 end
 
 -- local function signature_help(client, bufnr)

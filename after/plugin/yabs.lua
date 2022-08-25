@@ -164,6 +164,12 @@ local languages = {
                 end,
                 type = "lua",
             },
+            make = {
+                command = function()
+                    require("config.nvim_dev").make {}
+                end,
+                type = "lua",
+            },
             build = {
                 command = function()
                     local source_name = vim.fn.expand "%<"
@@ -197,6 +203,12 @@ local languages = {
                     local source_name = vim.fn.expand "%<"
                     local cmd = string.format("./%s", source_name)
                     console(cmd)
+                end,
+                type = "lua",
+            },
+            make = {
+                command = function()
+                    require("config.nvim_dev").make {}
                 end,
                 type = "lua",
             },
