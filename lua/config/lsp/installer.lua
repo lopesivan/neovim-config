@@ -32,25 +32,23 @@ function M.setup(servers, options)
     }
 
     -- Package installation folder
-    local install_root_dir = vim.fn.stdpath "data" .. "/mason"
+    -- local install_root_dir = vim.fn.stdpath "data" .. "/mason"
 
     require("mason-lspconfig").setup_handlers {
         function(server_name)
             -- print("Load server: " .. server_name)
 
-            local opts = vim.tbl_deep_extend(
+            local config = vim.tbl_deep_extend(
                 "force",
                 options,
                 servers[server_name] or {}
             )
 
-            if server_name == "sumneko_lua" then
-                lsp_config.sumneko_lua.setup(
-                    require("lua-dev").setup { opts }
-                )
-            else
-                lsp_config[server_name].setup { opts }
-            end
+            -- if server_name == "sumneko_lua" then
+            --     lsp_config.sumneko_lua.setup(require("lua-dev").setup(config))
+            -- else
+            lsp_config[server_name].setup(config)
+            -- end
         end,
     }
 end

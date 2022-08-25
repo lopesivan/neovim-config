@@ -59,6 +59,7 @@ cmp.event:on(
 
 local sources = {
     { name = "ultisnips" },
+    { name = "nvim_lsp_signature_help" },
     { name = "nvim_lsp" },
     { name = "nvim_lua" },
     { name = "treesitter" },

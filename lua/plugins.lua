@@ -110,7 +110,14 @@ return require("packer").startup {
         use {
             "tpope/vim-fugitive",
             opt = true,
-            cmd = { "Git", "GBrowse", "Gdiffsplit", "Gvdiffsplit" },
+            cmd = {
+                "Git",
+                "Gread",
+                "Gwrite",
+                "GBrowse",
+                "Gdiffsplit",
+                "Gvdiffsplit",
+            },
             requires = {
                 "tpope/vim-rhubarb",
                 "idanarye/vim-merginal",
@@ -971,10 +978,10 @@ m<BS>      Remove all markers
         use {
             "andrewferrier/debugprint.nvim",
             config = function()
-                require("debugprint").setup({
+                require("debugprint").setup {
                     create_keymaps = false,
-                    create_commands = false
-                })
+                    create_commands = false,
+                }
             end,
         }
 
@@ -1289,7 +1296,6 @@ m<BS>      Remove all markers
         }
 
         use { "nvim-telescope/telescope-fzy-native.nvim" }
-        use { "nvim-telescope/telescope-fzf-native.nvim", run = "make" }
 
         -- Debugging
         -- Debug adapter protocol
@@ -1386,8 +1392,8 @@ m<BS>      Remove all markers
                 "hrsh7th/cmp-buffer",
                 "hrsh7th/cmp-nvim-lsp",
                 "hrsh7th/cmp-nvim-lua",
+                "hrsh7th/cmp-nvim-lsp-signature-help",
                 "hrsh7th/cmp-path",
-                "hrsh7th/cmp-copilot",
                 "ray-x/cmp-treesitter",
                 "lopesivan/cmp-jptemplate",
                 "hrsh7th/cmp-cmdline",

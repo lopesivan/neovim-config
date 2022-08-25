@@ -123,7 +123,7 @@ local servers = {
     },
 
     vimls = {},
-    tailwindcss = {},
+    -- tailwindcss = {},
     yamlls = {
         schemastore = {
             enable = true,
@@ -189,7 +189,6 @@ function M.on_attach(client, bufnr)
 
     -- Configure key mappings
     require("config.lsp.keymaps").setup(client, bufnr)
-
     -- Configure highlighting
     require("config.lsp.highlighter").setup(client, bufnr)
 
@@ -237,7 +236,7 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
 }
 M.capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities) -- for nvim-cmp
 
-local opts = {
+local options = {
     on_attach = M.on_attach,
     capabilities = M.capabilities,
     flags = {
@@ -250,10 +249,10 @@ require("config.lsp.handlers").setup()
 
 function M.setup()
     -- null-ls
-    require("config.lsp.null-ls").setup(opts)
+    require("config.lsp.null-ls").setup(options)
 
     -- Installer
-    require("config.lsp.installer").setup(servers, opts)
+    require("config.lsp.installer").setup(servers, options)
 
     -- Inlay hints
     require("config.lsp.inlay-hints").setup()
