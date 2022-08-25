@@ -1286,6 +1286,7 @@ m<BS>      Remove all markers
         use "WaylonWalker/Telegraph.nvim"
 
         use "RishabhRD/nvim-cheat.sh"
+        use "RishabhRD/popfix"
         use "nvim-telescope/telescope-cheat.nvim"
         use "nvim-telescope/telescope-project.nvim"
         use "cljoly/telescope-repo.nvim"
