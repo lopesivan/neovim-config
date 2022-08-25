@@ -32,7 +32,8 @@ function M.cht()
 end
 
 function M.cht_cmd(cmd)
-  vim.api.nvim_exec("vnew", true)
+  vim.api.nvim_exec("new", true)
+  -- vim.api.nvim_exec("vnew", true)
   vim.api.nvim_exec("terminal", true)
   local buf = vim.api.nvim_get_current_buf()
   vim.api.nvim_buf_set_name(buf, "cheatsheet-" .. buf)

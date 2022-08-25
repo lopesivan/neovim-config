@@ -129,6 +129,22 @@ local function normal_keymap()
             name = "Debug",
         },
 
+        m = {
+            name = "Math",
+            m = {
+                "<cmd>lua require('libuv.maple').command_toggle()<CR>",
+                "Git TUI",
+            },
+            p = {
+                "<cmd>lua require('libuv.python').command_toggle()<CR>",
+                "Git TUI",
+            },
+            b = {
+                "<cmd>lua require('libuv.bc').command_toggle()<CR>",
+                "Git TUI",
+            },
+        },
+
         f = keymap_f,
         p = keymap_p,
 
@@ -284,6 +300,10 @@ local function normal_keymap()
             --     "Gist",
             -- },
 
+            z = {
+                "<cmd>lua require('utils.term').git_client_toggle()<CR>",
+                "Git TUI",
+            },
             I = {
                 function()
                     local options = vim.fn.input("language: ", "", "tag")
@@ -336,10 +356,6 @@ local function normal_keymap()
             --     t = { "<cmd>GHToggleThread<cr>", "Toggle" },
             --   },
             -- },
-            z = {
-                "<cmd>lua require('utils.term').git_client_toggle()<CR>",
-                "Git TUI",
-            },
         },
     }
     whichkey.register(keymap, opts)
