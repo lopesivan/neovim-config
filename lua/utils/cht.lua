@@ -39,7 +39,7 @@ function M.cht_cmd(cmd)
   vim.api.nvim_buf_set_option(buf, "filetype", "cheat")
 
   local chan_id = vim.b.terminal_job_id
-  local cht_cmd = "curl cht.sh/" .. cmd
+  local cht_cmd = "cht.sh " .. cmd
   vim.api.nvim_chan_send(chan_id, cht_cmd .. "\r\n")
   vim.cmd [[stopinsert]]
 end

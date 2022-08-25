@@ -198,9 +198,9 @@ local function normal_keymap()
 
         s = {
             name = "Search",
-            o = { [[ <Esc><Cmd>lua require('spectre').open()<CR>]], "Open" },
+            o = { "<Cmd>lua require('spectre').open()<CR>", "Open" },
             c = {
-                [[ <Esc><Cmd>lua require('utils.cht').cht()<CR>]],
+                "<Cmd>lua require('utils.cht').cht()<CR>",
                 "Code",
             },
         },
