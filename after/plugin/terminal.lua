@@ -30,7 +30,7 @@ local function set_terminal_keymaps()
     )
 end
 
-local group = vim.api.nvim_create_augroup("FormatAutogroup", { clear = true })
+local group = vim.api.nvim_create_augroup("TerminalNav", { clear = true })
 
 vim.api.nvim_create_autocmd("TermOpen", {
     group = group,
