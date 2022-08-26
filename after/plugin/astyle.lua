@@ -2,8 +2,12 @@ if vim.fn.executable "astyle" == 0 then
     return
 end
 
-vim.cmd [[
-  augroup AstyleAuto
-    autocmd BufWritePre *.c,*.h,*.cpp :lua require("config.astyle").format()
-  augroup END
-]]
+local group = vim.api.nvim_create_augroup("AstyleAuto", { clear = true })
+
+vim.api.nvim_create_autocmd("BufWritePre", {
+    group = group,
+    pattern = { "*.c", "*.h", "*.cpp" },
+    callback = function()
+        require("config.astyle").format()
+    end,
+})

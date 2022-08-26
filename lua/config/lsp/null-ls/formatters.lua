@@ -47,6 +47,10 @@ function M.setup(client, bufnr)
         enable = not (client.name == "null-ls")
     end
 
+    if client.name == "clangd" then
+        M.autoformat = false
+    end
+
     client.server_capabilities.documentFormattingProvder = enable
     client.server_capabilities.documentRangeFormattingProvider = enable
     if client.server_capabilities.documentFormattingProvider then

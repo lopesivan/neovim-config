@@ -71,6 +71,10 @@ astyle.format = function(bufnr)
         end)
 
         return
+    else
+        vim.schedule(function()
+            print "[astyle] formatted"
+        end)
     end
 
     vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, output)

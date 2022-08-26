@@ -44,11 +44,11 @@ function M.setup(servers, options)
                 servers[server_name] or {}
             )
 
-            -- if server_name == "sumneko_lua" then
-            --     lsp_config.sumneko_lua.setup(require("lua-dev").setup(config))
-            -- else
-            lsp_config[server_name].setup(config)
-            -- end
+            if server_name == "sumneko_lua" then
+                lsp_config.sumneko_lua.setup(require("lua-dev").setup(config))
+            else
+                lsp_config[server_name].setup(config)
+            end
         end,
     }
 end
