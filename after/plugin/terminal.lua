@@ -2,7 +2,7 @@
 -- Maintainer: Ivan Lopes
 -- ~/.config/nvim/after/plugin
 
-function _G.set_terminal_keymaps()
+local function set_terminal_keymaps()
     local opts = { noremap = true }
     vim.api.nvim_buf_set_keymap(0, "t", "<esc>", [[<C-\><C-n>]], opts)
     vim.api.nvim_buf_set_keymap(0, "t", "jk", [[<C-\><C-n>]], opts)
@@ -30,11 +30,13 @@ function _G.set_terminal_keymaps()
     )
 end
 
-vim.cmd [[
-augroup FormatAutogroup
-    autocmd!
-    autocmd TermOpen term://* lua set_terminal_keymaps()
-augroup END
-]]
+local group = vim.api.nvim_create_augroup("FormatAutogroup", { clear = true })
 
+vim.api.nvim_create_autocmd("TermOpen", {
+    group = group,
+    pattern = { "term://*" },
+    callback = function()
+        set_terminal_keymaps()
+    end,
+})
 -- vim: fdm=marker:sw=4:sts=4:et
