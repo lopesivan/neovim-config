@@ -143,6 +143,14 @@ local function normal_keymap()
                 "<cmd>lua require('libuv.bc').command_toggle()<CR>",
                 "Git TUI",
             },
+            n = {
+                "<cmd>lua require('libuv.nu').command_toggle()<CR>",
+                "Git TUI",
+            },
+            l = {
+                "<cmd>lua require('libuv.lua').command_toggle()<CR>",
+                "Git TUI",
+            },
         },
 
         f = keymap_f,
