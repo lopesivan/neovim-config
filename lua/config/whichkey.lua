@@ -136,12 +136,16 @@ local function normal_keymap()
                 "Git TUI",
             },
             p = {
-                "<cmd>lua require('libuv.python').command_toggle()<CR>",
-                "Git TUI",
+                y = {
+                    "<cmd>lua require('libuv.python').command_toggle()<CR>",
+                    "Git TUI",
+                },
             },
             b = {
-                "<cmd>lua require('libuv.bc').command_toggle()<CR>",
-                "Git TUI",
+                c = {
+                    "<cmd>lua require('libuv.bc').command_toggle()<CR>",
+                    "Git TUI",
+                },
             },
             n = {
                 "<cmd>lua require('libuv.nu').command_toggle()<CR>",
@@ -149,6 +153,10 @@ local function normal_keymap()
             },
             l = {
                 "<cmd>lua require('libuv.lua').command_toggle()<CR>",
+                "Git TUI",
+            },
+            p = {
+                "<cmd>lua require('libuv.pythagoras').command_toggle()<CR>",
                 "Git TUI",
             },
         },
