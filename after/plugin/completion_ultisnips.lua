@@ -67,6 +67,7 @@ local sources = {
     { name = "buffer", keyword_length = 3 },
     { name = "jptemplate", keyword_length = 3 },
     { name = "dictionary", keyword_length = 3 },
+    { name = "conventionalcommits" },
     -- { name = "look", keyword_length=3, options={ convert_case=true, loud=true } }
 }
 

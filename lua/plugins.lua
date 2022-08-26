@@ -1395,6 +1395,7 @@ m<BS>      Remove all markers
                 "hrsh7th/cmp-nvim-lua",
                 "hrsh7th/cmp-nvim-lsp-signature-help",
                 "hrsh7th/cmp-path",
+                "davidsierradz/cmp-conventionalcommits",
                 "ray-x/cmp-treesitter",
                 "lopesivan/cmp-jptemplate",
                 "hrsh7th/cmp-cmdline",
