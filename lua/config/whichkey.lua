@@ -111,7 +111,7 @@ local function normal_keymap()
                 "Buffer to quickfix",
             },
         },
-        --[[
+
         c = {
             name = "Code",
             g = { "<cmd>Neogen func<Cr>", "Func Doc" },
@@ -124,7 +124,6 @@ local function normal_keymap()
             -- F = "Select Outer Class",
         },
 
---]]
         d = {
             name = "Debug",
         },

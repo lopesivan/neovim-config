@@ -1251,7 +1251,7 @@ m<BS>      Remove all markers
                     "JoosepAlviste/nvim-ts-context-commentstring",
                     event = "BufReadPre",
                 },
-                { "p00f/nvim-ts-rainbow", event = "BufReadPre" },
+                -- { "p00f/nvim-ts-rainbow", event = "BufReadPre" },
                 {
                     "RRethy/nvim-treesitter-textsubjects",
                     event = "BufReadPre",

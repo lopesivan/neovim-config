@@ -54,11 +54,11 @@ function M.setup()
             -- },
         },
 
-        rainbow = {
-            enable = true,
-            extended_mode = true,
-            max_file_lines = nil,
-        },
+        -- rainbow = {
+        --     enable = true,
+        --     extended_mode = true,
+        --     max_file_lines = nil,
+        -- },
 
         incremental_selection = {
             enable = true,

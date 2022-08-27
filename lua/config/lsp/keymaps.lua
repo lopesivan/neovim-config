@@ -38,15 +38,15 @@ local function keymappings(client, bufnr)
     )
     vim.keymap.set(
         "n",
-        "ca",
-        "<CMD>lua vim.lsp.buf.code_action()<CR>",
-        { desc = "Code Action", buffer = bufnr }
-    )
-    vim.keymap.set(
-        "n",
         "gh",
         "<CMD>lua vim.lsp.buf.signature_help()<CR>",
         { desc = "Signature Help", buffer = bufnr }
+    )
+    vim.keymap.set(
+        "n",
+        "<leader>ca",
+        "<CMD>lua vim.lsp.buf.code_action()<CR>",
+        { desc = "Code Action", buffer = bufnr }
     )
 
     vim.keymap.set(
