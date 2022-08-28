@@ -131,49 +131,8 @@ local function normal_keymap()
         m = {
             name = "Math",
             m = {
-                "<cmd>lua require('libuv.maple').command_toggle()<CR>",
-                "Git TUI",
-            },
-            p = {
-                y = {
-                    "<cmd>lua require('libuv.python').command_toggle()<CR>",
-                    "IPython",
-                },
-            },
-            b = {
-                c = {
-                    "<cmd>lua require('libuv.bc').command_toggle()<CR>",
-                    "BC Calculator",
-                },
-            },
-            n = {
-                u = {
-                    "<cmd>lua require('libuv.nu').command_toggle()<CR>",
-                    "NU file explorer",
-                },
-                g = {
-                    "<cmd>lua require('libuv.ngspice').command_toggle()<CR>",
-                    "NGSpice",
-                },
-            },
-            l = {
-                "<cmd>lua require('libuv.lua').command_toggle()<CR>",
-                "Luap",
-            },
-            -- r = {
-            --     "<cmd>lua require('libuv.ranger').command_toggle()<CR>",
-            --     "Ranger",
-            -- },
-            c = {
-                name = "Commands",
-                p = {
-                    "<cmd>lua require('libuv.pythagoras').command_toggle()<CR>",
-                    "PYTHAGORAS",
-                },
-                l = {
-                    "<cmd>lua require('libuv.cling').command_toggle()<CR>",
-                    "Cling",
-                },
+                "<cmd>lua require('libuv.my_programs').startup()<CR>",
+                "Meus Programas",
             },
         },
 
