@@ -6,7 +6,7 @@ local cmd = "luap"
 
 local command_client = Terminal:new {
     cmd = cmd,
-    dir = "/workspace",
+    dir = string.format("%s", vim.fn.getcwd()),
     hidden = true,
     direction = "float",
     float_opts = {

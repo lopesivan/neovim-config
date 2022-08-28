@@ -6,9 +6,8 @@ local cmd = "git cz"
 
 local command_client = Terminal:new {
     cmd = cmd,
-    dir = vim.fn.expand('%:p'),
+    dir = string.format("%s", vim.fn.getcwd()),
     hidden = true,
-    direction = "float",
     float_opts = {
         border = "double",
     },

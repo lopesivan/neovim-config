@@ -2,7 +2,7 @@ local M = {}
 
 local Terminal = require("toggleterm.terminal").Terminal
 
-local cmd = "maple"
+local cmd = "ngspice"
 
 local command_client = Terminal:new {
     cmd = cmd,

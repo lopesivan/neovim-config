@@ -151,6 +151,10 @@ local function normal_keymap()
                     "<cmd>lua require('libuv.nu').command_toggle()<CR>",
                     "NU file explorer",
                 },
+                g = {
+                    "<cmd>lua require('libuv.ngspice').command_toggle()<CR>",
+                    "NGSpice",
+                },
             },
             l = {
                 "<cmd>lua require('libuv.lua').command_toggle()<CR>",
@@ -165,6 +169,10 @@ local function normal_keymap()
                 p = {
                     "<cmd>lua require('libuv.pythagoras').command_toggle()<CR>",
                     "PYTHAGORAS",
+                },
+                l = {
+                    "<cmd>lua require('libuv.cling').command_toggle()<CR>",
+                    "Cling",
                 },
             },
         },
