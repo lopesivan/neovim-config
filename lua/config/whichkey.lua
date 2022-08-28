@@ -222,7 +222,7 @@ local function normal_keymap()
                 "<cmd>lua require('utils.session').list_session()<cr>",
                 "List and restore session",
             },
-            d = {
+            D = {
                 "<cmd>lua require('utils.session').delete_session()<cr>",
                 "Restore Workspace",
             },
