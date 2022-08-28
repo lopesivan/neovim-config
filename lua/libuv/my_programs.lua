@@ -18,6 +18,8 @@ end
 local terminal_program_table = {
     "bc",
     "cling",
+    "git_cz",
+    "julia",
     "lua",
     "maple",
     "ngspice",
