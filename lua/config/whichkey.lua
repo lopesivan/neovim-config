@@ -114,9 +114,9 @@ local function normal_keymap()
 
         c = {
             name = "Code",
-            g = { "<cmd>Neogen func<Cr>", "Func Doc" },
-            G = { "<cmd>Neogen class<Cr>", "Class Doc" },
             d = { "<cmd>DogeGenerate<Cr>", "Generate Doc" },
+            -- g = { "<cmd>Neogen func<Cr>", "Func Doc" },
+            -- G = { "<cmd>Neogen class<Cr>", "Class Doc" },
             T = { "<cmd>TodoTelescope<Cr>", "TODO" },
             x = "Swap Next Param",
             X = "Swap Prev Param",
@@ -147,20 +147,25 @@ local function normal_keymap()
                 },
             },
             n = {
-                "<cmd>lua require('libuv.nu').command_toggle()<CR>",
-                "NU file explorer",
+                u = {
+                    "<cmd>lua require('libuv.nu').command_toggle()<CR>",
+                    "NU file explorer",
+                },
             },
             l = {
                 "<cmd>lua require('libuv.lua').command_toggle()<CR>",
                 "Luap",
             },
-            r = {
-                "<cmd>lua require('libuv.ranger').command_toggle()<CR>",
-                "Ranger",
-            },
-            p = {
-                "<cmd>lua require('libuv.pythagoras').command_toggle()<CR>",
-                "PYTHAGORAS",
+            -- r = {
+            --     "<cmd>lua require('libuv.ranger').command_toggle()<CR>",
+            --     "Ranger",
+            -- },
+            c = {
+                name = "Commands",
+                p = {
+                    "<cmd>lua require('libuv.pythagoras').command_toggle()<CR>",
+                    "PYTHAGORAS",
+                },
             },
         },
 

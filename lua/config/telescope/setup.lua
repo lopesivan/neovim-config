@@ -211,6 +211,7 @@ _ = require("telescope").load_extension "ui-select"
 _ = require("telescope").load_extension "yabs"
 _ = require("telescope").load_extension "git_worktree"
 _ = require("telescope").load_extension "refactoring"
+_ = require("telescope").load_extension "todo-comments"
 -- _ = require("telescope").load_extension "flutter"
 
 pcall(require("telescope").load_extension, "smart_history")

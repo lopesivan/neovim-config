@@ -525,15 +525,15 @@ return require("packer").startup {
 
         -- Code documentation ================================================
         --
-        use {
-            "danymat/neogen",
-            config = function()
-                require("config.neogen").setup()
-            end,
-            cmd = { "Neogen" },
-            module = "neogen",
-            disable = false,
-        }
+        -- use {
+        --     "danymat/neogen",
+        --     config = function()
+        --         require("config.neogen").setup()
+        --     end,
+        --     cmd = { "Neogen" },
+        --     module = "neogen",
+        --     disable = false,
+        -- }
 
         use {
             "kkoomen/vim-doge",
@@ -547,19 +547,13 @@ return require("packer").startup {
 
         -- Translation
         use {
-            "voldikss/vim-translator",
+            "uga-rosa/translate.nvim",
             cmd = {
                 "Translate",
-                "TranslateV",
-                "TranslateW",
-                "TranslateWV",
-                "TranslateR",
-                "TranslateRV",
-                "TranslateX",
             },
             config = function()
-                vim.g.translator_target_lang = "en"
-                vim.g.translator_history_enable = true
+                -- :Translate pt-BR en
+                require("config.translate").setup()
             end,
         }
         --
@@ -1112,7 +1106,28 @@ m<BS>      Remove all markers
             end,
             disable = false,
         }
-
+        -- Lua
+        use {
+            "folke/todo-comments.nvim",
+            requires = "nvim-lua/plenary.nvim",
+            config = function()
+                require("todo-comments").setup {
+                    -- your configuration comes here
+                    -- or leave it empty to use the default settings
+                    -- refer to the configuration section below
+                }
+            end,
+            -- PERF: fully optimised
+            -- HACK: hmmm, this looks a bit funky
+            -- TODO: What else?
+            -- NOTE: adding a note
+            -- FIX: this needs fixing
+            -- WARNING: ???
+            -- FIX: ddddd
+            -- todo: fooo
+            -- @TODO foobar
+            -- @hack foobar
+        }
         -- IndentLine
         use {
             "lukas-reineke/indent-blankline.nvim",
