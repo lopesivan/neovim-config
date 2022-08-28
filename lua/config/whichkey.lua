@@ -238,6 +238,22 @@ local function normal_keymap()
                 "<Cmd>lua require('utils.cht').cht()<CR>",
                 "Code",
             },
+            s = {
+                "<cmd>lua require('utils.session').save_session()<cr>",
+                "Saving session",
+            },
+            t = {
+                "<cmd>lua require('utils.session').toggle_session()<cr>",
+                "Toggle Workspace Saving",
+            },
+            l = {
+                "<cmd>lua require('utils.session').list_session()<cr>",
+                "List and restore session",
+            },
+            d = {
+                "<cmd>lua require('utils.session').delete_session()<cr>",
+                "Restore Workspace",
+            },
         },
 
         v = {
@@ -289,14 +305,6 @@ local function normal_keymap()
             -- x = { "<cmd>set autochdir<cr>", "Auto ChDir" },
             x = { "<cmd>Telescope cder<cr>", "Change Directory" },
             e = { "!!$SHELL<CR>", "Execute line" },
-            W = {
-                "<cmd>lua require('utils.session').toggle_session()<cr>",
-                "Toggle Workspace Saving",
-            },
-            w = {
-                "<cmd>lua require('utils.session').list_session()<cr>",
-                "Restore Workspace",
-            },
             z = {
                 "<cmd>lua require'telescope'.extensions.zoxide.list{}<cr>",
                 "Zoxide",
