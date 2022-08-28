@@ -24,7 +24,7 @@ require("packer").startup {
 }
 
 return require("packer").startup {
-    function(use)
+    function(use, use_rocks)
         local local_use = function(first, second, opts)
             opts = opts or {}
 
@@ -64,6 +64,10 @@ return require("packer").startup {
 
         -- Performance
         use "lewis6991/impatient.nvim"
+
+        -- rocks I use
+        -- use_rocks { "fun", "inspect" }
+        use_rocks "fun"
 
         -- Load only when require
         -- use { "nvim-lua/plenary.nvim", module = "plenary" }
@@ -697,8 +701,21 @@ return require("packer").startup {
         }
 
         -- use 'vinibispo/ruby.nvim'
+        use {
+            "vinibispo/ruby.nvim",
+            requires = {
+                "nvim-lua/plenary.nvim",
+                "nvim-treesitter/nvim-treesitter",
+            },
+        } -- Ruby general
         use "arnoudbuzing/wolfram-vim"
-        use { "cuducos/yaml.nvim" }
+        use {
+            "cuducos/yaml.nvim",
+            requires = {
+                "nvim-treesitter/nvim-treesitter",
+                "nvim-telescope/telescope.nvim",
+            },
+        } -- Yaml navigation
 
         use "tjdevries/green_light.nvim"
         use "justinmk/vim-syntax-extra"
@@ -1461,8 +1478,8 @@ m<BS>      Remove all markers
             end,
         }
 
-        -- =======================================================================
-        -- =======================================================================
+        -- ===================================================================
+        -- ===================================================================
     end,
 
     config = {

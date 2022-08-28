@@ -18,7 +18,7 @@ vim.g.projectionist_heuristics = {
             ["start"] = "luap -i {file|basename}",
             ["make"] = "lua {file}",
             ["dispatch"] = "lua {file}",
-            ["load"] = "luafile {file|basename}",
+            ["load"] = "luafile {file}",
             ["type"] = "lua",
         },
     },
