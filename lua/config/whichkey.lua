@@ -134,6 +134,10 @@ local function normal_keymap()
                 "<cmd>lua require('libuv.my_programs').startup()<CR>",
                 "Meus Programas",
             },
+            j = {
+                "<cmd>lua require('libuv.jupyter').startup()<CR>",
+                "Jupyter",
+            },
         },
 
         f = keymap_f,

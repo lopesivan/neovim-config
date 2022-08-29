@@ -231,6 +231,7 @@ return require("packer").startup {
         -- Uso: VBox
 
         use "untitled-ai/jupyter_ascending.vim"
+        use { "dccsillag/magma-nvim", run = ":UpdateRemotePlugins" }
 
         use "sbdchd/neoformat"
         -- Terminal
