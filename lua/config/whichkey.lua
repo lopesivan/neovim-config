@@ -467,7 +467,7 @@ local function code_keymap()
         elseif ft == "go" then
             keymap_c = {
                 name = "Code",
-                r = { "<cmd>GoRun<cr>", "Run" },
+                r = { "<cmd>!go run %<cr>", "Run" },
             }
         elseif
             ft == "typescript"
