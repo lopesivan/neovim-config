@@ -330,6 +330,23 @@ local languages = {
         },
     }, -- Octave
 
+    ruby = {
+        tasks = {
+            run = {
+                command = "ruby %",
+                output = "quickfix",
+            },
+            monitor = {
+                command = "nodemon -e py %",
+                output = "terminal",
+            },
+            debug = {
+                command = "ruby -m pdb %",
+                output = "terminal",
+            },
+        },
+    }, -- ruby
+
     python = {
         tasks = {
             run = {
