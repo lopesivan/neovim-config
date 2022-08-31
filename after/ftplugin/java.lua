@@ -12,7 +12,7 @@ local HOME = os.getenv "HOME"
 local WORKSPACE_PATH = HOME .. "/workspace/java/"
 
 -- Debugger installation location
-local DEBUGGER_LOCATION = HOME .. "/.local/share/nvim"
+local DEBUGGER_LOCATION = vim.fn.stdpath "data"
 
 -- Only for Linux and Mac
 local SYSTEM = "linux"
