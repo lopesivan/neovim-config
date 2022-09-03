@@ -7,6 +7,8 @@ if not ok then
     nvim_status = nil
 end
 
+local filetype = vim.bo.filetype
+
 local servers = {
     gopls = {
         settings = {
@@ -210,11 +212,15 @@ function M.on_attach(client, bufnr)
     -- aerial.nvim
     require("aerial").on_attach(client, bufnr)
 
+    if client.name == "bashls" then
+        goto continue
+    end
     -- nvim-navic
     if client.server_capabilities.documentSymbolProvider then
         local navic = require "nvim-navic"
         navic.attach(client, bufnr)
     end
+    ::continue::
 
     -- inlay-hints
     local ih = require "inlay-hints"

@@ -1,6 +1,6 @@
 scriptencoding utf-8
 
-source $VIMRUNTIME/syntax/syntax.vim
+" source $VIMRUNTIME/syntax/syntax.vim
 
 setlocal termguicolors
 
