@@ -179,8 +179,8 @@ if( (maparg( '<s-Right>' ) == '' ) &&
 \   (maparg( '<S-Down>'  ) == '' )
 \)
 
-nnoremap <silent> <s-Right>        :<C-u>call MoveCharToRight()<CR>
-nnoremap <silent> <s-Left>         :<C-u>call MoveCharToLeft()<CR>
+" nnoremap <silent> <s-Right>        :<C-u>call MoveCharToRight()<CR>
+" nnoremap <silent> <s-Left>         :<C-u>call MoveCharToLeft()<CR>
 inoremap <silent> <s-Right>   <C-o>:<C-u>call MoveCharToRight()<CR>
 inoremap <silent> <s-Left>    <C-o>:<C-u>call MoveCharToLeft()<CR>
 
@@ -269,7 +269,7 @@ inoremap <silent> <s-Down> <C-o>:<C-u>call MoveLineDown()<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 else
-    echo "[my_motion.vim]: ERROR: Você tentou maper minhas marcações.\n".
+    echo "[my_motion.vim]: ERROR: Você tentou maper minhas marcações.\n"
 endif
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

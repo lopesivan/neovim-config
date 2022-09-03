@@ -22,6 +22,7 @@ local sources = {
     -- formatting
     b.formatting.autopep8,
     b.formatting.prettierd,
+    b.formatting.xmllint,
     -- b.formatting.shfmt,
     -- b.formatting.shellharden,
     b.formatting.fixjson,
