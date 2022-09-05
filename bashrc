@@ -3,8 +3,8 @@ export LANG="en_US.UTF-8"
 
 export PS1="\$ "
 
-export PYENV_ROOT="$HOME/.pyenv"
-pathmunge "$PYENV_ROOT/bin"
+PYENV_ROOT="$HOME/.pyenv"
+export PATH=$PATH:"$PYENV_ROOT/bin"
 
 [[ `which pyenv 2>/dev/null` ]] && eval "$(pyenv init --path)"
 [[ `which pyenv 2>/dev/null` ]] && eval "$(pyenv init -)"

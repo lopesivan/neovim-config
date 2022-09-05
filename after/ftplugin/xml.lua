@@ -7,16 +7,41 @@ vim.bo.expandtab = true
 vim.bo.autoindent = true
 vim.bo.infercase = true
 
-vim.opt.foldmethod="syntax"
-vim.opt.foldcolumn="1"
-vim.opt.foldlevel=999
-vim.opt.foldminlines=1
-vim.opt.foldtext="XMLFoldText()"
+vim.opt.foldmethod = "syntax"
+vim.opt.foldcolumn = "1"
+vim.opt.foldlevel = 999
+vim.opt.foldminlines = 1
+vim.opt.foldtext = "XMLFoldText()"
 
 -- export XMLLINT_INDENT="...."
 vim.env["XMLLINT_INDENT"] = "    "
 
-vim.opt.fillchars="fold: "
+vim.opt.fillchars = "fold: "
 vim.g.xml_syntax_folding = 1
-vim.opt.equalprg="xmllint --format --recover - 2>/dev/null"
+vim.opt.equalprg = "xmllint --format --recover - 2>/dev/null"
 
+vim.g.projectionist_heuristics = {
+    ["pom.xml"] = {
+        ["pom.xml"] = {
+            ["compile"] = "mvn compile",
+            ["run"] = "mvn exec:java",
+            ["clean"] = "mvn clean",
+            ["jar"] = "mvn jar:jar",
+            ["type"] = "xml",
+        },
+    },
+}
+
+vim.cmd(([[
+nmenu Maven.compile :lua require('config.console').exec(vim.fn["projectionist#query_exec"]("%s")[1][2])
+nmenu Maven.run     :lua require('config.console').exec(vim.fn["projectionist#query_exec"]("%s")[1][2])
+nmenu Maven.clean   :lua require('config.console').exec(vim.fn["projectionist#query_exec"]("%s")[1][2])
+nmenu Maven.jar     :lua require('config.console').exec(vim.fn["projectionist#query_exec"]("%s")[1][2])
+]]):format("compile", "run", "clean", "jar"))
+
+vim.api.nvim_set_keymap(
+    "n",
+    "<F12>",
+    "<Cmd>call Menu2Quick('Maven', 'n')<CR>",
+    { noremap = true, silent = true }
+)
