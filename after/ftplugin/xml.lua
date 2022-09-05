@@ -32,12 +32,13 @@ vim.g.projectionist_heuristics = {
     },
 }
 
-vim.cmd(([[
-nmenu Maven.compile :lua require('config.console').exec(vim.fn["projectionist#query_exec"]("%s")[1][2])
-nmenu Maven.run     :lua require('config.console').exec(vim.fn["projectionist#query_exec"]("%s")[1][2])
-nmenu Maven.clean   :lua require('config.console').exec(vim.fn["projectionist#query_exec"]("%s")[1][2])
-nmenu Maven.jar     :lua require('config.console').exec(vim.fn["projectionist#query_exec"]("%s")[1][2])
-]]):format("compile", "run", "clean", "jar"))
+local items = { "compile", "run", "clean", "jar" }
+
+for _, v in pairs(items) do
+    vim.cmd(([[
+nmenu Maven.%s :lua require('config.console').exec(vim.fn["projectionist#query_exec"]("%s")[1][2])
+]]):format(v, v))
+end
 
 vim.api.nvim_set_keymap(
     "n",
